@@ -52,3 +52,4 @@ production:
   database: practice_production
   username: practice
   password: <%= ENV['PRACTICE_DATABASE_PASSWORD'] %>
+
