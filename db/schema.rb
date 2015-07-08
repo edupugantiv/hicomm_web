@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708121735) do
+ActiveRecord::Schema.define(version: 20150708125021) do
 
   create_table "conversations", force: :cascade do |t|
     t.string  "name",       limit: 255
@@ -28,6 +28,11 @@ ActiveRecord::Schema.define(version: 20150708121735) do
     t.datetime "sent"
     t.integer  "sender_id",       limit: 4
     t.integer  "conversation_id", limit: 4
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "users",  limit: 255
+    t.string "groups", limit: 255
   end
 
   create_table "participants", id: false, force: :cascade do |t|
