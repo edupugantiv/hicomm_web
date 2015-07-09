@@ -1,6 +1,6 @@
 Key Screen 2 - Main Page <br />
 User: <%=@user.email%> <br />
-Projects: <br />
+Current Projects: <br />
 <%@projects.each do |project| %> 
 	<%= project.name %> <br />
 <% end %> 
@@ -10,4 +10,4 @@ Projects: <br />
 <% end %> 
 </div>
 
-<%= link_to 'Add Groups', groups_path %>
+<%= link_to 'View Groups', groups_path %>
