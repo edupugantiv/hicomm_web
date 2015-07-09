@@ -2,6 +2,9 @@ class ConversationsController < ApplicaitonController
 	before_action :authenticate_user!
 	def show 
 		@conversation = Conversation.find(params[:id])
+		@conversers = @conversation.users
+		@messages = @conversation.messages
+		@project = @conversation.project
 	end 
 
 	def new 

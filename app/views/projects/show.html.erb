@@ -1,0 +1,20 @@
+Key Screen 4: Project Page <br />
+<%=@project.name%> <br />
+<%=@members.size%> members <br />
+Type: <%=@project.type%><br />
+Location: <%=@project.location%><br />
+Scale: <%=@project.scale%><br />
+Contact: <%=@project_manager%> <br />
+
+
+Conversations: <br />
+<%@conversations.each do |conversation|%> 
+	<%=converstaion.name%> 
+<%end%> 
+
+<%=button_to "New Conversation", '#'%>
+
+Members
+<%@members.each do |member|%> 
+	<%=member.name%> 
+<%end%> 

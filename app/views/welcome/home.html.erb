@@ -4,7 +4,8 @@ Projects: <br />
 <%@projects.each do |project| %> 
 	<%= project.name %> <br />
 <% end %> 
-Messages: <br />
+<div id="inbox">Inbox: <br />
 <%@messages.each do |message| %> 
-	<%= message.body %> <br />
+	<div onclick=<%render partial: "show/#{message.conversation.id}" %>><%= message.body %> <br />
 <% end %> 
+</div>
