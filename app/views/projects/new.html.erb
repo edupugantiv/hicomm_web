@@ -1,16 +1,13 @@
 New Project <br />
 <%= form_for @project do |f| %> 
 	<%= f.label "What's your project name?"%> 
-	<%= f.text_field :name %><br /> 
-
-	<%= f.label "Project type:"%> 
-	<%= f.text_field :name %><br /> 
+	<%= f.text_field :name %><br />  
 
 	<%= f.label "Project location:"%> 
-	<%= f.text_field :name %><br /> 
+	<%= f.text_field :location %><br /> 
 
 	<%= f.label "Project scale:"%> 
-	<%= f.text_field :name %><br /> 
+	<%= f.text_field :scale %><br /> 
 
 	Choose your privacy settings:<br />
 	<%= f.label :privacy %><br />
