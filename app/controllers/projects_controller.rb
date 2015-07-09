@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
 
 	def create 
 		@project = Project.create(project_params.merge(:project_manager_id => current_user.id))
-		redirect_to 'welcom_path'
+		redirect_to welcome_path
 	end 
 
 	def destroy 
