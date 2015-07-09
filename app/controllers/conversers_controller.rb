@@ -1,0 +1,2 @@
+class ConversersController < ApplicationController 
+end 

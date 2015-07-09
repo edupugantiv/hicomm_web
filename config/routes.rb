@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+
   resources :users 
   resources :projects 
   resources :conversations
@@ -18,7 +19,10 @@ Rails.application.routes.draw do
   get 'welcome/home' => 'welcome#home', as: 'welcome'
   get 'groups/home' => 'groups#index'
   get 'groups/new' => 'groups#new'
-
+  put 'projects/:id/join' => 'projects#join', as: 'join'
+  put 'projects/:id/leave' => 'projects#leave', as: 'leave'
+  get 'projects/:id/conversations/new' => 'conversations#new', as: 'new_convo'
+  post 'projects/:id/conversations/' => 'conversations#create', as: 'create_new_convo'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

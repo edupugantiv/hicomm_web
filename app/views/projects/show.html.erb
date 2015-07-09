@@ -1,0 +1,26 @@
+Key Screen 4: Project Page <br />
+<%=@project.name%> <br />
+<%=@participants.size%> members <br />
+Location: <%=@project.location%><br />
+Scale: <%=@project.scale%><br />
+Contact: <%=@project_manager.email%> <br />
+
+<%if @project.users.include?(current_user)%> 
+	<%=button_to "Leave Project", leave_path(@project), :method => 'put'%>
+<% else %> 
+	<%=button_to "Join Project", join_path(@project), :method => 'put'%>
+<%end%>
+
+Conversations: <br />
+<%@conversations.each do |conversation|%> 
+	<%=conversation.name%> 
+
+
+<%end%> 
+
+<%=button_to "New Conversation", new_convo_path(@project), :method => 'get'%>
+
+Members: <br />
+<%@participants.each do |participant|%> 
+	<%=participant.email%> 
+<%end%> 

@@ -1,0 +1,8 @@
+<%=@project.name%><br />
+<%=@conversation.name%> <br />
+<%@conversers.each do |c| %> 
+	<%=c.name%>
+<%end%><br />
+<%@messages.each do |message| %> 
+	<%=message.body%> <br />
+<%end%> 

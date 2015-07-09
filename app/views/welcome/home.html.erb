@@ -4,9 +4,10 @@ Projects: <br />
 <%@projects.each do |project| %> 
 	<%= project.name %> <br />
 <% end %> 
-Messages: <br />
+<div id="inbox">Inbox: <br />
 <%@messages.each do |message| %> 
 	<%= message.body %> <br />
 <% end %> 
+</div>
 
 <%= link_to 'Add Groups', groups_path %>
