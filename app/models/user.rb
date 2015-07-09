@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-	has_many :projects, through: :participants
+	has_and_belongs_to_many :projects, join_table: "participants"
 	has_many :groups, through: :organizations
-	has_many :conversations
+	has_and_belongs_to_many :conversations, join_table: "conversers"
 	has_many :groups
 end 

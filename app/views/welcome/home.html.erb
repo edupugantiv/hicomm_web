@@ -1,0 +1,10 @@
+Key Screen 2 - Main Page <br />
+User: <%=@user.email%> <br />
+Projects: <br />
+<%@projects.each do |project| %> 
+	<%= project.name %> <br />
+<% end %> 
+Messages: <br />
+<%@messages.each do |message| %> 
+	<%= message.body %> <br />
+<% end %> 
