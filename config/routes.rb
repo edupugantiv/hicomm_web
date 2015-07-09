@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :projects 
   resources :conversations
   resources :messages
-  
+  resources :groups
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -15,6 +16,9 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
 
   get 'welcome/home' => 'welcome#home', as: 'welcome'
+  get 'groups/home' => 'groups#index'
+  get 'groups/new' => 'groups#new'
+
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
