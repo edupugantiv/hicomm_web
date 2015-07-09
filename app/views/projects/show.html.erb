@@ -13,10 +13,12 @@ Contact: <%=@project_manager.email%> <br />
 
 Conversations: <br />
 <%@conversations.each do |conversation|%> 
-	<%=converstaion.name%> 
+	<%=conversation.name%> 
+
+
 <%end%> 
 
-<%=button_to "New Conversation", '#'%>
+<%=button_to "New Conversation", new_convo_path(@project), :method => 'get'%>
 
 Members: <br />
 <%@participants.each do |participant|%> 

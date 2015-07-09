@@ -9,7 +9,7 @@ class WelcomeController < ApplicationController
 		@conversations = @user.conversations 
 		@messages = []
 		@conversations.each do |conversation|
-			@messages << conversation.messages
+			@messages + conversation.messages
 		end 
 	end 
 end 

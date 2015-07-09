@@ -6,6 +6,6 @@ Projects: <br />
 <% end %> 
 <div id="inbox">Inbox: <br />
 <%@messages.each do |message| %> 
-	<div onclick=<%render partial: "show/#{message.conversation.id}" %>><%= message.body %> <br />
+	<%= message.body %> <br />
 <% end %> 
 </div>
