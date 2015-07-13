@@ -19,6 +19,10 @@ class GroupsController < ApplicationController
     end
   end
 
+  def show
+    @group = Group.find(params[:id])
+  end 
+
   def destroy
     @group.destroy
     respond_to do |format|
