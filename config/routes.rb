@@ -20,6 +20,15 @@ Rails.application.routes.draw do
   put 'projects/:id/leave' => 'projects#leave', as: 'leave'
   get 'projects/:id/conversations/new' => 'conversations#new', as: 'new_convo'
   post 'projects/:id/conversations/' => 'conversations#create', as: 'create_new_convo'
+  get  'projects/:id/conversations/:id' => 'conversations#show', as: 'view_convo'
+  get  'projects/:id/conversations/:id/pick_users' => 'conversations#pick_users', as: 'pick_convo_users'
+  put  'projects/:id/conversations/:id/add_users/' => 'conversations#add_users', as: 'add_convo_users'
+
+  get  'projects/:id/pick_users' => 'projects#pick_users', as: 'pick_project_users'
+  put  'projects/:id/add_users/' => 'projects#add_users', as: 'add_project_users'
+  
+
+  #put  'projects/:id/conversations/:id' => 'conversations#update', as: 'update_convo'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

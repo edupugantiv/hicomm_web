@@ -45,6 +45,21 @@ class ProjectsController < ApplicationController
 		redirect_to :back
 	end 
 
+	def pick_users
+		@project = Project.find(params[:id])
+		all_users = User.all
+		existent_users = @project.users
+		@users = all_users - existent_users
+
+	end 
+
+	def add_users
+		@project = Project.find(params[:project_id])
+		@user = User.find(params[:user_id])
+		@project.users << @user
+		redirect_to :back 
+	end
+
 	private 
 
 	def project_params 

@@ -1,8 +1,8 @@
-<%=@project.name%><br />
+<%=link_to @project.name, project_path(@project)%><br />
 <%=@conversation.name%> <br />
 <%@conversers.each do |c| %> 
-	<%=c.name%>
+	<%=c.email%>
 <%end%><br />
-<%@messages.each do |message| %> 
+<%=button_to "Add Users", pick_convo_users_path(@conversation), :method => 'get' %> 
 	<%=message.body%> <br />
 <%end%> 

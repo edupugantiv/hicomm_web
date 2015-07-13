@@ -2,7 +2,7 @@ Key Screen 2 - Main Page <br />
 User: <%=@user.email%> <br />
 Projects: <br />
 <%@projects.each do |project| %> 
-	<%= project.name %> <br />
+	<%= project.name %> <%=button_to "View", project_path(project), :method => 'get'%> <br />
 <% end %> 
 <div id="inbox">Inbox: <br />
 <%@messages.each do |message| %> 

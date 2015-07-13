@@ -7,13 +7,14 @@ Contact: <%=@project_manager.email%> <br />
 
 <%if @project.users.include?(current_user)%> 
 	<%=button_to "Leave Project", leave_path(@project), :method => 'put'%>
+	<%=button_to "Add Users", pick_project_users_path(@project), :method => 'get'%>
 <% else %> 
 	<%=button_to "Join Project", join_path(@project), :method => 'put'%>
 <%end%>
 
 Conversations: <br />
 <%@conversations.each do |conversation|%> 
-	<%=conversation.name%> 
+	<%=conversation.name%> <%=button_to "View", view_convo_path(conversation), :method => 'get'%>
 
 
 <%end%> 
