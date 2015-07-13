@@ -5,13 +5,15 @@ class MessagesController < ApplicationController
 	end 
 
 	def create
-		@message = Message.create(message_params)
+		@conversation = Conversation.find(params[:conversation_id])
+		@message = Message.create(message_params.merge(:sender_id => current_user.id, :conversation_id => @conversation.id, :sent => Time.now))
+		redirect_to :back
 	end 
 
 	private 
 
 	def message_params 
-		params.require(:message).permit(:body, :sent, :conversation_id, :sender_id)
+		params.require(:message).permit(:body)
 	end 
 
 end 

@@ -3,7 +3,7 @@ Key Screen 4: Project Page <br />
 <%=@participants.size%> members <br />
 Location: <%=@project.location%><br />
 Scale: <%=@project.scale%><br />
-Contact: <%=@project_manager.email%> <br />
+Contact: <%=@project_manager.name%>: <%=@project_manager.email%> <br />
 
 <%if @project.users.include?(current_user)%> 
 	<%=button_to "Leave Project", leave_path(@project), :method => 'put'%>
@@ -23,5 +23,5 @@ Conversations: <br />
 
 Members: <br />
 <%@participants.each do |participant|%> 
-	<%=participant.email%> 
+	<%=participant.name%> 
 <%end%> 

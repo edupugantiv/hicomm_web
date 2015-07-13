@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
-
+  devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users 
   resources :projects 
   resources :conversations
@@ -29,6 +28,8 @@ Rails.application.routes.draw do
 
   get  'projects/:id/pick_users' => 'projects#pick_users', as: 'pick_project_users'
   put  'projects/:id/add_users/' => 'projects#add_users', as: 'add_project_users'
+
+  post 'messages/create' => 'messages#create', as: 'post_new_message'
   
 
   #put  'projects/:id/conversations/:id' => 'conversations#update', as: 'update_convo'
