@@ -1,10 +1,44 @@
-<%=link_to @project.name, project_path(@project)%><br />
-<%=@conversation.name%> <br />
-<%@conversers.each do |c| %> 
-	<%=c.name%>
-<%end%><br />
-<%=button_to "Add Users", pick_convo_users_path(@conversation), :method => 'get'%> 
-<%@messages.each do |message| %> 
-	<%=message.sender.name%>: <%=message.body%> <br />
-<%end%> 
-<%= render partial: "messages/new" %>
+<div class="col-md-3">
+	Project Stuff 
+</div>
+
+<div class="col-md-6">
+	<%=link_to @project.name, project_path(@project)%><br />
+	<%=@conversation.name%> <br />
+	<%@conversers.each do |c| %> 
+		<%=c.name%>
+	<%end%><br />
+	<%=button_to "Add Users", pick_convo_users_path(@conversation), :method => 'get'%> <br />
+	<%@messages.each do |message| %> 
+		<%if message.sender == current_user %>
+			<div class="media">
+			  <div class="media-right">
+			    <a href="#">
+			      <img class="media-object" src="..." alt="...">
+			    </a>
+			  </div>
+			  <div class="media-body">
+			    <h4 class="media-heading"><%=message.sender.name%></h4>
+			    	<%= message.body %> 
+			  </div>
+			</div>
+		<%else%>
+			<div class="media">
+			  <div class="media-left">
+			    <a href="#">
+			      <img class="media-object" src="..." alt="...">
+			    </a>
+			  </div>
+			  <div class="media-body">
+			    <h4 class="media-heading"><%=message.sender.name%></h4>
+			    	<%= message.body %> 
+			  </div>
+			</div>
+		<%end%>
+	<% end %> 
+	<%= render partial: "messages/new" %>
+</div>
+
+<div class="col-md-3">
+Group Stuff
+</div>

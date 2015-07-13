@@ -57,7 +57,7 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:project_id])
 		@user = User.find(params[:user_id])
 		@project.users << @user
-		redirect_to :back 
+		redirect_to :back,  notice: "#{@user.name} was successfully added to #{@project.name}"
 	end
 
 	private 

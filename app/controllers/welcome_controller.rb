@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-	before_action :authenticate_user!
+	#before_action :authenticate_user!
 	def index 
 	end 
 
@@ -7,9 +7,10 @@ class WelcomeController < ApplicationController
 		@user = current_user 
 		@projects = @user.projects
 		@conversations = @user.conversations 
+		@groups = @user.groups
 		@messages = []
 		@conversations.each do |conversation|
-			@messages + conversation.messages
+			@messages += conversation.messages
 		end 
 	end 
 end 
