@@ -1,6 +1,6 @@
 Add Users<br />
 <%@users.each do |user|%>
-	<%=user.email%> <%=button_to "Add", add_convo_users_path(:project_id => @project, :conversation_id =>@conversation, :user_id => user), :method => 'put'%><br />
+	<%=user.name%> <%=button_to "Add", add_convo_users_path(:project_id => @project, :conversation_id =>@conversation, :user_id => user), :method => 'put'%><br />
 <%end %> 
 
 <%=button_to "Done", view_convo_path(@project, @conversation), :method => 'get'%>

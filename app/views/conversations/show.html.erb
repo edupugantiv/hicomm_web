@@ -1,8 +1,10 @@
 <%=link_to @project.name, project_path(@project)%><br />
 <%=@conversation.name%> <br />
 <%@conversers.each do |c| %> 
-	<%=c.email%>
+	<%=c.name%>
 <%end%><br />
-<%=button_to "Add Users", pick_convo_users_path(@conversation), :method => 'get' %> 
-	<%=message.body%> <br />
+<%=button_to "Add Users", pick_convo_users_path(@conversation), :method => 'get'%> 
+<%@messages.each do |message| %> 
+	<%=message.sender.name%>: <%=message.body%> <br />
 <%end%> 
+<%= render partial: "messages/new" %>
