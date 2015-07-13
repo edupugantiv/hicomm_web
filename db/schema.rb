@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 20150709100500) do
     t.integer "conversation_id", limit: 4, null: false
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.integer "user_id",   limit: 4
+    t.string  "name",      limit: 255
+    t.float   "latitude",  limit: 24
+    t.float   "longitude", limit: 24
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text     "body",            limit: 65535
     t.datetime "sent"

@@ -1,6 +1,6 @@
 Key Screen 2 - Main Page <br />
 User: <%=@user.email%> <br />
-Projects: <br />
+Current Projects: <br />
 <%@projects.each do |project| %> 
 	<%= project.name %> <%=button_to "View", project_path(project), :method => 'get'%> <br />
 <% end %> 
@@ -9,3 +9,16 @@ Projects: <br />
 	<%= message.body %> <br />
 <% end %> 
 </div>
+
+<%= link_to 'View Groups', groups_path %>
+
+
+</br>
+</br>
+
+<% if user_signed_in? %>   
+<%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+<%=link_to 'Edit Profile', edit_user_registration_path %>
+<% else %>
+<%= link_to 'Sign In', user_session_path %>
+<% end %>

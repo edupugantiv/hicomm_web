@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :projects 
   resources :conversations
   resources :messages
-  
+  resources :groups
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -16,6 +17,8 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
 
   get 'welcome/home' => 'welcome#home', as: 'welcome'
+  get 'groups/home' => 'groups#index'
+  get 'groups/new' => 'groups#new'
   put 'projects/:id/join' => 'projects#join', as: 'join'
   put 'projects/:id/leave' => 'projects#leave', as: 'leave'
   get 'projects/:id/conversations/new' => 'conversations#new', as: 'new_convo'
