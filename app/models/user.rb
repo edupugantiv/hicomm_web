@@ -8,4 +8,9 @@ class User < ActiveRecord::Base
 	has_and_belongs_to_many :conversations, join_table: "conversers"
 	has_many :groups
 	#has_many :managed_projects, :class_name => "Project"
+
+	def self.search(search)
+  		where("name LIKE ?", "%#{search}%") 
+  		#where("content LIKE ?", "%#{search}%")
+	end
 end 

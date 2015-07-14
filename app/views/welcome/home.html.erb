@@ -1,54 +1,22 @@
 Key Screen 2 - Main Page <br />
 User: <%=@user.name%> <br />
-<% if user_signed_in? %>   
-<%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
-<%=link_to 'Edit Profile', edit_user_registration_path %>
-<% else %>
-<%= link_to 'Sign In', user_session_path %>
-<% end %>
-<div class="col-md-3">
-	Current Projects: <br />
-	<%@projects.each do |project| %> 
-		<%= project.name %> <%=button_to "View", project_path(project), :method => 'get'%> <br />
-	<% end %> 
-	<%=button_to "New Project", new_project_path, :method => 'get' %>
-</div>
-<div class="col-md-6">
-	Inbox: <br />
-	<%@messages.each do |message| %> 
-		<%if message.sender == current_user %>
-			<div class="media">
-			  <div class="media-right">
-			    <a href="#">
-			      <img class="media-object" src="..." alt="...">
-			    </a>
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading"><%=message.sender.name%></h4>
-			    	<%= message.body %> 
-			  </div>
-			</div>
-		<%else%>
-			<div class="media">
-			  <div class="media-left">
-			    <a href="#">
-			      <img class="media-object" src="..." alt="...">
-			    </a>
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading"><%=message.sender.name%></h4>
-			    	<%= message.body %> 
-			  </div>
-			</div>
-		<%end%>
-	<% end %> 
-</div>
 
-<div class="col-md-3">
-	<%= link_to 'View Groups', groups_path %>
-	<%@groups.each do |group|%> 
-		<%=group.name%>
-	<%end %>
-</div>
+Current Projects: <br />
+<%@projects.each do |project| %> 
+	<%= project.name %> <%=button_to "View", project_path(project), :method => 'get'%> <br />
+<% end %> 
+<%=button_to "New Project", new_project_path, :method => 'get' %>
+
+Inbox: <br />
+<%@messages.each do |message| %> 
+	<%=message.sender.name%>: <%= message.body %>
+<% end %> 
+
+<%= link_to 'View Groups', groups_path %>
+
+<%@groups.each do |group|%> 
+	<%=group.name%>
+<%end %>
+
 
 

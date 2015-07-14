@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   put  'projects/:id/add_users/' => 'projects#add_users', as: 'add_project_users'
 
   post 'messages/create' => 'messages#create', as: 'post_new_message'
+
+  get 'search' => 'welcome#search', as: 'search'
   
 
   #put  'projects/:id/conversations/:id' => 'conversations#update', as: 'update_convo'

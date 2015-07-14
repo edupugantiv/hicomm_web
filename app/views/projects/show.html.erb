@@ -1,58 +1,33 @@
-<h1>Key Screen 4: Project Page</h1> <br />
-<div class="page-header">
-	<div class="row">
-		<div class="col-md-2">
-			Image goes here
-		</div>
-		<div class="col-md-4">
-			<%=@project.name%> <br />
-			<%=@participants.size%> members <br />
-			Location: <%=@project.location%><br />
-			Scale: <%=@project.scale%><br />
-		</div>
-		<div class="col-md-4">
-			Contact:<br />
-			<%=@project_manager.name%>: Project Manager <br /> 
-			Email: <%=@project_manager.email%> <br />
-		</div>
-		<div class="col-md-2">
-			<%if @project.users.include?(current_user)%> 
-				<%=button_to "Leave Project", leave_path(@project), :method => 'put'%>
-			<% else %> 
-				<%=button_to "Join Project", join_path(@project), :method => 'put'%>
-			<%end%>
-		</div>
-	</div>
-</div>
+Key Screen 4: Project Page<br />
 
-<div class="row">
+<%=@project.name%> <br />
+<%=@participants.size%> members <br />
+Location: <%=@project.location%><br />
+Scale: <%=@project.scale%><br />
 
-<div class="row">
-	<div class="col-md-3">
-		Conversations: <br />
-		<%=button_to "New Conversation", new_convo_path(@project), :method => 'get'%> 
-		<%@conversations.each do |conversation|%> 
-			<%=conversation.name%> <%=button_to "View", view_convo_path(conversation), :method => 'get'%>
-		<%end%>
+Contact:<br />
+<%=@project_manager.name%>: Project Manager <br /> 
+Email: <%=@project_manager.email%> <br />
 
-	</div>
+<%if @project.users.include?(current_user)%> 
+	<%=button_to "Leave Project", leave_path(@project), :method => 'put'%>
+<% else %> 
+	<%=button_to "Join Project", join_path(@project), :method => 'put'%>
+<%end%>
 
-	<div class="col-md-6">
-	Display Current Convo Here
+Conversations: <br />
+<%=button_to "New Conversation", new_convo_path(@project), :method => 'get'%> 
+<%@conversations.each do |conversation|%> 
+	<%=conversation.name%> <%=button_to "View", view_convo_path(conversation), :method => 'get'%>
+<%end%>
 
-	</div>
-
-	<div class="col-md-3">
-		Members: <br />
-		<%if @project.users.include?(current_user)%>
-			<%=button_to "Add Users", pick_project_users_path(@project), :method => 'get'%>
-		<%end%>
-		<%@participants.each do |participant|%> 
-			<%=participant.name%> 
-		<%end%> 
-	</div>
-</div>
-
+Members: <br />
+<%if @project.users.include?(current_user)%>
+	<%=button_to "Add Users", pick_project_users_path(@project), :method => 'get'%>
+<%end%>
+<%@participants.each do |participant|%> 
+	<%=participant.name%> 
+<%end%> 
 
 
 

@@ -13,4 +13,15 @@ class WelcomeController < ApplicationController
 			@messages += conversation.messages
 		end 
 	end 
+
+	def search
+	  @results = []
+	  #if params[:search]
+	  @users = User.search(params[:search])#.order("created_at DESC")
+	  @projects = Project.search(params[:search])#.order("created_at DESC")
+	  @groups = Group.search(params[:search])#.order("created_at DESC")
+	  #else
+	    #@posts = Post.all.order('created_at DESC')
+	  #end
+	end
 end 
