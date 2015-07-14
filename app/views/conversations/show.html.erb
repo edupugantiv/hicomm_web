@@ -1,3 +1,4 @@
+Key Screen 3 - Main Message Page aka Converation Page
 <%=link_to @project.name, project_path(@project)%><br />
 
 <%=@conversation.name%> <br />
@@ -6,7 +7,9 @@
 	<%=c.name%>
 <%end%><br />
 
-<%=button_to "Add Users", pick_convo_users_path(@conversation), :method => 'get'%> <br />
+<% if can? add_users, @conversation %>
+	<%=button_to "Add Users", pick_convo_users_path(@conversation), :method => 'get'%> <br />
+<%end %>
 
 Messages:
 <%@messages.each do |message| %> 

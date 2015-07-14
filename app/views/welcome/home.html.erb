@@ -9,7 +9,7 @@ Current Projects: <br />
 
 Inbox: <br />
 <%@messages.each do |message| %> 
-	<%=message.sender.name%>: <%= message.body %>
+	<%=message.sender.name%>: <%= message.body %><br/>
 <% end %> 
 
 <%= link_to 'View Groups', groups_path %>

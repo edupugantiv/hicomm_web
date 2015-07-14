@@ -32,6 +32,14 @@ Rails.application.routes.draw do
   post 'messages/create' => 'messages#create', as: 'post_new_message'
 
   get 'search' => 'welcome#search', as: 'search'
+
+  get 'users/:id/manage' => 'users#manage', as: 'manage_user'
+
+  get 'projects/:id/manage' => 'projects#manage_members', as: 'manage_project'
+  get 'projects/:id/remove_members' => 'projects#remove_members', as: 'remove_project_members'
+  put 'projects/:id/remove' => 'projects#remove_member', as: 'remove_project_member'
+  get 'projects/:id/transfer_leadership' => 'projects#transfer_leadership', as: 'transfer_project_leadership'
+  put 'projects/:id/new_leader' => 'projects#new_leader', as: 'new_leader'
   
 
   #put  'projects/:id/conversations/:id' => 'conversations#update', as: 'update_convo'

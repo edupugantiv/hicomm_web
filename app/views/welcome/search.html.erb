@@ -2,7 +2,7 @@ Search Page Key Screen 7
 Users (<%=@users.size%>)<br />
 <% if @users.present? %>
   <%@users.each do |user| %> 
-  	<%=user.name%><br/>
+  	<%=link_to user.name, user_path(user)%><br/>
   <%end%>
 <% else %>
   <p>There are no Users matching the term(s) <%= params[:search] %>.</p>

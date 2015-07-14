@@ -50,7 +50,6 @@ class ProjectsController < ApplicationController
 		all_users = User.all
 		existent_users = @project.users
 		@users = all_users - existent_users
-
 	end 
 
 	def add_users
@@ -59,6 +58,35 @@ class ProjectsController < ApplicationController
 		@project.users << @user
 		redirect_to :back,  notice: "#{@user.name} was successfully added to #{@project.name}"
 	end
+
+	def manage_members 
+		@project = Project.find(params[:id])
+		@participants = @project.users 
+	end 
+
+	def remove_members
+		@project = Project.find(params[:id])
+		@participants = @project.users 
+	end 
+
+	def remove_member 
+		@project = Project.find(params[:project_id])
+		@user = User.find(params[:user_id])
+		@project.users.delete(@user)
+		redirect_to :back, notice: "#{@user.name} was successfully removed from #{@project.name}"
+	end 
+
+	def transfer_leadership
+		@project = Project.find(params[:id])
+		@participants = @project.users 
+	end 
+
+	def new_leader
+		@project = Project.find(params[:project_id])
+		@user = User.find(params[:user_id])
+		@project.update_attributes(:project_manager_id => @user.id)
+		redirect_to project_path(@project), notice: "leadership of #{@project.name} has been transfered to #{@user.name}"
+	end 
 
 	private 
 

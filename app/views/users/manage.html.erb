@@ -1,0 +1,9 @@
+Profile <br />
+First Name: <%=@user.name%><br />
+Last Name: <br />
+Job Title: <%=@user.job%><br />
+Location: <%=@user.location%><br />
+Email: <%=@user.email%><br />
+Mobile: <%=@user.mobile%><br />
+
+<%=button_to "Edit", edit_user_registration_path(@user), :method => 'get' %> 
