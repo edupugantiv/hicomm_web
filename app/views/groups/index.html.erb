@@ -16,7 +16,7 @@
   <tbody>
     <% @groups.each do |group| %>
       <tr>
-        <td><%= group.user_id %></td>
+        <td><%= group.group_leader.name %></td>
         <td><%= group.name %></td>
         <td><%= group.latitude %></td>
         <td><%= group.longitude %></td>

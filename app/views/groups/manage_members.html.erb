@@ -1,0 +1,12 @@
+Manage Group <br />
+
+Members: <br />
+<%@members.each do |member|%> 
+	<%=member.name%> <br />
+<%end%>
+
+Requests - the following users have requested to join your group <br />
+
+<%@requests.each do |request|%> 
+	<%=request.user.name%> <%= button_to "Approve", approve_request_path(request), :method => 'put'%><%= button_to "Decline", decline_request_path(request), :method => 'put'%>
+<%end%>

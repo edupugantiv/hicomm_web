@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715095609) do
+ActiveRecord::Schema.define(version: 20150715143408) do
 
   create_table "affiliations", id: false, force: :cascade do |t|
     t.integer "project_id", limit: 4, null: false
@@ -34,10 +34,15 @@ ActiveRecord::Schema.define(version: 20150715095609) do
   end
 
   create_table "groups", force: :cascade do |t|
-    t.integer "user_id",   limit: 4
-    t.string  "name",      limit: 255
-    t.float   "latitude",  limit: 24
-    t.float   "longitude", limit: 24
+    t.string  "name",            limit: 255
+    t.float   "latitude",        limit: 24
+    t.float   "longitude",       limit: 24
+    t.integer "group_leader_id", limit: 4
+  end
+
+  create_table "members", id: false, force: :cascade do |t|
+    t.integer "group_id", limit: 4, null: false
+    t.integer "user_id",  limit: 4, null: false
   end
 
   create_table "messages", force: :cascade do |t|

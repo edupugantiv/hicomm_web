@@ -1,6 +1,6 @@
-Remove Members <br />
+Remove Participants <br />
 <%@participants.each do |participant|%> 
-	<%=participant.name%> <%=button_to "Remove User", remove_project_member_path(:user_id => participant, :project_id => @project), :method => 'put'%>
+	<%=participant.name%> <%=button_to "Remove User", remove_project_participant_path(:user_id => participant, :project_id => @project), :method => 'put'%>
 <%end%>
 <%=button_to "Add Users", pick_project_users_path(@project), :method => 'get'%>
 <%=button_to "Done", manage_project_path(@project), :method => 'get'%>

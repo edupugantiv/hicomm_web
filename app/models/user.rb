@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 	has_and_belongs_to_many :projects, join_table: "participants"
 	has_many :groups, through: :organizations
 	has_and_belongs_to_many :conversations, join_table: "conversers"
-	has_many :groups
+	has_and_belongs_to_many :groups, join_table: 'members'
 	has_many :contacts 
 	has_many :colleagues, :through => :contacts
 

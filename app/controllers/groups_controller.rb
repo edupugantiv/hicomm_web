@@ -11,7 +11,8 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(params.require(:group).permit(:user_id, :name, :latitude, :longitude))
+    @group = Group.new(params.require(:group).permit(:name, :latitude, :longitude).merge(:group_leader_id => current_user.id))
+    @group.users << current_user
     if @group.save
       redirect_to 'home', notice: "Group created"
     else
@@ -30,4 +31,23 @@ class GroupsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def join 
+    @group = Group.find(params[:id])
+    # @project.users << current_user 
+    @request = Request.create(:group_id => @group.id, :user_id => current_user.id, :pending => true, :type => 'JoinGroup')
+    redirect_to :back, notice: "Your request to join #{@group.name} has been sent"
+  end 
+
+  def leave 
+    @group = Group.find(params[:id])
+    @group.users.delete(current_user)
+    redirect_to :back, notice: "You have left #{@group.name}"
+  end 
+
+  def manage_members
+    @group = Group.find(params[:id])
+    @members = @group.users 
+    @requests = JoinGroup.where(:group_id => @group.id, :pending => true)
+  end 
 end

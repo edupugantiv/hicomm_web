@@ -20,7 +20,7 @@ Projects (<%=@projects.size%>)<br />
 Groups (<%=@groups.size%>) <br />
 <% if @groups.present? %>
   <%@groups.each do |group| %> 
-  	<%=group.name%><br/>
+  	<%=link_to group.name, group_path(group)%><br/>
   <%end%>
 <% else %>
   <p>There are no Groups matching the term(s) <%= params[:search] %>.</p>

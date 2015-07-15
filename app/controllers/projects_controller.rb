@@ -60,18 +60,18 @@ class ProjectsController < ApplicationController
 		redirect_to :back,  notice: "#{@user.name} was successfully added to #{@project.name}"
 	end
 
-	def manage_members 
+	def manage_participants
 		@project = Project.find(params[:id])
 		@participants = @project.users 
 		@requests = JoinProject.where(:project_id => @project.id, :pending => true)
 	end 
 
-	def remove_members
+	def remove_participants
 		@project = Project.find(params[:id])
 		@participants = @project.users 
 	end 
 
-	def remove_member 
+	def remove_participant 
 		@project = Project.find(params[:project_id])
 		@user = User.find(params[:user_id])
 		@project.users.delete(@user)
@@ -80,7 +80,7 @@ class ProjectsController < ApplicationController
 
 	def transfer_leadership
 		@project = Project.find(params[:id])
-		@participants = @project.users 
+		@participants = @project.users - [current_user] 
 	end 
 
 	def new_leader
@@ -99,7 +99,7 @@ class ProjectsController < ApplicationController
 	def affiliate 
 		@project = Project.find(params[:project_id])
 		@group = Group.find(params[:group_id])
-		if @project.groups.size <= 3
+		if @project.groups.size < 3
 			@project.groups << @group 
 			redirect_to :back, notice: "#{@project.name} has been affiliated with #{@group.name}"
 		else 

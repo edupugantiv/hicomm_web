@@ -20,8 +20,9 @@ Inbox: <br />
 	<%=message.sender.name%>: <%= message.body %><br/>
 <% end %> 
 
-<%= link_to 'View Groups', groups_path %>
+<%= link_to 'View Groups', groups_path %><br />
 
+Groups: <br />
 <%@groups.each do |group|%> 
 	<%=group.name%>
 <%end %>

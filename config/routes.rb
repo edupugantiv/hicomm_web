@@ -35,9 +35,9 @@ Rails.application.routes.draw do
 
   get 'users/:id/manage' => 'users#manage', as: 'manage_user'
 
-  get 'projects/:id/manage' => 'projects#manage_members', as: 'manage_project'
-  get 'projects/:id/remove_members' => 'projects#remove_members', as: 'remove_project_members'
-  put 'projects/:id/remove' => 'projects#remove_member', as: 'remove_project_member'
+  get 'projects/:id/manage' => 'projects#manage_participants', as: 'manage_project'
+  get 'projects/:id/remove_participants' => 'projects#remove_participants', as: 'remove_project_participants'
+  put 'projects/:id/remove' => 'projects#remove_participant', as: 'remove_project_participant'
   get 'projects/:id/transfer_leadership' => 'projects#transfer_leadership', as: 'transfer_project_leadership'
   post 'projects/:id/new_leader' => 'projects#new_leader', as: 'new_leader'
 
@@ -51,6 +51,11 @@ Rails.application.routes.draw do
 
   put 'users/:id/add_contact' => 'users#add_colleague', as: 'add_contact'
   put 'users/:id/remove_contact' => 'users#remove_colleague', as: 'remove_contact'
+
+  put 'groups/:id/join' => 'groups#join', as: 'join_group'
+  put 'groups/:id/leave' => 'groups#leave', as: 'leave_group'
+
+  get 'groups/:id/manage' => 'groups#manage_members', as: 'manage_group'
 
   #put  'projects/:id/conversations/:id' => 'conversations#update', as: 'update_convo'
 

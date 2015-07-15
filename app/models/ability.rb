@@ -26,6 +26,14 @@ class Ability
     #A user can start a conversation that belongs to a project they are part of 
     #can [:create, :add_users, :update], Conversation, :project => :users => {:id => user.id}
 
+    can [:update, :destroy, :pick_users, :add_users, :transfer_leadership], Group, :group_leader_id => user.id
+
+    can [:read, :create], Group 
+    # A member of a Project cannot join a project 
+    cannot :join, Group, :users => {:id => user.id}
+    # A participant can leave a group 
+    can :leave, Group, :users => {:id => user.id}
+
 
     # Define abilities for the passed in user here. For example:
     #
