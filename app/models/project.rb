@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
 	has_many :conversations
 	has_and_belongs_to_many :users, join_table: "participants"
 	has_many :requests
+	has_and_belongs_to_many :groups, join_table: "affiliations"
 
 	def self.search(search)
   		where("name LIKE ?", "%#{search}%") 

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		@projects = @user.projects
 		@groups = @user.groups
-		#@contacts = @user.contacts
+		@contacts = @user.colleagues
 	end 
 
 	def new 
@@ -26,6 +26,22 @@ class UsersController < ApplicationController
 
 	def manage 
 		@user = User.find(params[:id])
+	end 
+
+	def add_colleague
+		@user = current_user 
+		@colleague = User.find(params[:id]) 
+		@user.colleagues << @colleague
+		@colleague.colleagues << @user
+		redirect_to :back, notice: "#{@colleague.name} has been added to your contacts"
+	end 
+
+	def remove_colleague 
+		@user = current_user 
+		@colleague = User.find(params[:id]) 
+		@user.colleagues.delete(@colleague)
+		@colleague.colleagues.delete(@user)
+		redirect_to :back, notice: "#{@colleague.name} has been removed from your contacts"
 	end 
 
 	private 

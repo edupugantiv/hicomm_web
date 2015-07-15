@@ -43,9 +43,14 @@ Rails.application.routes.draw do
 
   post 'requests' => 'requests#create', as: 'create_request'
 
-  put 'request/:id/approve' => 'requests#approve', as: 'approve_request'
-  put 'request/:id/decline' => 'requests#decline', as: 'decline_request'
+  put 'requests/:id/approve' => 'requests#approve', as: 'approve_request'
+  put 'requests/:id/decline' => 'requests#decline', as: 'decline_request'
   
+  get 'projects/:id/add_affiliations' => 'projects#add_affiliations', as: 'add_affiliations'
+  put 'projects/:id/affiliate' => 'projects#affiliate', as: 'affiliate'
+
+  put 'users/:id/add_contact' => 'users#add_colleague', as: 'add_contact'
+  put 'users/:id/remove_contact' => 'users#remove_colleague', as: 'remove_contact'
 
   #put  'projects/:id/conversations/:id' => 'conversations#update', as: 'update_convo'
 

@@ -1,0 +1,5 @@
+Affiliate <%=@project.name%> with: <br />
+<%@groups.each do |group| %> 
+	<%=group.name%> <%=button_to "Affiliate", affiliate_path(:project_id => @project, :group_id => group), :method => 'put'%>
+<%end%>
+<%=button_to "Done", manage_project_path(@project), :method => 'get'%>

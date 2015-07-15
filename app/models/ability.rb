@@ -16,8 +16,10 @@ class Ability
 
     #A user can manage their own profile
     can :update, User, :id => user.id 
+
+    can :add_colleague, User 
     #A user cannot add someone that is already their contact 
-    cannot :remove_contact, User, :contacts => {:id => user.id}
+    cannot :add_colleague, User, :colleagues => {:id => user.id}
 
     can [:read, :approve, :decline], Request, :project => {:project_manager_id => user.id}
 

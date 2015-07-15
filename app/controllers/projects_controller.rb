@@ -91,6 +91,22 @@ class ProjectsController < ApplicationController
 		redirect_to project_path(@project), notice: "leadership of #{@project.name} will be transfered to #{@user.name} upon approval"
 	end 
 
+	def add_affiliations 
+		@project = Project.find(params[:id])
+		@groups = Group.all
+	end 
+
+	def affiliate 
+		@project = Project.find(params[:project_id])
+		@group = Group.find(params[:group_id])
+		if @project.groups.size <= 3
+			@project.groups << @group 
+			redirect_to :back, notice: "#{@project.name} has been affiliated with #{@group.name}"
+		else 
+			redirect_to :back, notice: "Sorry, #{@project.name} already has too many affiliations"
+		end 
+	end 
+
 	private 
 
 	def project_params 
