@@ -19,6 +19,8 @@ class Ability
     #A user cannot add someone that is already their contact 
     cannot :remove_contact, User, :contacts => {:id => user.id}
 
+    can [:read, :approve, :decline], Request, :project => {:project_manager_id => user.id}
+
     #A user can start a conversation that belongs to a project they are part of 
     #can [:create, :add_users, :update], Conversation, :project => :users => {:id => user.id}
 

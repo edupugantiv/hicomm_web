@@ -39,7 +39,12 @@ Rails.application.routes.draw do
   get 'projects/:id/remove_members' => 'projects#remove_members', as: 'remove_project_members'
   put 'projects/:id/remove' => 'projects#remove_member', as: 'remove_project_member'
   get 'projects/:id/transfer_leadership' => 'projects#transfer_leadership', as: 'transfer_project_leadership'
-  put 'projects/:id/new_leader' => 'projects#new_leader', as: 'new_leader'
+  post 'projects/:id/new_leader' => 'projects#new_leader', as: 'new_leader'
+
+  post 'requests' => 'requests#create', as: 'create_request'
+
+  put 'request/:id/approve' => 'requests#approve', as: 'approve_request'
+  put 'request/:id/decline' => 'requests#decline', as: 'decline_request'
   
 
   #put  'projects/:id/conversations/:id' => 'conversations#update', as: 'update_convo'

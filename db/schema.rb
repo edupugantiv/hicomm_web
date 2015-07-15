@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709100500) do
+ActiveRecord::Schema.define(version: 20150714163749) do
+
+  create_table "affiliations", id: false, force: :cascade do |t|
+    t.integer "project_id", limit: 4, null: false
+    t.integer "group_id",   limit: 4, null: false
+  end
 
   create_table "conversations", force: :cascade do |t|
     t.string  "name",       limit: 255
@@ -54,6 +59,14 @@ ActiveRecord::Schema.define(version: 20150709100500) do
     t.string  "scale",              limit: 255
     t.string  "privacy",            limit: 255
     t.string  "plan",               limit: 255
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer "user_id",    limit: 4
+    t.integer "project_id", limit: 4
+    t.integer "group_id",   limit: 4
+    t.boolean "pending",    limit: 1
+    t.string  "type",       limit: 255
   end
 
   create_table "users", force: :cascade do |t|

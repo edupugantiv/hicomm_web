@@ -1,4 +1,4 @@
 Transfer Project Leadership <br /> 
 <%@participants.each do |participant|%> 
-	<%=participant.name%> <%=button_to "Transfer Leadership", new_leader_path(:project_id => @project, :user_id => participant), :method => 'put' %> 
+	<%=participant.name%> <%=button_to "Transfer Leadership", new_leader_path(:project_id => @project, :user_id => participant), :method => 'post' %> 
 <%end%>

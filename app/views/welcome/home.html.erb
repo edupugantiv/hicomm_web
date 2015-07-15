@@ -1,6 +1,14 @@
 Key Screen 2 - Main Page <br />
 User: <%=@user.name%> <br />
 
+<% if !@requests.nil?%> 
+	Requests - You have been requested to lead the following projects <br /> 
+	<%@requests.each do |request|%> 
+		<%=request.project.name%> <%=button_to "Accept", approve_request_path(request), :method => 'put' %> <%=button_to "Decline", decline_request_path(request), :method => 'put' %>
+	<%end%> 
+<%end%>
+<br />
+
 Current Projects: <br />
 <%@projects.each do |project| %> 
 	<%= project.name %> <%=button_to "View", project_path(project), :method => 'get'%> <br />

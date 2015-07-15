@@ -35,8 +35,9 @@ class ProjectsController < ApplicationController
 
 	def join 
 		@project = Project.find(params[:id])
-		@project.users << current_user 
-		redirect_to :back
+		# @project.users << current_user 
+		@request = Request.create(:project_id => @project.id, :user_id => current_user.id, :pending => true, :type => 'JoinProject')
+		redirect_to :back, notice: "Your request to join #{@project.name} has been sent"
 	end 
 
 	def leave 
@@ -62,6 +63,7 @@ class ProjectsController < ApplicationController
 	def manage_members 
 		@project = Project.find(params[:id])
 		@participants = @project.users 
+		@requests = JoinProject.where(:project_id => @project.id, :pending => true)
 	end 
 
 	def remove_members
@@ -84,8 +86,9 @@ class ProjectsController < ApplicationController
 	def new_leader
 		@project = Project.find(params[:project_id])
 		@user = User.find(params[:user_id])
-		@project.update_attributes(:project_manager_id => @user.id)
-		redirect_to project_path(@project), notice: "leadership of #{@project.name} has been transfered to #{@user.name}"
+		@request = Request.create(:project_id => @project.id, :user_id => @user.id, :pending => true, :type => 'LeadProject')
+		#@project.update_attributes(:project_manager_id => @user.id)
+		redirect_to project_path(@project), notice: "leadership of #{@project.name} will be transfered to #{@user.name} upon approval"
 	end 
 
 	private 

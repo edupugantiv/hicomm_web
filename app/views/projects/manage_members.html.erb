@@ -1,7 +1,13 @@
 Manage Members <br />
+Current Members<br />
 <%@participants.each do |participant|%> 
 	<%=participant.name%> <br />
 <%end%>
+Pending Requests: <br />
+<%@requests.each do |request| %> 
+	<%=request.user.name%> <%= button_to "Approve", approve_request_path(request), :method => 'put'%><%= button_to "Decline", decline_request_path(request), :method => 'put'%>
+<%end%>
+<br />
 <%=button_to "Add Users", pick_project_users_path(@project), :method => 'get'%>
 <%=button_to "Remove Users", remove_project_members_path(@project), :method => 'get'%>
 <%=button_to "Transfer Leadership", transfer_project_leadership_path(@project), :method => 'get'%>

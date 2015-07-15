@@ -1,0 +1,2 @@
+class LeadGroup < Request
+end 
