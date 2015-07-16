@@ -24,3 +24,9 @@ Members: <br />
 <%@members.each do |member| %> 
 	<%=member.name%> <br />
 <%end%>
+
+Posts: <br />
+<%@posts.each do |post| %> 
+	<%=post.poster.name%>: <%=post.body%><br />
+<%end%>
+ <%= render partial: 'posts/new' %>

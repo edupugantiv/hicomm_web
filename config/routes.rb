@@ -67,6 +67,9 @@ Rails.application.routes.draw do
   get 'groups/:id/transfer_leadership' => 'groups#transfer_leadership', as: 'transfer_group_leadership'
   post 'groups/:id/new_leader' => 'groups#new_leader', as: 'new_group_leader'
 
+  get 'conversations/:id/posts/new' => 'posts#create', as: 'new_post'
+  post 'conversations/:id/posts' => 'posts#create', as: 'create_post'
+
   #put  'projects/:id/conversations/:id' => 'conversations#update', as: 'update_convo'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

@@ -4,6 +4,7 @@ class Group < ActiveRecord::Base
   	has_and_belongs_to_many :users, join_table: "members"
   	has_many :requests
   	has_and_belongs_to_many :projects, join_table: "affiliations"
+  	has_many :posts
 
   	def self.search(search)
   		where("name LIKE ?", "%#{search}%") 
