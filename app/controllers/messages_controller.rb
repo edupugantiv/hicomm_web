@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
 	end 
 
 	def create
-		@conversation = Conversation.find(params[:conversation_id])
+		@conversation = Conversation.find(params[:id])
 		@message = Message.create(message_params.merge(:sender_id => current_user.id, :conversation_id => @conversation.id, :sent => Time.now))
 		redirect_to :back
 	end 
