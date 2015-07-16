@@ -11,17 +11,19 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(params.require(:group).permit(:name, :latitude, :longitude).merge(:group_leader_id => current_user.id))
+    @group = Group.create(params.require(:group).permit(:name, :latitude, :longitude, :privacy).merge(:group_leader_id => current_user.id))
     @group.users << current_user
-    if @group.save
-      redirect_to 'home', notice: "Group created"
-    else
-      render :new, notice: "Group not created"
-    end
+    redirect_to group_path(@group)
+    # if @group.save
+    #   redirect_to 'home', notice: "#{@group.name} was successfully created"
+    # else
+    #   render :new, notice: "Sorry, an error occured and #{@group.name} was not created"
+    # end
   end
 
   def show
     @group = Group.find(params[:id])
+    @members = @group.users
   end 
 
   def destroy

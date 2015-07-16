@@ -1,5 +1,28 @@
 <h1>New Group</h1>
+<%= form_for @group do |f| %>
+  <%= f.label :name %>:
+  <%= f.text_field :name %><br />
 
-<%= render 'form' %>
+  <%= f.label :latitude %>:
+  <%= f.text_field :latitude %><br />
+
+  <%= f.label :longitude%>:
+  <%= f.text_field :longitude %><br />
+
+	Choose your privacy settings:<br />
+	<%= f.label :privacy %><br />
+
+	<%= f.radio_button :privacy, "public", :checked => true %>
+	<%= f.label :privacy, "Public", :value => "public"  %> <br />
+
+	<%= f.radio_button :privacy, "semi-private" %>
+	<%= f.label :privacy, "Semi-Private", :value => "semi-private" %> <br />
+
+	<%= f.radio_button :privacy, "private" %>
+	<%= f.label :privacy, "Private", :value => "private" %> <br />
+
+  <%= f.submit %>
+<% end %>
+
 
 <%= link_to 'Back', groups_path %>
