@@ -15,7 +15,7 @@ Contact: <%=@user.email%> / Phone Number: <%=@user.mobile%> <br />
 
 Projects: <br /> 
 <%@projects.each do |project| %> 
-	<%=project.name%> <%=button_to "View Project", project_path(project), :method => 'get' %><br /> 
+	<%=project.name%> <%=button_to "View Project", project_path(:project_id =>project, :conversation_id => project.conversations.first), :method => 'get' %><br /> 
 <%end%> 
 
 Groups: <br /> 

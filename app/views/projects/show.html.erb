@@ -1,45 +1,66 @@
-Key Screen 4: Project Page<br />
+<h1>Key Screen 4: Project Page</h1><br />
+<table width="100%">
+	<tr>
+		<td width="25%"> Image Goes Here </td>
+		<td width="25%">
+			<%=@project.name%> <br />
+			<%=@participants.size%> members <br />
+			Location: <%=@project.location%><br />
+			Scale: <%=@project.scale%><br />
+		</td>
 
-<%=@project.name%> <br />
-<%=@participants.size%> members <br />
-Location: <%=@project.location%><br />
-Scale: <%=@project.scale%><br />
+		<td width="25%">
+			Contact:<br />
+			<%=@project_manager.name%>: Project Manager <br /> 
+			Email: <%=@project_manager.email%> <br />
+		</td>
+		<td width="25%">
+			<%if can? :transfer_leadership, @project%> 
+				<%=button_to "Manage Project", manage_project_path(@project), :method => 'get'%>
+			<%elsif can? :leave, @project%>
+				<%=button_to "Leave Project", leave_path(@project), :method => 'put'%>
+			<% else %> 
+				<%=button_to "Join Project", join_path(@project), :method => 'put'%>
+			<%end%>
+		</td>
+	</tr>
+</table>
 
-Contact:<br />
-<%=@project_manager.name%>: Project Manager <br /> 
-Email: <%=@project_manager.email%> <br />
+<hr>
 
-<%if can? :transfer_leadership, @project%> 
-	<%=button_to "Manage Project", manage_project_path(@project), :method => 'get'%>
-<%elsif can? :leave, @project%>
-	<%=button_to "Leave Project", leave_path(@project), :method => 'put'%>
-<% else %> 
-	<%=button_to "Join Project", join_path(@project), :method => 'put'%>
-<%end%>
+<table width="100%"> 
+	<tr>
+		<td width="25%">
+			Conversations: <br />
+			<table> 
+				<tr>
+					<td>			
+						<% if can? :leave, @project %>
+							<%=button_to "New Conversation", new_convo_path(@project), :method => 'get'%>
+						<% end %>
+						<%@conversations.each do |conversation|%> 
+							<%=link_to conversation.name, project_path(:project_id => @project, :conversation_id => conversation)%> <br />
+						<%end%>	
+					</td>		
+				</tr>
+			</table>
+		</td>
+		<td width="50%"> 
+			Messages 
+			<%=render partial: 'conversations/conversation', object: @current_convo%>
+		</td>
+		<td width="25%">
+			Members: <br />
+			<%if can? :add_users, @project %> 
+				<%=button_to "Add Users", pick_project_users_path(@project), :method => 'get'%>
+			<%end%>
 
-Conversations: <br />
-<% if can? :create, @conversation %>
-	<%=button_to "New Conversation", new_convo_path(@project), :method => 'get'%>
-<% end %>
-<%@conversations.each do |conversation|%> 
-	<%=conversation.name%> 
-	<% if can? :update, @conversation %>
-		<%=button_to "View", view_convo_path(conversation), :method => 'get'%>
-	<%end%>
-<%end%>
-
-Members: <br />
-<%if can? :add_users, @project %> 
-	<%=button_to "Add Users", pick_project_users_path(@project), :method => 'get'%>
-<%end%>
-
-<%@participants.each do |participant|%> 
-	<%=participant.name%> 
-<%end%> 
-
-
-
-
+			<%@participants.each do |participant|%> 
+				<%=participant.name%> <br/>
+			<%end%> 
+		</td>
+	</tr>
+</table>
 
 
 

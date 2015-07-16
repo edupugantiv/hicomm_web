@@ -39,6 +39,7 @@ class ConversationsController < ApplicationController
 		redirect_to :back, notice: "#{@user.name} was successfully added to #{@conversation.name}"
 	end 
 
+
 	private 
 
 	def conversation_params 

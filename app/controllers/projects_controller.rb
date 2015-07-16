@@ -2,10 +2,12 @@ class ProjectsController < ApplicationController
 	before_action :authenticate_user!
 	def show 
 		@user = current_user
-		@project = Project.find(params[:id])
+		@project = Project.find(params[:project_id])
 		@conversations = @project.conversations
 		@participants = @project.users
 		@project_manager = @project.project_manager
+		@current_convo = Conversation.find(params[:conversation_id])
+		@message = Message.new
 	end 
 
 	def edit 
@@ -88,7 +90,7 @@ class ProjectsController < ApplicationController
 		@user = User.find(params[:user_id])
 		@request = Request.create(:project_id => @project.id, :user_id => @user.id, :pending => true, :type => 'LeadProject')
 		#@project.update_attributes(:project_manager_id => @user.id)
-		redirect_to project_path(@project), notice: "leadership of #{@project.name} will be transfered to #{@user.name} upon approval"
+		redirect_to project_path(:project_id =>@project, :conversation_id => @project.conversations.first), notice: "leadership of #{@project.name} will be transfered to #{@user.name} upon approval"
 	end 
 
 	def add_affiliations 

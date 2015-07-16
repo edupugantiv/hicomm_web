@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716082430) do
+ActiveRecord::Schema.define(version: 20150716095728) do
 
   create_table "affiliations", id: false, force: :cascade do |t|
     t.integer "project_id", limit: 4, null: false
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150716082430) do
     t.float   "longitude",       limit: 24
     t.integer "group_leader_id", limit: 4
     t.string  "privacy",         limit: 255
+    t.string  "scale",           limit: 255
   end
 
   create_table "members", id: false, force: :cascade do |t|

@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users 
-  resources :projects 
   resources :conversations
   resources :messages
   resources :groups
@@ -14,6 +13,9 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
+
+  get 'projects/new' => 'projects#new', as: 'new_project'
+  post 'projects' => 'projects#create'
 
   get 'welcome/home' => 'welcome#home', as: 'welcome'
   get 'groups/home' => 'groups#index'
@@ -30,6 +32,7 @@ Rails.application.routes.draw do
   put  'projects/:id/add_users/' => 'projects#add_users', as: 'add_project_users'
 
   post 'messages/create' => 'messages#create', as: 'post_new_message'
+  get 'projects/:project_id/show/:conversation_id' => 'projects#show', as: 'project'
 
   get 'search' => 'welcome#search', as: 'search'
 

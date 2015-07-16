@@ -1,4 +1,6 @@
-<%= form_for @message, url: post_new_message_path(:conversation_id => @conversation) do |f| %> 
-	<%= f.text_field :body %><br />  
-	<%=f.submit "Send"%>
-<%end%>
+<div class="send">
+	<%= form_for @message, url: post_new_message_path(:conversation_id => @conversation) do |f| %> 
+		<%= f.text_field :body %>
+		<%=f.submit "Send"%>
+	<%end%>
+</div>

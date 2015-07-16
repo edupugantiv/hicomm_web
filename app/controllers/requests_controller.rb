@@ -29,6 +29,7 @@ class RequestsController <ApplicationController
 	def decline 
 		@request = Request.find(params[:id])
 		@request.update_attributes(:pending => false)
+		redirect_to :back, notice: "Request Declined"
 	end 
 
 	private 

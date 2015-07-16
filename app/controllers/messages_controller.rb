@@ -10,6 +10,11 @@ class MessagesController < ApplicationController
 		redirect_to :back
 	end 
 
+	def show
+		@conversation = Conversation.find(params[:id])
+		@messages = @conversation.messages
+	end 
+
 	private 
 
 	def message_params 

@@ -1,0 +1,28 @@
+<table> 
+	<tr> 
+		<td>
+			<%=conversation.name%> 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<%conversation.users.each do |user| %> 
+				<%=user.name%> 
+			<%end%>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<%conversation.messages.each do |message| %>  
+				<%=message.sender.name%>: <%=message.body%> <br>
+			<%end%>
+		</td>
+	</tr>
+	<tr> 
+		<td>
+			<% if can? :leave, conversation.project%> 
+				<%= render partial: 'messages/new' %>
+			<%end%>
+		</td>
+	</tr>
+</table>
