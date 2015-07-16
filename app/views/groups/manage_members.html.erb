@@ -10,3 +10,8 @@ Requests - the following users have requested to join your group <br />
 <%@requests.each do |request|%> 
 	<%=request.user.name%> <%= button_to "Approve", approve_request_path(request), :method => 'put'%><%= button_to "Decline", decline_request_path(request), :method => 'put'%>
 <%end%>
+
+<%=button_to "Add New Members", pick_group_members_path(@group), :method => 'get'%>
+<%=button_to "Remove Members", remove_group_members_path(@group), :method => 'get'%>
+<%=button_to "Transfer Leadership", transfer_group_leadership_path(@group), :method => 'get'%>
+<%=button_to "Done", manage_group_path(@group), :method => 'get'%>

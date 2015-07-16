@@ -12,7 +12,8 @@ class WelcomeController < ApplicationController
 		@conversations.each do |conversation|
 			@messages += conversation.messages
 		end 
-		@requests = LeadProject.where(:user_id => @user.id, :pending => true)
+		@lead_project_requests = LeadProject.where(:user_id => @user.id, :pending => true)
+		@lead_group_requests = LeadGroup.where(:user_id => @user.id, :pending => true)
 	end 
 
 	def search

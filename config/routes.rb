@@ -57,6 +57,13 @@ Rails.application.routes.draw do
 
   get 'groups/:id/manage' => 'groups#manage_members', as: 'manage_group'
 
+  get  'groups/:id/pick_members' => 'groups#pick_members', as: 'pick_group_members'
+  put  'groups/:id/add_members/' => 'groups#add_members', as: 'add_group_members'
+  get 'groups/:id/remove_members' => 'groups#remove_members', as: 'remove_group_members'
+  put 'groups/:id/remove_member' => 'groups#remove_member', as: 'remove_group_member'
+  get 'groups/:id/transfer_leadership' => 'groups#transfer_leadership', as: 'transfer_group_leadership'
+  post 'groups/:id/new_leader' => 'groups#new_leader', as: 'new_group_leader'
+
   #put  'projects/:id/conversations/:id' => 'conversations#update', as: 'update_convo'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

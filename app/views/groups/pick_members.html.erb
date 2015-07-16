@@ -1,0 +1,6 @@
+Pick Members <br />
+<%@users.each do |user|%>
+	<%=user.name%> <%=button_to "Add", add_group_members_path(:group_id => @group, :user_id => user), :method => 'put' %><br />
+<%end %> 
+
+<%=button_to "Done", manage_group_path(@group), :method => 'get'%>

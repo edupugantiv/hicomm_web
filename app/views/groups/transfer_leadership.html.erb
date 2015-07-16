@@ -1,0 +1,4 @@
+Transfer Group Leadership <br /> 
+<%@members.each do |member|%> 
+	<%=member.name%> <%=button_to "Transfer Leadership", new_group_leader_path(:group_id => @group, :user_id => member), :method => 'post' %> 
+<%end%>

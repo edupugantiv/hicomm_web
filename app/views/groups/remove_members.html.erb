@@ -1,0 +1,6 @@
+Remove Members <br />
+<%@members.each do |member|%> 
+	<%=member.name%> <%=button_to "Remove Member", remove_group_member_path(:user_id => member, :group_id => @group), :method => 'put'%>
+<%end%>
+<%=button_to "Add Users", pick_group_members_path(@group), :method => 'get'%>
+<%=button_to "Done", manage_group_path(@group), :method => 'get'%>

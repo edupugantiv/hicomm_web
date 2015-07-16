@@ -1,10 +1,16 @@
 Key Screen 2 - Main Page <br />
 User: <%=@user.name%> <br />
 
-<% if !@requests.nil?%> 
+<% if !@lead_project_requests.nil?%> 
 	Requests - You have been requested to lead the following projects <br /> 
-	<%@requests.each do |request|%> 
+	<%@lead_project_requests.each do |request|%> 
 		<%=request.project.name%> <%=button_to "Accept", approve_request_path(request), :method => 'put' %> <%=button_to "Decline", decline_request_path(request), :method => 'put' %>
+	<%end%> 
+<%end%>
+<% if !@lead_group_requests.nil?%> 
+	Requests - You have been requested to lead the following groups <br /> 
+	<%@lead_group_requests.each do |request|%> 
+		<%=request.group.name%> <%=button_to "Accept", approve_request_path(request), :method => 'put' %> <%=button_to "Decline", decline_request_path(request), :method => 'put' %>
 	<%end%> 
 <%end%>
 <br />
