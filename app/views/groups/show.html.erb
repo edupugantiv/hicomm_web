@@ -9,12 +9,11 @@
 			<%=@group.name%> <br />
 			<%=@members.size%> member(s)
 			Scale: <%=@group.scale%> <br />
-			Latitude: <%=@group.latitude%><br />
-			Longitude: <%=@group.longitude%><br />
+			Location: <%=@group.location%><br />
 		</td>
 		<td width="25%">
 			Contact: <br/> 
-			<%=@group.group_leader.name%> / Project Manager <br />
+			<%=link_to @group.group_leader.name, user_path(@group.group_leader)%> / Project Manager <br />
 			<%=@group.group_leader.email%> / <%=@group.group_leader.mobile%><br />
 		</td>
 		<td width="25%">
@@ -42,21 +41,30 @@
 		</td>
 		<td width="50%"> 
 			Posts: <br />
-			<table width="80%" class="inbox" border="1"> 	
-					<%@posts.each do |post| %> 
-						<tr><td>
-						<%=link_to post.poster.name, user_path(post.poster)%>: <%=post.body%> <br>
-						<%=post.posted%>
+			<%if @posts.empty? %> 
+				<%=@group.name%> has no posts 
+				<%=render partial: 'posts/new'%>
+			<%else%> 
+				<table width="80%" class="inbox" border="1"> 	
+						<%@posts.each do |post| %> 
+							<tr><td>
+							<%=link_to post.poster.name, user_path(post.poster)%>: <%=post.body%> <br>
+							<%=post.posted%>
 
-						</td></tr>
-					<%end%>
-					 <tr><td><%= render partial: 'posts/new' %></td></tr>		
-			</table>
+							</td></tr>
+						<%end%>
+						 <tr><td><%= render partial: 'posts/new' %></td></tr>		
+				</table>
+			<%end%>
 		</td>
 		<td width = "25%"> 
 			Affiliated Projects: <br />
-			<%@projects.each do |project| %> 
-				<%=link_to project.name, project_path(:project_id => project, :conversation_id => project.conversations.first)%>
+			<%if @projects.empty? %> 
+				<%=@group.name%> is not affiliated with any projects
+			<%else%>
+				<%@projects.each do |project| %> 
+					<%=link_to project.name, project_path(:project_id => project, :conversation_id => project.conversations.first)%>
+				<%end%>
 			<%end%>
 		</td>
 	</tr>

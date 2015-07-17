@@ -1,6 +1,17 @@
-Add Users<br />
-<%@users.each do |user|%>
-	<%=user.name%> <%=button_to "Add", add_project_users_path(:project_id => @project, :user_id => user), :method => 'put' %><br />
-<%end %> 
+<h1>Add Participants</h1> <br /> 
 
-<%=button_to "Done", project_path(:project_id =>@project, :conversation_id => @project.conversations.first), :method => 'get'%>
+<table> 
+	<tr> 
+		<td>
+			<%=button_to "Manage Participants", manage_project_path(@project), :method => 'get'%>
+			<%=button_to "Transfer Leadership", transfer_project_leadership_path(@project), :method => 'get'%>
+			<%=button_to "Add Affiliations", add_affiliations_path(@project), :method => 'get' %>
+			<%=button_to "Done", project_path(:project_id => @project, :conversation_id => @project.conversations.first), :method => 'get'%>
+		</td>
+		<td> 
+			<%@users.each do |user|%>
+				<%=link_to user.name, user_path(user)%> <%=button_to "Add", add_project_users_path(:project_id => @project, :user_id => user), :method => 'put' %><br />
+			<%end %> 
+		</td>
+	</tr>
+</table>

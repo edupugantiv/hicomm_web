@@ -11,7 +11,7 @@
 
 		<td width="25%">
 			Contact:<br />
-			<%=@project_manager.name%>: Project Manager <br /> 
+			<%=link_to @project_manager.name, user_path(@project_manager)%>: Project Manager <br /> 
 			Email: <%=@project_manager.email%> <br />
 		</td>
 		<td width="25%">
@@ -31,16 +31,24 @@
 <table width="100%"> 
 	<tr>
 		<td width="25%">
-			Conversations: <br />
 			<table> 
 				<tr>
 					<td>			
 						<% if can? :leave, @project %>
 							<%=button_to "New Conversation", new_convo_path(@project), :method => 'get'%>
 						<% end %>
-						<%@conversations.each do |conversation|%> 
-							<%=link_to conversation.name, project_path(:project_id => @project, :conversation_id => conversation)%> <br />
-						<%end%>	
+						Conversations: <br />
+						<% if @conversations.empty? %> 
+							<%=@project.name%> has no conversations %>
+						<%else%>	
+							<%@conversations.each do |conversation|%> 
+								<%if conversation == @current_convo%> 
+									<%=conversation.name%> <br />
+								<%else%>
+									<%=link_to conversation.name, project_path(:project_id => @project, :conversation_id => conversation)%> <br />
+								<%end%>
+							<%end%>	
+						<%end%>
 					</td>		
 				</tr>
 			</table>

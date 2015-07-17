@@ -70,6 +70,8 @@ Rails.application.routes.draw do
   get 'conversations/:id/posts/new' => 'posts#create', as: 'new_post'
   post 'conversations/:id/posts' => 'posts#create', as: 'create_post'
 
+  get 'notifications' => 'welcome#notifications', as: 'notifications'
+
   #put  'projects/:id/conversations/:id' => 'conversations#update', as: 'update_convo'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

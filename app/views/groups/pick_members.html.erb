@@ -1,6 +1,16 @@
-Pick Members <br />
-<%@users.each do |user|%>
-	<%=user.name%> <%=button_to "Add", add_group_members_path(:group_id => @group, :user_id => user), :method => 'put' %><br />
-<%end %> 
+<h1>Add Members</h1>
 
-<%=button_to "Done", manage_group_path(@group), :method => 'get'%>
+<table> 
+	<tr> 
+		<td>
+			<%=button_to "Manage Members", manage_group_path(@group), :method => 'get' %>
+			<%=button_to "Transfer Leadership", transfer_group_leadership_path(@group), :method => 'get'%>
+			<%=button_to "Done", group_path(@group), :method => 'get'%>
+		</td>
+		<td>
+			<%@users.each do |user|%>
+				<%=link_to user.name, user_path(user)%> <%=button_to "Add", add_group_members_path(:group_id => @group, :user_id => user), :method => 'put' %><br />
+			<%end %> 
+		</td>
+	</tr>
+</table>

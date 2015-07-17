@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.create(params.require(:group).permit(:name, :latitude, :longitude, :privacy, :scale).merge(:group_leader_id => current_user.id))
+    @group = Group.create(params.require(:group).permit(:name, :location, :privacy, :scale).merge(:group_leader_id => current_user.id))
     @group.users << current_user
     redirect_to group_path(@group)
     # if @group.save

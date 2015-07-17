@@ -1,5 +1,19 @@
-Affiliate <%=@project.name%> with: <br />
-<%@groups.each do |group| %> 
-	<%=group.name%> <%=button_to "Affiliate", affiliate_path(:project_id => @project, :group_id => group), :method => 'put'%>
-<%end%>
-<%=button_to "Done", manage_project_path(@project), :method => 'get'%>
+<h1> Manage Affiliations </h1>
+
+
+<table> 
+	<tr> 
+		<td>
+			<%=button_to "Manage Participants", manage_project_path(@project), :method => 'get'%>
+			<%=button_to "Transfer Leadership", transfer_project_leadership_path(@project), :method => 'get'%>
+			<%=button_to "Add Affiliations", add_affiliations_path(@project), :method => 'get' %>
+			<%=button_to "Done", project_path(:project_id => @project, :conversation_id => @project.conversations.first), :method => 'get'%>
+		</td>
+		<td> 
+			Affiliate <%=@project.name%> with: <br />
+			<%@groups.each do |group| %> 
+				<%=link_to group.name, group_path(group)%> <%=button_to "Affiliate", affiliate_path(:project_id => @project, :group_id => group), :method => 'put'%>
+			<%end%>
+		</td>
+	</tr>
+</table>

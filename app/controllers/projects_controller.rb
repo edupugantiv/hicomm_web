@@ -27,7 +27,9 @@ class ProjectsController < ApplicationController
 		@project = Project.create(project_params.merge(:project_manager_id => current_user.id))
 		current_user.projects << @project
 		#current_user.managed_projects << @project
-		redirect_to welcome_path
+		@project_wide_convo = Conversation.create(:name => "Project-Wide Conversation", :project_id => @project.id)
+		@project_wide_convo.users << current_user
+		redirect_to project_path(:project_id => @project, :conversation_id => @project_wide_convo)
 	end 
 
 	def destroy 
@@ -95,7 +97,7 @@ class ProjectsController < ApplicationController
 
 	def add_affiliations 
 		@project = Project.find(params[:id])
-		@groups = Group.all
+		@groups = Group.all - @project.groups
 	end 
 
 	def affiliate 

@@ -26,4 +26,21 @@ class WelcomeController < ApplicationController
 	    #@posts = Post.all.order('created_at DESC')
 	  #end
 	end
+
+	def notifications
+		@user = current_user 
+		@lead_project_requests = LeadProject.where(:user_id => @user.id, :pending => true)
+		@lead_group_requests = LeadGroup.where(:user_id => @user.id, :pending => true)
+		@projects = Project.where(:project_manager_id => @user.id)
+		@groups = Group.where(:group_leader_id => @user.id)
+		@join_project_requests = [] 
+		@projects.each do |project| 
+			@join_project_requests += project.requests.where(:type => 'JoinProject', :pending => true)
+		end 
+		@join_group_requests = []
+		@groups.each do |group|
+			@join_group_requests += group.requests.where(:type => 'JoinGroup', :pending => true)
+		end 
+	end 
+
 end 

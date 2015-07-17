@@ -26,20 +26,33 @@
 	<tr> 
 		<td width="33%">
 			Projects: <br /> 
-			<%@projects.each do |project| %> 
-				<%=link_to project.name, project_path(:project_id =>project, :conversation_id => project.conversations.first)%><br /> 
+			<%if @projects.empty? %> 
+				<%=@user.name%> is not a participant in any projects
+			<%else%>
+
+				<%@projects.each do |project| %> 
+					<%=link_to project.name, project_path(:project_id =>project, :conversation_id => project.conversations.first)%><br /> 
+				<%end%>
 			<%end%> 
 		</td>
 		<td width="33%">
 			Groups: <br /> 
-			<%@groups.each do |group| %> 
-				<%=link_to group.name, group_path(group)%> <br /> 
-			<%end%> 
+			<%if @groups.empty? %> 
+				<%=@user.name%> is not a member of any groups
+			<%else%>
+				<%@groups.each do |group| %> 
+					<%=link_to group.name, group_path(group)%> <br /> 
+				<%end%> 
+			<%end%>
 		</td>
 		<td width="33%">
 			Contacts: <br />
-			<%@contacts.each do |colleague| %> 
-				<%=link_to colleague.name, user_path(colleague)%> 
+			<%if @contacts.empty? %> 
+				<%=@user.name%> has no contacts
+			<%else%>
+				<%@contacts.each do |colleague| %> 
+					<%=link_to colleague.name, user_path(colleague)%> 
+				<%end%>
 			<%end%>
 		</td>
 	</tr>
