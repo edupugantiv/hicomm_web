@@ -74,7 +74,7 @@ class ProjectsController < ApplicationController
 
 	def remove_participants
 		@project = Project.find(params[:id])
-		@participants = @project.users 
+		@participants = @project.users - [@project.project_manager]
 	end 
 
 	def remove_participant 

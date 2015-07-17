@@ -72,7 +72,7 @@ class GroupsController < ApplicationController
 
   def remove_members
     @group = Group.find(params[:id])
-    @members = @group.users 
+    @members = @group.users - [@group.group_leader]
   end 
 
   def remove_member 
