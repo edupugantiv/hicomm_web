@@ -12,6 +12,7 @@ class RequestsController <ApplicationController
 		@user = @request.user
 		if @request.type == 'JoinProject' 
 			@request.project.users << @user
+			@request.project.conversations.where(:name => "Project-Wide Conversation").users << @user
 			@request.update_attributes(:pending => false)
 		elsif @request.type == 'LeadProject'
 			@request.project.update_attributes(:project_manager_id => @user.id)

@@ -61,6 +61,8 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:project_id])
 		@user = User.find(params[:user_id])
 		@project.users << @user
+		@project_wide_convo = @project.conversations.where(:name => "Project-Wide Conversation")
+		@user.conversations << @project_wide_convo
 		redirect_to :back,  notice: "#{@user.name} was successfully added to #{@project.name}"
 	end
 
