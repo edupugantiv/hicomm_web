@@ -1,4 +1,4 @@
-<table> 
+<table > 
 	<tr> 
 		<td>
 			<%=conversation.name%> 
@@ -11,13 +11,14 @@
 			<%end%>
 		</td>
 	</tr>
-	<tr>
-		<td>
+</table>
+<table border="1" class="inbox" width="80%">
 			<%conversation.messages.each do |message| %>  
-				<%=message.sender.name%>: <%=message.body%> <br>
+				<tr><td>
+					<%=link_to message.sender.name, user_path(message.sender)%>: <%=message.body%> <br>
+					<%=message.sent%><br/>
+				</td></tr>
 			<%end%>
-		</td>
-	</tr>
 	<tr> 
 		<td>
 			<% if can? :leave, conversation.project%> 

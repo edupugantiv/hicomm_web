@@ -46,7 +46,6 @@
 			</table>
 		</td>
 		<td width="50%"> 
-			Messages 
 			<%=render partial: 'conversations/conversation', object: @current_convo%>
 		</td>
 		<td width="25%">
@@ -56,7 +55,7 @@
 			<%end%>
 
 			<%@participants.each do |participant|%> 
-				<%=participant.name%> <br/>
+				<%=link_to participant.name, user_path(participant)%> <br/>
 			<%end%> 
 		</td>
 	</tr>

@@ -1,4 +1,15 @@
-Transfer Project Leadership <br /> 
-<%@participants.each do |participant|%> 
-	<%=participant.name%> <%=button_to "Transfer Leadership", new_leader_path(:project_id => @project, :user_id => participant), :method => 'post' %> 
-<%end%>
+<h1>Transfer Project Leadership</h1> <br /> 
+
+<table> 
+	<tr> 
+		<td>
+			<%=button_to "Manage Participants", manage_project_path(@project), :method => 'get'%>
+			<%=button_to "Transfer Leadership", transfer_project_leadership_path(@project), :method => 'get'%>
+			<%=button_to "Add Affiliations", add_affiliations_path(@project), :method => 'get' %>
+		</td>
+		<td> 
+			<%@participants.each do |participant|%> 
+				<%=participant.name%> <%=button_to "Transfer Leadership", new_leader_path(:project_id => @project, :user_id => participant), :method => 'post' %> 
+			<%end%>
+		</td>
+	</tr>

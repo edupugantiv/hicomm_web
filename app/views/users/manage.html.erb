@@ -1,9 +1,19 @@
-Profile <br />
-First Name: <%=@user.name%><br />
-Last Name: <br />
-Job Title: <%=@user.job%><br />
-Location: <%=@user.location%><br />
-Email: <%=@user.email%><br />
-Mobile: <%=@user.mobile%><br />
-
-<%=button_to "Edit", edit_user_registration_path(@user), :method => 'get' %> 
+<h1>Profile </h1>
+<table> 
+	<tr>
+		<td>
+			<%=button_to "Edit", edit_user_registration_path(@user), :method => 'get' %> 
+			<%=button_to "Change Password" %> 
+			<%=button_to "Payment Options"%>
+			<%=button_to "Delete Account" %>
+		</td>
+		<td>
+			First Name: <%=@user.name%><br />
+			Last Name: <br />
+			Job Title: <%=@user.job%><br />
+			Location: <%=@user.location%><br />
+			Email: <%=@user.email%><br />
+			Mobile: <%=@user.mobile%><br />
+		</td>
+	</tr>
+</table>

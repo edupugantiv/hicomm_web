@@ -1,37 +1,56 @@
-Key Screen 2 - Main Page <br />
+<h1>Key Screen 2 - Main Page</h1> <br />
 User: <%=@user.name%> <br />
 
-<% if !@lead_project_requests.nil?%> 
+<% if !@lead_project_requests.empty?%> 
 	Requests - You have been requested to lead the following projects <br /> 
 	<%@lead_project_requests.each do |request|%> 
 		<%=request.project.name%> <%=button_to "Accept", approve_request_path(request), :method => 'put' %> <%=button_to "Decline", decline_request_path(request), :method => 'put' %>
 	<%end%> 
 <%end%>
-<% if !@lead_group_requests.nil?%> 
+<% if !@lead_group_requests.empty?%> 
 	Requests - You have been requested to lead the following groups <br /> 
 	<%@lead_group_requests.each do |request|%> 
 		<%=request.group.name%> <%=button_to "Accept", approve_request_path(request), :method => 'put' %> <%=button_to "Decline", decline_request_path(request), :method => 'put' %>
 	<%end%> 
 <%end%>
 <br />
+<hr>
 
-Current Projects: <br />
-<%@projects.each do |project| %> 
-	<%= project.name %> <%=button_to "View", project_path(:project_id =>project.id, :conversation_id => project.conversations.first.id), :method => 'get'%> <br />
-<% end %> 
-<%=button_to "New Project", new_project_path, :method => 'get' %>
+<table width="100%"> 
+	<tr>
+		<td width="25%">
+			<%=button_to "New Project", new_project_path, :method => 'get' %>
+			My Projects: <br />
+			<%@projects.each do |project| %> 
+				<%=link_to project.name, project_path(:project_id => project, :conversation_id => project.conversations.first), :method => 'get'%> 
+			<% end %> 
+		</td>
+		<td width="50%">
+			Inbox:<br />
+			<table border="1" class="inbox" width="80%"> 
+					<%@conversations.each do |conversation| %> 
+						<tr><td>
+						<%=link_to conversation.name, project_path(:project_id => conversation.project, :conversation_id => conversation)%><br />
+						<%=link_to conversation.messages.last.sender.name, user_path(conversation.messages.last.sender), :method => 'get'%>: <%= conversation.messages.last.body %><br />
+						<%=conversation.messages.last.sent%>
+						</td></tr>
+					<% end %> 
+			</table>
+		<td width="25%"> 
+			<%=button_to "New Group", new_group_path, :method => 'get'%>
+			My Groups: <br />
+			<%@groups.each do |group|%> 
+				<%=link_to group.name, group_path(group), :method => 'get'%><br />
+			<%end %>
+			<%= button_to 'Explore', groups_path, :method => 'get' %>
+		</td>
+	</tr>
+</table>
 
-Inbox: <br />
-<%@messages.each do |message| %> 
-	<%=message.sender.name%>: <%= message.body %><br/>
-<% end %> 
 
-<%= link_to 'View Groups', groups_path %><br />
 
-Groups: <br />
-<%@groups.each do |group|%> 
-	<%=group.name%>
-<%end %>
+
+
 
 
 

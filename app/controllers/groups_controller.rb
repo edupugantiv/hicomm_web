@@ -26,6 +26,7 @@ class GroupsController < ApplicationController
     @members = @group.users
     @posts = @group.posts
     @post = Post.new
+    @projects = @group.projects
   end 
 
   def destroy
