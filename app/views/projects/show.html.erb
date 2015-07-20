@@ -18,7 +18,7 @@
 			<%if can? :transfer_leadership, @project%> 
 				<%=button_to "Manage Project", manage_project_path(@project), :method => 'get'%>
 			<%elsif can? :leave, @project%>
-				<%=button_to "Leave Project", leave_path(@project), :method => 'put'%>
+				<%=button_to "Leave Project", leave_path(@project), data: {confirm: "Are you sure you want to leave #{@project.name}?"}, :method => 'put'%>
 			<% else %> 
 				<%=button_to "Join Project", join_path(@project), :method => 'put'%>
 			<%end%>

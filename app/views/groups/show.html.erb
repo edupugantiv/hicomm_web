@@ -7,7 +7,7 @@
 		</td>
 		<td width="25%">
 			<%=@group.name%> <br />
-			<%=@members.size%> member(s)
+			<%=@members.size%> member(s)<br />
 			Scale: <%=@group.scale%> <br />
 			Location: <%=@group.location%><br />
 		</td>
@@ -20,7 +20,7 @@
 			<%if can? :transfer_leadership, @group%> 
 				<%=button_to "Manage Group", manage_group_path(@group), :method => 'get'%>
 			<%elsif can? :leave, @group%>
-				<%=button_to "Leave Group", leave_group_path(@group), :method => 'put' %>
+				<%=button_to "Leave Group", leave_group_path(@group), data: {confirm: "Are you sure you want to leave #{@group.name}?"}, :method => 'put'%>
 			<% else %> 
 				<%=button_to "Join Group", join_group_path(@group), :method => 'put' %>
 			<%end%>

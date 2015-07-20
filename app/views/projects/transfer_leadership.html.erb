@@ -10,7 +10,7 @@
 		</td>
 		<td> 
 			<%@participants.each do |participant|%> 
-				<%=link_to participant.name, user_path(participant)%> <%=button_to "Transfer Leadership", new_leader_path(:project_id => @project, :user_id => participant), :method => 'post' %> 
+				<%=link_to participant.name, user_path(participant)%> <%=button_to "Transfer Leadership", new_leader_path(:project_id => @project, :user_id => participant), data: {confirm: "Are you sure you want to transfer leadership of #{@project.name} to #{participant.name}?"}, :method => 'post' %> 
 			<%end%>
 		</td>
 	</tr>

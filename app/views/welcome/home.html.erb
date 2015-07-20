@@ -22,7 +22,7 @@ User: <%=@user.name%> <br />
 			<%=button_to "New Project", new_project_path, :method => 'get' %>
 			My Projects: <br />
 			<%@projects.each do |project| %> 
-				<%=link_to project.name, project_path(:project_id => project, :conversation_id => project.conversations.first), :method => 'get'%> 
+				<%=link_to project.name, project_path(:project_id => project, :conversation_id => project.conversations.first), :method => 'get'%> <br />
 			<% end %> 
 		</td>
 		<td width="50%">
@@ -31,9 +31,13 @@ User: <%=@user.name%> <br />
 					<%@conversations.each do |conversation| %> 
 						<tr><td>
 						<%=link_to conversation.name, project_path(:project_id => conversation.project, :conversation_id => conversation)%><br />
-						<%=link_to conversation.messages.last.sender.name, user_path(conversation.messages.last.sender), :method => 'get'%>: <%= conversation.messages.last.body %><br />
-						<%=conversation.messages.last.sent%>
-						</td></tr>
+						<%if conversation.messages.empty?%> 
+							There are no messages in this conversation
+						<%else%>
+							<%=link_to conversation.messages.last.sender.name, user_path(conversation.messages.last.sender), :method => 'get'%>: <%= conversation.messages.last.body %><br />
+							<%=conversation.messages.last.sent%>
+							</td></tr>
+						<%end%>
 					<% end %> 
 			</table>
 		<td width="25%"> 

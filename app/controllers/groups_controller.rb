@@ -11,15 +11,26 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.create(params.require(:group).permit(:name, :location, :privacy, :scale).merge(:group_leader_id => current_user.id))
+    @group = Group.create(group_params.merge(:group_leader_id => current_user.id))
     @group.users << current_user
-    redirect_to group_path(@group)
-    # if @group.save
-    #   redirect_to 'home', notice: "#{@group.name} was successfully created"
-    # else
-    #   render :new, notice: "Sorry, an error occured and #{@group.name} was not created"
-    # end
+    #redirect_to group_path(@group)
+    if @group.save
+      redirect_to group_path(@group), notice: "#{@group.name} was successfully created"
+    else
+      flash.now[:notice] = "Sorry, that group name is already taken"
+      render new_group_path(@group), notice: "Sorry that group name is already taken"
+    end
   end
+
+  def edit 
+    @group = Group.find(params[:id])
+  end 
+
+  def update
+    @group = Group.find(params[:id]) 
+    @group.update_attributes(group_params)
+    redirect_to manage_group_path(@group), notice: "#{@group.name} has been updated"
+  end  
 
   def show
     @group = Group.find(params[:id])
@@ -93,6 +104,12 @@ class GroupsController < ApplicationController
     @request = Request.create(:group_id => @group.id, :user_id => @user.id, :pending => true, :type => 'LeadGroup')
     #@project.update_attributes(:project_manager_id => @user.id)
     redirect_to group_path(@group), notice: "leadership of #{@group.name} will be transfered to #{@user.name} upon approval"
+  end 
+
+  private 
+
+  def group_params 
+    params.require(:group).permit(:name, :location, :privacy, :scale)
   end 
 
 end

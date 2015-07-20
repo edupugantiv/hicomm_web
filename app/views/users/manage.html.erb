@@ -2,8 +2,8 @@
 <table> 
 	<tr>
 		<td>
-			<%=button_to "Edit", edit_user_registration_path(@user), :method => 'get' %> 
-			<%=button_to "Change Password" %> 
+			<%=button_to "Edit", edit_user_registration_path, :method => 'get' %> 
+			<%=button_to "Change Password", 'change_password', :method => 'get' %> 
 			<%=button_to "Payment Options"%>
 			<%=button_to "Delete Account" %>
 		</td>

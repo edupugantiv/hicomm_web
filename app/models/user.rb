@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 	has_and_belongs_to_many :groups, join_table: 'members'
 	has_many :contacts 
 	has_many :colleagues, :through => :contacts
+	validates_acceptance_of :terms_of_use
 
 	def self.search(search)
   		where("name LIKE ?", "%#{search}%") 

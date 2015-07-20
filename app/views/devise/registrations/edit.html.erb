@@ -47,6 +47,18 @@
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
+  Choose your privacy settings:<br />
+  <%= f.label :privacy %><br />
+
+  <%= f.radio_button :privacy, "public", :checked => true %>
+    <%= f.label :privacy, "Public", :value => "public"  %> <br />
+    
+    <%= f.radio_button :privacy, "semi-private" %>
+    <%= f.label :privacy, "Semi-Private", :value => "semi-private" %> <br />
+
+    <%= f.radio_button :privacy, "private" %>
+    <%= f.label :privacy, "Private", :value => "private" %> <br />
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

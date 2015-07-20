@@ -16,7 +16,8 @@ class UsersController < ApplicationController
 	end 
 
 	def edit 
-		@user = User.find(params[:id])
+		@user = current_user
+		#@user = User.find(params[:id])
 	end 
 
 	def update 
@@ -34,7 +35,7 @@ class UsersController < ApplicationController
 		@user.colleagues << @colleague
 		@colleague.colleagues << @user
 		redirect_to :back, notice: "#{@colleague.name} has been added to your contacts"
-	end 
+	end  
 
 	def remove_colleague 
 		@user = current_user 
@@ -48,6 +49,10 @@ class UsersController < ApplicationController
 
 	def user_params 
 		params.require(:user).permit(:name, :job, :location, :mobile, :email)
+	end 
+
+	def account_update_params 
+		params.require(:user).permit(:name, :location, :job, :mobile, :email, :password, :password_confirmation, :current_password, :privacy)
 	end 
 
 end 
