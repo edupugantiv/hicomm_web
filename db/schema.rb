@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720090728) do
+ActiveRecord::Schema.define(version: 20150721072833) do
 
   create_table "affiliations", id: false, force: :cascade do |t|
     t.integer "project_id", limit: 4, null: false
@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 20150720090728) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                   limit: 255
     t.string   "job",                    limit: 255
     t.string   "location",               limit: 255
     t.string   "mobile",                 limit: 255
@@ -103,6 +102,8 @@ ActiveRecord::Schema.define(version: 20150720090728) do
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
     t.string   "privacy",                limit: 255
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

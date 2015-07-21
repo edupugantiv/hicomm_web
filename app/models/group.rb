@@ -8,7 +8,7 @@ class Group < ActiveRecord::Base
     validates_uniqueness_of :name, :message => "Sorry, this group name has already been taken"
 
   	def self.search(search)
-  		where("name LIKE ?", "%#{search}%") 
+  		return where("name LIKE ?", "%#{search}%") - where(:privacy => "private")
   		#where("content LIKE ?", "%#{search}%")
 	end
 

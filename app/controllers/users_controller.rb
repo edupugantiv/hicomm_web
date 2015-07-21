@@ -2,9 +2,16 @@ class UsersController < ApplicationController
 	before_action :authenticate_user!
 	def show 
 		@user = User.find(params[:id])
-		@projects = @user.projects
-		@groups = @user.groups
-		@contacts = @user.colleagues
+		if @user == current_user 
+			@projects = @user.projects
+			@groups = @user.groups
+			@contacts = @user.colleagues
+		else 
+			@projects = @user.projects - Project.where(:privacy => "private")
+			@groups = @user.groups - Group.where(:privacy => "private")
+			@contacts = @user.colleagues - User.where(:privacy => "private")
+		end 
+		
 	end 
 
 	def new 

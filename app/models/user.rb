@@ -12,7 +12,11 @@ class User < ActiveRecord::Base
 	validates_acceptance_of :terms_of_use
 
 	def self.search(search)
-  		where("name LIKE ?", "%#{search}%") 
-  		#where("content LIKE ?", "%#{search}%")
+  		return where("first_name LIKE ?", "%#{search}%") + where("last_name LIKE ?", "%#{search}%") - where(:privacy => "private")
 	end
+
+	def name 
+		[first_name, last_name].join(' ')
+	end 
+
 end 

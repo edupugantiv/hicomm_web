@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
 	has_and_belongs_to_many :groups, join_table: "affiliations"
 
 	def self.search(search)
-  		where("name LIKE ?", "%#{search}%") 
+  		where("name LIKE ?", "%#{search}%") - where(:privacy => "private")
   		#where("content LIKE ?", "%#{search}%")
 	end
 end 

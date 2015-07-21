@@ -4,13 +4,13 @@ User: <%=@user.name%> <br />
 <% if !@lead_project_requests.empty?%> 
 	Requests - You have been requested to lead the following projects <br /> 
 	<%@lead_project_requests.each do |request|%> 
-		<%=request.project.name%> <%=button_to "Accept", approve_request_path(request), :method => 'put' %> <%=button_to "Decline", decline_request_path(request), :method => 'put' %>
+		<%=request.project.name%> <%=button_to "Accept", approve_request_path(request), confirm: "Are you sure you want to assume leadership of #{project.name}?", :method => 'put' %> <%=button_to "Decline", decline_request_path(request), :method => 'put' %>
 	<%end%> 
 <%end%>
 <% if !@lead_group_requests.empty?%> 
 	Requests - You have been requested to lead the following groups <br /> 
 	<%@lead_group_requests.each do |request|%> 
-		<%=request.group.name%> <%=button_to "Accept", approve_request_path(request), :method => 'put' %> <%=button_to "Decline", decline_request_path(request), :method => 'put' %>
+		<%=request.group.name%> <%=button_to "Accept", approve_request_path(request), confirm: "are you sure you want to assume leadership of #{group.name}?", :method => 'put' %> <%=button_to "Decline", decline_request_path(request), :method => 'put' %>
 	<%end%> 
 <%end%>
 <br />
