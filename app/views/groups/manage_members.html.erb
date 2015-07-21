@@ -1,30 +1,23 @@
-<h1>Manage Group</h1>
-<table> 
-	<tr> 
-		<td>
-		<%=render partial: 'management'%>
-		</td>
-		<td>
-			Members: <br />
-			<%@members.each do |member|%> 
-				<%=link_to member.name, user_path(member)%> <br />
-			<%end%>
-			<%=button_to "Add New Members", pick_group_members_path(@group), :method => 'get'%>
-			<%=button_to "Remove Members", remove_group_members_path(@group), :method => 'get'%>
-		</td>
-	</tr>
-	<tr> 
-		<td></td>
-		<td>
-			Pending Requests: <br />
-			<% if @requests.empty? %> 
-				<i>There are no pending requests for <%=@group.name%></i>
-			<%else%> 
-				<%@requests.each do |request|%> 
-					<%=link_to request.user.name, user_path(request.user)%> <%= button_to "Approve", approve_request_path(request), :method => 'put'%><%= button_to "Decline", decline_request_path(request), :method => 'put'%>
-				<%end%>
-			<%end%>
-		</td>
-	</tr>
-</table>
+<%=render partial: 'management'%>
+<div id="section">
+	<h1>Manage Group</h1>
+	Members: <br />
+	
+	<ol><%@members.each do |member|%> 
+		<li><%=link_to member.name, user_path(member)%> </li>
+	<%end%></ol>
+	
+	<%=button_to "Add New Members", pick_group_members_path(@group), :method => 'get'%>
+	<%=button_to "Remove Members", remove_group_members_path(@group), :method => 'get'%>
+	<br />
+	Pending Requests: <br />
+	<% if @requests.empty? %> 
+		<i>There are no pending requests for <%=@group.name%></i>
+	<%else%> 
+		<ol><%@requests.each do |request|%> 
+			<li><%=link_to request.user.name, user_path(request.user)%> <%= button_to "Approve", approve_request_path(request), :method => 'put'%><%= button_to "Decline", decline_request_path(request), :method => 'put'%></li>
+		<%end%></ol>
+	<%end%>
+</div>
+
 

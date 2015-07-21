@@ -1,55 +1,50 @@
-<table> 
-  <tr> 
-    <td> 
-      <%=render partial: 'management'%>
-    </td>
-    <td>
-      <%= form_for @user do |f| %> 
+<%=render partial: 'management'%>
+<div id="section">
+  <h1>Edit Account</h1>
+  <%= form_for @user do |f| %> 
 
-        <div class="field">
-          <%= f.label :first_name %><br />
-          <%= f.text_field :first_name, autofocus: true %>
-        </div>
+    <div class="field">
+      <%= f.label :first_name %><br />
+      <%= f.text_field :first_name, autofocus: true %>
+    </div>
 
-        <div class="field">
-          <%= f.label :last_name %><br />
-          <%= f.text_field :last_name %>
-        </div>
+    <div class="field">
+      <%= f.label :last_name %><br />
+      <%= f.text_field :last_name %>
+    </div>
 
-        <div class="field">
-          <%= f.label :job %><br />
-          <%= f.text_field :job %>
-        </div>
+    <div class="field">
+      <%= f.label :job %><br />
+      <%= f.text_field :job %>
+    </div>
 
-        <div class="field">
-          <%= f.label :location %><br />
-          <%= f.text_field :location%>
-        </div>
+    <div class="field">
+      <%= f.label :location %><br />
+      <%= f.text_field :location%>
+    </div>
 
-        <div class="field">
-          <%= f.label :mobile %><br />
-          <%= f.text_field :mobile%>
-        </div>
-        
-        <div class="field">
-          <%= f.label :email %><br />
-          <%= f.email_field :email%>
-        </div>
+    <div class="field">
+      <%= f.label :mobile %><br />
+      <%= f.text_field :mobile%>
+    </div>
+    
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email%>
+    </div>
 
-          Choose your privacy settings:<br />
-        <%= f.label :privacy %><br />
+    Choose your privacy settings:<br />
+    <%= f.label :privacy %><br />
 
-        <%= f.radio_button :privacy, "public", :checked => true %>
-          <%= f.label :privacy, "Public", :value => "public"  %> <br />
-          
-          <%= f.radio_button :privacy, "semi-private" %>
-          <%= f.label :privacy, "Semi-Private", :value => "semi-private" %> <br />
+    <%= f.radio_button :privacy, "public", :checked => true %>
+    <%= f.label :privacy, "Public", :value => "public"  %> <br />
+    
+    <%= f.radio_button :privacy, "semi-private" %>
+    <%= f.label :privacy, "Semi-Private", :value => "semi-private" %> <br />
 
-          <%= f.radio_button :privacy, "private" %>
-          <%= f.label :privacy, "Private", :value => "private" %> <br />
+    <%= f.radio_button :privacy, "private" %>
+    <%= f.label :privacy, "Private", :value => "private" %> <br />
 
-          <%=f.submit%>
-         <%end%>
-        </td>
-      </tr>
-</table>
+    <%=f.submit%>
+  <%end%>
+</div>

@@ -1,17 +1,5 @@
-<table > 
-	<tr> 
-		<td>
-			<%=conversation.name%> 
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<%conversation.users.each do |user| %> 
-				<%=user.name%> 
-			<%end%>
-		</td>
-	</tr>
-</table>
+<%=conversation.name%> <br />
+<%=conversation.users.map{|user| user.name}.join(', ') %> 
 <table border="1" class="inbox" width="80%">
 			<%conversation.messages.each do |message| %>  
 				<tr><td>

@@ -118,6 +118,10 @@ class ProjectsController < ApplicationController
 		end 
 	end 
 
+	def change_plan 
+		@project = Project.find(params[:id])
+	end
+
 	private 
 
 	def project_params 

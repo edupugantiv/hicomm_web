@@ -57,9 +57,9 @@
 			<%=render partial: 'conversations/conversation', object: @current_convo%>
 		</td>
 		<td width="25%">
-			Members: <br />
+			Participants: <br />
 			<%if can? :add_users, @project %> 
-				<%=button_to "Add Users", pick_project_users_path(@project), :method => 'get'%>
+				<%=button_to "Add Participants", pick_project_users_path(@project), :method => 'get'%>
 			<%end%>
 
 			<%@participants.each do |participant|%> 

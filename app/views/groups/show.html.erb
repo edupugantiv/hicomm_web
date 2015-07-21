@@ -42,7 +42,7 @@
 		<td width="50%"> 
 			Posts: <br />
 			<%if @posts.empty? %> 
-				<%=@group.name%> has no posts 
+				<i><%=@group.name%> has no posts</i>
 				<%=render partial: 'posts/new'%>
 			<%else%> 
 				<table width="80%" class="inbox" border="1"> 	
@@ -60,7 +60,7 @@
 		<td width = "25%"> 
 			Affiliated Projects: <br />
 			<%if @projects.empty? %> 
-				<%=@group.name%> is not affiliated with any projects
+				<i><%=@group.name%> is not affiliated with any projects</i>
 			<%else%>
 				<%@projects.each do |project| %> 
 					<%=link_to project.name, project_path(:project_id => project, :conversation_id => project.conversations.first)%>

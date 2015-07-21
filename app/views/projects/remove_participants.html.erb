@@ -1,18 +1,12 @@
-<h1>Remove Participants</h1> <br /> 
+<%=render partial: 'management'%>
 
-<table> 
-	<tr> 
-		<td>
-			<%=render partial: 'management'%>
-		</td>
-		<td> 
-			<%if @participants.empty?%> 
-				<i>There are no users to remove from your project at this time</i>
-			<%else%>
-				<%@participants.each do |participant|%> 
-					<%=link_to participant.name, user_path(participant)%> <%=button_to "Remove User", remove_project_participant_path(:user_id => participant, :project_id => @project), :method => 'put'%>
-				<%end%>
-			<%end%>
-		</td>
-	</tr>
-</table>
+<div id="section">
+	<h1>Remove Participants</h1> <br /> 
+	<%if @participants.empty?%> 
+		<i>There are no users to remove from your project at this time</i>
+	<%else%>
+		<%@participants.each do |participant|%> 
+			<%=link_to participant.name, user_path(participant)%> <%=button_to "Remove User", remove_project_participant_path(:user_id => participant, :project_id => @project), :method => 'put'%>
+		<%end%>
+	<%end%>
+</div>

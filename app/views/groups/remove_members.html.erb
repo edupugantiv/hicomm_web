@@ -1,18 +1,10 @@
-<h1>Remove Members</h1>
-
-<table> 
-	<tr> 
-		<td>
-			<%=render partial: 'management'%>
-		</td>
-		<td>
-			<% if @members.empty? %> 
-				<i> There are no members to remove from your group at this time</i>
-			<%else%>
-				<%@members.each do |member|%> 
-					<%=link_to member.name, user_path(member)%> <%=button_to "Remove Member", remove_group_member_path(:user_id => member, :group_id => @group), :method => 'put'%>
-				<%end%>
-			<%end%>
-		</td>
-	</tr>
-</table>
+<%=render partial: 'management'%>
+<div id="section">
+	<h1>Remove Members</h1>
+	<% if @members.empty? %> 
+		<i> There are no members to remove from your group at this time</i>
+	<%else%>
+		<ol><%@members.each do |member|%> 
+			<li><%=link_to member.name, user_path(member)%> <%=button_to "Remove Member", remove_group_member_path(:user_id => member, :group_id => @group), :method => 'put'%></li>
+		<%end%></ol>
+	<%end%>

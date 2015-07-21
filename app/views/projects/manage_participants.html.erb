@@ -1,32 +1,27 @@
-<h1>Manage Participants</h1>
-<table> 
-	<tr> 
-		<td>
-			<%=render partial: 'management'%>
-		</td>
-		<td> 
-			Current Participants<br />
-				<%@participants.each do |participant|%> 
-					<%=link_to participant.name, user_path(participant)%> <br />
-				<%end%>
-			<%=button_to "Add Users", pick_project_users_path(@project), :method => 'get'%>
-			<%=button_to "Remove Users", remove_project_participants_path(@project), :method => 'get'%>
-		</td>
-	</tr>
-		<td> 
-		</td>
-		<td> 
-		Pending Requests: <br />
-			<%if @requests.empty?%> 
-				<i>There are no pending requests for <%=@project.name%></i>
-			<%else%>
-				<%@requests.each do |request| %> 
-					<%=link_to request.user.name, user_path(request.user)%> <%= button_to "Approve", approve_request_path(request), :method => 'put'%><%= button_to "Decline", decline_request_path(request), :method => 'put'%>
-				<%end%>
-			<%end%>
-		</td>
-	</tr>
-</table>
+<%=render partial: 'management'%>
+<div id="section">
+	<h1>Manage Project</h1>
+	Current Participants<br />
+	<ol>
+		<%@participants.each do |participant|%> 
+			<li><%=link_to participant.name, user_path(participant)%> </li>
+		<%end%>
+	</ol>
+	<%=button_to "Add Users", pick_project_users_path(@project), :method => 'get'%>
+	<%=button_to "Remove Users", remove_project_participants_path(@project), :method => 'get'%>
+	<br />
+	Pending Requests: <br />
+
+	<%if @requests.empty?%> 
+		<i>There are no pending requests for <%=@project.name%></i>
+	<%else%>
+	<ol>
+		<%@requests.each do |request| %> 
+			<li><%=link_to request.user.name, user_path(request.user)%> <%= button_to "Approve", approve_request_path(request), :method => 'put'%><%= button_to "Decline", decline_request_path(request), :method => 'put'%></li>
+		<%end%>
+	<%end%>
+	</ol>
+</div>
 
 
 

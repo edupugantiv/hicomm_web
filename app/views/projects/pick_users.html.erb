@@ -1,18 +1,12 @@
-<h1>Add Participants</h1> <br /> 
+<%=render partial: 'management'%>
 
-<table> 
-	<tr> 
-		<td>
-			<%=render partial: 'management'%>
-		</td>
-		<td> 
-			<% if @users.empty?%> 
-				<i>There are no more users to add to your project at this time</i>
-			<%else%>
-				<%@users.each do |user|%>
-					<%=link_to user.name, user_path(user)%> <%=button_to "Add", add_project_users_path(:project_id => @project, :user_id => user), :method => 'put' %><br />
-				<%end %> 
-			<%end%>
-		</td>
-	</tr>
-</table>
+<div id="section">
+	<h1>Add Participants</h1> <br /> 
+	<% if @users.empty?%> 
+		<i>There are no more users to add to your project at this time</i>
+	<%else%>
+		<%@users.each do |user|%>
+			<%=link_to user.name, user_path(user)%> <%=button_to "Add", add_project_users_path(:project_id => @project, :user_id => user), :method => 'put' %><br />
+		<%end %> 
+	<%end%>
+</div>

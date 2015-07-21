@@ -75,6 +75,7 @@ Rails.application.routes.draw do
   post 'conversations/:id/posts' => 'posts#create', as: 'create_post'
 
   get 'notifications' => 'welcome#notifications', as: 'notifications'
+  get 'projects/:id/change_plan' => 'projects#change_plan', as: 'change_project_plan'
 
   #put  'projects/:id/conversations/:id' => 'conversations#update', as: 'update_convo'
 

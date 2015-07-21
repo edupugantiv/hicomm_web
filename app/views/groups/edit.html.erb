@@ -1,34 +1,29 @@
-<table> 
-	<tr> 
-		<td> 
-			<%=render partial: 'management'%> 
-		</td>
-		<td>
-			<%= form_for @group do |f| %>
-			  <%= f.label :name %>:
-			  <%= f.text_field :name %><br />
+<%=render partial: 'management'%> 
+<div id="section"> 
+	<h1>Edit Group</h1>
+	<%= form_for @group do |f| %>
+	  <%= f.label :name %>:
+	  <%= f.text_field :name %><br />
 
-			  <%= f.label :location %>:
-			  <%= f.text_field :location %><br />
+	  <%= f.label :location %>:
+	  <%= f.text_field :location %><br />
 
-			  <%= f.label :scale %>:
-			  <%= f.text_field :scale %><br />
+	  <%= f.label :scale %>:
+	  <%= f.text_field :scale %><br />
 
-				Choose your privacy settings:<br />
-				<%= f.label :privacy %><br />
+		Choose your privacy settings:<br />
+		<%= f.label :privacy %><br />
 
-				<%= f.radio_button :privacy, "public", :checked => true %>
-				<%= f.label :privacy, "Public", :value => "public"  %> <br />
+		<%= f.radio_button :privacy, "public", :checked => true %>
+		<%= f.label :privacy, "Public", :value => "public"  %> <br />
 
-				<%= f.radio_button :privacy, "semi-private" %>
-				<%= f.label :privacy, "Semi-Private", :value => "semi-private" %> <br />
+		<%= f.radio_button :privacy, "semi-private" %>
+		<%= f.label :privacy, "Semi-Private", :value => "semi-private" %> <br />
 
-				<%= f.radio_button :privacy, "private" %>
-				<%= f.label :privacy, "Private", :value => "private" %> <br />
+		<%= f.radio_button :privacy, "private" %>
+		<%= f.label :privacy, "Private", :value => "private" %> <br />
 
-			  <%= f.submit %>
-			<% end %>
-			<%= link_to 'Back', manage_group_path(@group) %>
-		</td>
-	</tr>
-</table>
+	  <%= f.submit %>
+	<% end %>
+	<%= link_to 'Back', manage_group_path(@group) %>
+</div>
