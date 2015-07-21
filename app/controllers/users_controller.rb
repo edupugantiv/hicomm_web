@@ -23,13 +23,13 @@ class UsersController < ApplicationController
 	end 
 
 	def edit 
-		@user = current_user
-		#@user = User.find(params[:id])
+		@user = User.find(params[:id])
 	end 
 
 	def update 
 		@user = User.find(params[:id])
-		@user.update_attributes(account_update_params)
+		@user.update_attributes(user_params)
+		redirect_to manage_user_path(@user), notice: "Your account was successfully updated"
 	end 
 
 	def manage 
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
 	private 
 
 	def user_params 
-		params.require(:user).permit(:name, :job, :location, :mobile, :email)
+		params.require(:user).permit(:name, :job, :location, :mobile, :email, :privacy)
 	end 
 
 	def account_update_params 
