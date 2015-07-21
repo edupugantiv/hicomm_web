@@ -1,0 +1,36 @@
+<h1>Manage Participants</h1>
+<table> 
+	<tr> 
+		<td>
+			<%=button_to "Manage Participants", manage_project_path(@project), :method => 'get'%>
+			<%=button_to "Transfer Leadership", transfer_project_leadership_path(@project), :method => 'get'%>
+			<%=button_to "Add Affiliations", add_affiliations_path(@project), :method => 'get' %>
+			<%=button_to "Done", project_path(:project_id => @project, :conversation_id => @project.conversations.first), :method => 'get'%>
+		</td>
+		<td> 
+			Current Participants<br />
+				<%@participants.each do |participant|%> 
+					<%=link_to participant.name, user_path(participant)%> <br />
+				<%end%>
+			<%=button_to "Add Users", pick_project_users_path(@project), :method => 'get'%>
+			<%=button_to "Remove Users", remove_project_participants_path(@project), :method => 'get'%>
+		</td>
+	</tr>
+		<td> 
+		</td>
+		<td> 
+		Pending Requests: <br />
+			<%if @requests.empty?%> 
+				There are no pending requests for <%=@project.name%>
+			<%else%>
+				<%@requests.each do |request| %> 
+					<%=link_to request.user.name, user_path(request.user)%> <%= button_to "Approve", approve_request_path(request), :method => 'put'%><%= button_to "Decline", decline_request_path(request), :method => 'put'%>
+				<%end%>
+			<%end%>
+		</td>
+	</tr>
+</table>
+
+
+
+

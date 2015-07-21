@@ -4,8 +4,28 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :job %><br />
+    <%= f.text_field :job %>
+  </div>
+
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_field :location%>
+  </div>
+
+  <div class="field">
+    <%= f.label :mobile %><br />
+    <%= f.text_field :mobile%>
+  </div>
+  
+  <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email%>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -26,6 +46,18 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
+
+  Choose your privacy settings:<br />
+  <%= f.label :privacy %><br />
+
+  <%= f.radio_button :privacy, "public", :checked => true %>
+    <%= f.label :privacy, "Public", :value => "public"  %> <br />
+    
+    <%= f.radio_button :privacy, "semi-private" %>
+    <%= f.label :privacy, "Semi-Private", :value => "semi-private" %> <br />
+
+    <%= f.radio_button :privacy, "private" %>
+    <%= f.label :privacy, "Private", :value => "private" %> <br />
 
   <div class="actions">
     <%= f.submit "Update" %>

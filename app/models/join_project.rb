@@ -1,0 +1,2 @@
+class JoinProject < Request
+end 

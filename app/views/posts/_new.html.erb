@@ -1,0 +1,6 @@
+<div class="send">
+	<%= form_for @post, url: create_post_path(:id => @group) do |f| %> 
+		<%= f.text_field :body %>
+		<%=f.submit "Send"%>
+	<%end%>
+</div>

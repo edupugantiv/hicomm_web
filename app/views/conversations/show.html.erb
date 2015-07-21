@@ -1,10 +1,19 @@
-<%=link_to @project.name, project_path(@project)%><br />
+Key Screen 3 - Main Message Page aka Converation Page
+<%=link_to @project.name, project_path(:project_id =>@project, :conversation_id => @project.conversations.first)%><br />
+
 <%=@conversation.name%> <br />
+
 <%@conversers.each do |c| %> 
 	<%=c.name%>
 <%end%><br />
-<%=button_to "Add Users", pick_convo_users_path(@conversation), :method => 'get'%> 
+
+<% if can? add_users, @conversation %>
+	<%=button_to "Add Users", pick_convo_users_path(@conversation), :method => 'get'%> <br />
+<%end %>
+
+Messages:
 <%@messages.each do |message| %> 
-	<%=message.sender.name%>: <%=message.body%> <br />
-<%end%> 
+	<%=message.sender.name%>: <%= message.body %>
+<% end %> 
+
 <%= render partial: "messages/new" %>

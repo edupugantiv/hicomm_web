@@ -1,0 +1,17 @@
+<h1>Transfer Project Leadership</h1> <br /> 
+
+<table> 
+	<tr> 
+		<td>
+			<%=button_to "Manage Participants", manage_project_path(@project), :method => 'get'%>
+			<%=button_to "Transfer Leadership", transfer_project_leadership_path(@project), :method => 'get'%>
+			<%=button_to "Add Affiliations", add_affiliations_path(@project), :method => 'get' %>
+			<%=button_to "Done", project_path(:project_id => @project, :conversation_id => @project.conversations.first), :method => 'get'%>
+		</td>
+		<td> 
+			<%@participants.each do |participant|%> 
+				<%=link_to participant.name, user_path(participant)%> <%=button_to "Transfer Leadership", new_leader_path(:project_id => @project, :user_id => participant), data: {confirm: "Are you sure you want to transfer leadership of #{@project.name} to #{participant.name}?"}, :method => 'post' %> 
+			<%end%>
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,33 @@
+<h1>Manage Group</h1>
+<table> 
+	<tr> 
+		<td>
+			<%=button_to "Edit Group", edit_group_path(@group), :method => 'get'%>
+			<%=button_to "Manage Members", manage_group_path(@group), :method => 'get' %>
+			<%=button_to "Transfer Leadership", transfer_group_leadership_path(@group), :method => 'get'%>
+			<%=button_to "Done", group_path(@group), :method => 'get'%>
+		</td>
+		<td>
+			Members: <br />
+			<%@members.each do |member|%> 
+				<%=link_to member.name, user_path(member)%> <br />
+			<%end%>
+			<%=button_to "Add New Members", pick_group_members_path(@group), :method => 'get'%>
+			<%=button_to "Remove Members", remove_group_members_path(@group), :method => 'get'%>
+		</td>
+	</tr>
+	<tr> 
+		<td></td>
+		<td>
+			Pending Requests: <br />
+			<% if @requests.empty? %> 
+				There are no pending requests for <%=@group.name%>
+			<%else%> 
+				<%@requests.each do |request|%> 
+					<%=link_to request.user.name, user_path(request.user)%> <%= button_to "Approve", approve_request_path(request), :method => 'put'%><%= button_to "Decline", decline_request_path(request), :method => 'put'%>
+				<%end%>
+			<%end%>
+		</td>
+	</tr>
+</table>
+

@@ -1,0 +1,16 @@
+<h1>Remove Members</h1>
+
+<table> 
+	<tr> 
+		<td>
+			<%=button_to "Manage Members", manage_group_path(@group), :method => 'get' %>
+			<%=button_to "Transfer Leadership", transfer_group_leadership_path(@group), :method => 'get'%>
+			<%=button_to "Done", group_path(@group), :method => 'get'%>
+		</td>
+		<td>
+			<%@members.each do |member|%> 
+				<%=link_to member.name, user_path(member)%> <%=button_to "Remove Member", remove_group_member_path(:user_id => member, :group_id => @group), :method => 'put'%>
+			<%end%>
+		</td>
+	</tr>
+</table>

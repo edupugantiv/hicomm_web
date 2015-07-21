@@ -1,0 +1,27 @@
+<h1>Search Page Key Screen 7</h1>
+Users (<%=@users.size%>)<br />
+<% if @users.present? %>
+  <%@users.each do |user| %> 
+  	<%=link_to user.name, user_path(user)%><br/>
+  <%end%>
+<% else %>
+  <p>There are no Users matching the term(s) <%= params[:search] %>.</p>
+<% end %>
+
+Projects (<%=@projects.size%>)<br />
+<% if @projects.present? %>
+  <%@projects.each do |project| %> 
+  	<%=link_to project.name, project_path(:project_id => project, :conversation_id => project.conversations.first)%><br/>
+  <%end%>
+<% else %>
+  <p>There are no Projects matching the term(s) <%= params[:search] %>.</p>
+<% end %>
+
+Groups (<%=@groups.size%>) <br />
+<% if @groups.present? %>
+  <%@groups.each do |group| %> 
+  	<%=link_to group.name, group_path(group)%><br/>
+  <%end%>
+<% else %>
+  <p>There are no Groups matching the term(s) <%= params[:search] %>.</p>
+<% end %>

@@ -1,0 +1,28 @@
+<h1>Notifications</h1>
+<%if notification_count == 0%> 
+	You have no new notifications
+<%else%> 
+	<%@lead_project_requests.each do |request| %> 
+		You have been requested to lead <%=request.project.name%> 
+		<%=button_to "Approve", approve_request_path(request), :method => 'put'%> 
+		<%=button_to "Decline", decline_request_path(request), :method => 'put'%> 
+	<%end%>
+
+	<%@lead_group_requests.each do |request| %> 
+		You have been requested to lead <%=request.group.name%> 
+		<%=button_to "Approve", approve_request_path(request), :method => 'put'%> 
+		<%=button_to "Decline", decline_request_path(request), :method => 'put'%> 
+	<%end%>
+
+	<%@join_project_requests.each do |request| %> 
+		<%=request.user.name%> has requested to join <%=request.project.name%> 
+		<%=button_to "Approve", approve_request_path(request), :method => 'put'%> 
+		<%=button_to "Decline", decline_request_path(request), :method => 'put'%> 
+	<%end%>
+
+	<%@join_group_requests.each do |request| %> 
+		<%=request.user.name%> has requested to join <%=request.group.name%> 
+		<%=button_to "Approve", approve_request_path(request), :method => 'put'%> 
+		<%=button_to "Decline", decline_request_path(request), :method => 'put'%> 
+	<%end%>
+<%end%>

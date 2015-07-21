@@ -1,0 +1,2 @@
+class JoinGroup < Request 
+end 

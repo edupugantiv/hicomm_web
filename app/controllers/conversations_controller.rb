@@ -36,8 +36,9 @@ class ConversationsController < ApplicationController
 		@conversation = Conversation.find(params[:conversation_id])
 		@user = User.find(params[:user_id]) 
 		@conversation.users << @user
-		redirect_to :back 
+		redirect_to :back, notice: "#{@user.name} was successfully added to #{@conversation.name}"
 	end 
+
 
 	private 
 
