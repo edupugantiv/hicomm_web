@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
 
   get 'projects/:id/edit' => 'projects#edit', as: 'edit_project'
-  put 'projects/:id/conversations/:id' => 'projects#update', as: 'update_project'
+  #put 'projects/:id/conversations/:id' => 'projects#update', as: 'update_project'
   get 'projects/new' => 'projects#new', as: 'new_project'
   post 'projects' => 'projects#create'
 
@@ -34,7 +34,9 @@ Rails.application.routes.draw do
   put  'projects/:id/add_users/' => 'projects#add_users', as: 'add_project_users'
 
   post 'messages/create' => 'messages#create', as: 'post_new_message'
-  get 'projects/:project_id/show/:conversation_id' => 'projects#show', as: 'project'
+  #get 'projects/:project_id/show/:conversation_id' => 'projects#show', as: 'project'
+  get 'projetcts/:project_id/show' => 'projects#show', as: 'project'
+  patch 'projects/:id' => 'projects#update', as: 'update_project'
 
   get 'search' => 'welcome#search', as: 'search'
 

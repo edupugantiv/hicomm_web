@@ -1,5 +1,5 @@
 <h1>Edit Project</h1>
-<%= form_for @project do |f| %> 
+<%= form_for @project, url: update_project_path(@project) do |f| %> 
 	<%= f.label "Name:"%> 
 	<%= f.text_field :name %><br />  
 

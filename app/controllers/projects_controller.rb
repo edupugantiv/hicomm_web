@@ -6,7 +6,11 @@ class ProjectsController < ApplicationController
 		@conversations = @project.conversations
 		@participants = @project.users
 		@project_manager = @project.project_manager
-		@current_convo = Conversation.find(params[:conversation_id])
+		if params[:conversation_id].nil? 
+			@current_convo = @project.conversations.first 
+		else 
+			@current_convo = Conversation.find(params[:conversation_id])
+		end 
 		@message = Message.new
 	end 
 
@@ -17,7 +21,7 @@ class ProjectsController < ApplicationController
 	def update 
 		@project = Project.find(params[:id])
 		@project.update_attributes(project_params)
-		redirect_to manage_project_path(@project)
+		redirect_to manage_project_path(@project), notice: "Your project information has been edited"
 	end 
 
 	def new 
