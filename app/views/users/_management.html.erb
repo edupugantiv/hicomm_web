@@ -1,0 +1,7 @@
+<table border="1" class="inbox">
+	<tr><td><%=link_to "Change Password", edit_user_registration_path, :method => 'get' %></td></tr>
+	<tr><td><%=link_to "Edit Account", edit_user_path(@user), :method => 'get' %> </td></tr>
+	<tr><td><%=link_to "Payment Options"%></td></tr>
+	<tr><td><%=link_to "Delete Account" %></td></tr>
+	<tr><td><%=link_to "Done", user_path(@user), :method => 'get' %></td></tr>
+</table>

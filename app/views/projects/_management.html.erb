@@ -1,0 +1,7 @@
+<table border="1" class="inbox"> 
+<tr><td><%=link_to "Edit Project", edit_project_path(:project_id => @project), :method => 'get'%></td></tr>
+<tr><td><%=link_to "Manage Participants", manage_project_path(@project), :method => 'get'%></td></tr>
+<tr><td><%=link_to "Transfer Leadership", transfer_project_leadership_path(@project), :method => 'get'%></td></tr>
+<tr><td><%=link_to "Add Affiliations", add_affiliations_path(@project), :method => 'get' %></td></tr>
+<tr><td><%=link_to "Done", project_path(:project_id => @project, :conversation_id => @project.conversations.first), :method => 'get'%></td></tr>
+</table>

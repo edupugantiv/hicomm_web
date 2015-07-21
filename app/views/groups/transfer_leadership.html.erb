@@ -1,4 +1,19 @@
-Transfer Group Leadership <br /> 
-<%@members.each do |member|%> 
-	<%=member.name%> <%=button_to "Transfer Leadership", new_group_leader_path(:group_id => @group, :user_id => member), data: {confirm: "Are you sure you want to transfer leadership of #{@group.name} to #{member.name}?"}, :method => 'post' %> 
-<%end%>
+<h1>Transfer Group Leadership</h1>
+<table> 
+	<tr> 
+		<td> 
+			<%=render partial: 'management'%> 
+		</td>
+		<td>
+			Transfer leadership to: <br />
+			<%if @members.empty?%> 
+				<i>You can only transfer group leadership to current group members</i>
+				<%=button_to "Add Members", pick_group_members_path(@group), :method => 'get'%>
+			<%else%>
+				<%@members.each do |member|%> 
+					<%=member.name%> <%=button_to "Transfer Leadership", new_group_leader_path(:group_id => @group, :user_id => member), data: {confirm: "Are you sure you want to transfer leadership of #{@group.name} to #{member.name}?"}, :method => 'post' %> 
+				<%end%>
+			<%end%>
+		</td>
+	</tr>
+</table>

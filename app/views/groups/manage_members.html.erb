@@ -2,10 +2,7 @@
 <table> 
 	<tr> 
 		<td>
-			<%=button_to "Edit Group", edit_group_path(@group), :method => 'get'%>
-			<%=button_to "Manage Members", manage_group_path(@group), :method => 'get' %>
-			<%=button_to "Transfer Leadership", transfer_group_leadership_path(@group), :method => 'get'%>
-			<%=button_to "Done", group_path(@group), :method => 'get'%>
+		<%=render partial: 'management'%>
 		</td>
 		<td>
 			Members: <br />
@@ -21,7 +18,7 @@
 		<td>
 			Pending Requests: <br />
 			<% if @requests.empty? %> 
-				There are no pending requests for <%=@group.name%>
+				<i>There are no pending requests for <%=@group.name%></i>
 			<%else%> 
 				<%@requests.each do |request|%> 
 					<%=link_to request.user.name, user_path(request.user)%> <%= button_to "Approve", approve_request_path(request), :method => 'put'%><%= button_to "Decline", decline_request_path(request), :method => 'put'%>

@@ -3,14 +3,15 @@
 <table> 
 	<tr> 
 		<td>
-			<%=button_to "Manage Participants", manage_project_path(@project), :method => 'get'%>
-			<%=button_to "Transfer Leadership", transfer_project_leadership_path(@project), :method => 'get'%>
-			<%=button_to "Add Affiliations", add_affiliations_path(@project), :method => 'get' %>
-			<%=button_to "Done", project_path(:project_id => @project, :conversation_id => @project.conversations.first), :method => 'get'%>
+			<%=render partial: 'management'%>
 		</td>
 		<td> 
-			<%@participants.each do |participant|%> 
-				<%=link_to participant.name, user_path(participant)%> <%=button_to "Remove User", remove_project_participant_path(:user_id => participant, :project_id => @project), :method => 'put'%>
+			<%if @participants.empty?%> 
+				<i>There are no users to remove from your project at this time</i>
+			<%else%>
+				<%@participants.each do |participant|%> 
+					<%=link_to participant.name, user_path(participant)%> <%=button_to "Remove User", remove_project_participant_path(:user_id => participant, :project_id => @project), :method => 'put'%>
+				<%end%>
 			<%end%>
 		</td>
 	</tr>

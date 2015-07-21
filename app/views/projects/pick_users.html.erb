@@ -3,15 +3,16 @@
 <table> 
 	<tr> 
 		<td>
-			<%=button_to "Manage Participants", manage_project_path(@project), :method => 'get'%>
-			<%=button_to "Transfer Leadership", transfer_project_leadership_path(@project), :method => 'get'%>
-			<%=button_to "Add Affiliations", add_affiliations_path(@project), :method => 'get' %>
-			<%=button_to "Done", project_path(:project_id => @project, :conversation_id => @project.conversations.first), :method => 'get'%>
+			<%=render partial: 'management'%>
 		</td>
 		<td> 
-			<%@users.each do |user|%>
-				<%=link_to user.name, user_path(user)%> <%=button_to "Add", add_project_users_path(:project_id => @project, :user_id => user), :method => 'put' %><br />
-			<%end %> 
+			<% if @users.empty?%> 
+				<i>There are no more users to add to your project at this time</i>
+			<%else%>
+				<%@users.each do |user|%>
+					<%=link_to user.name, user_path(user)%> <%=button_to "Add", add_project_users_path(:project_id => @project, :user_id => user), :method => 'put' %><br />
+				<%end %> 
+			<%end%>
 		</td>
 	</tr>
 </table>

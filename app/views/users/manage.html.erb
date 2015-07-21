@@ -2,10 +2,7 @@
 <table> 
 	<tr>
 		<td>
-			<%=button_to "Change Password", edit_user_registration_path, :method => 'get' %> 
-			<%=button_to "Edit Account", edit_user_path(@user), :method => 'get' %> 
-			<%=button_to "Payment Options"%>
-			<%=button_to "Delete Account" %>
+		<%=render partial: 'management'%>
 		</td>
 		<td>
 			First Name: <%=@user.first_name%><br />

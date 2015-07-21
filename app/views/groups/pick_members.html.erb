@@ -3,14 +3,16 @@
 <table> 
 	<tr> 
 		<td>
-			<%=button_to "Manage Members", manage_group_path(@group), :method => 'get' %>
-			<%=button_to "Transfer Leadership", transfer_group_leadership_path(@group), :method => 'get'%>
-			<%=button_to "Done", group_path(@group), :method => 'get'%>
+			<%=render partial: 'management'%>
 		</td>
 		<td>
-			<%@users.each do |user|%>
-				<%=link_to user.name, user_path(user)%> <%=button_to "Add", add_group_members_path(:group_id => @group, :user_id => user), :method => 'put' %><br />
-			<%end %> 
+			<%if @users.empty? %> 
+				<i> There are no users to add to your group at this time</i>
+			<%else%>
+				<%@users.each do |user|%>
+					<%=link_to user.name, user_path(user)%> <%=button_to "Add", add_group_members_path(:group_id => @group, :user_id => user), :method => 'put' %><br />
+				<%end %> 
+			<%end%>
 		</td>
 	</tr>
 </table>
