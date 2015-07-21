@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
-
+  before_action :set_cart, only: [:show, :edit, :update,:destroy]
   before_action :authenticate_user!
+
 
   def new
     @group = Group.new
@@ -8,6 +9,10 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.all
+  end
+
+  def edit
+    @group = Group.find(params[:id])
   end
 
   def create
@@ -41,10 +46,11 @@ class GroupsController < ApplicationController
   end 
 
   def destroy
-    @group.destroy
-    respond_to do |format|
-      format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
-      format.json { head :no_content }
+    @group = Group.find(params[:id])
+    if @group.destroy
+      redirect_to 'index', notice: "Left group"
+    else
+      render :new, notice: "Still in group"
     end
   end
 
