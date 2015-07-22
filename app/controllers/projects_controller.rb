@@ -125,7 +125,7 @@ class ProjectsController < ApplicationController
 	private 
 
 	def project_params 
-		params.require(:project).permit(:name, :privacy, :plan, :location, :scale)
+		params.require(:project).permit(:name, :privacy, :plan, :location, :scale, :avatar)
 	end
 
 end 

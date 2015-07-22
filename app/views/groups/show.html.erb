@@ -3,7 +3,7 @@
 <table width="100%">
 	<tr>
 		<td width="25%"> 
-			Image Goes Here
+			<%= image_tag @group.avatar.url(:thumb), :class => 'avatar'%>
 		</td>
 		<td width="25%">
 			<%=@group.name%> <br />

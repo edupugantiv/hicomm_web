@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
 	has_many :colleagues, :through => :contacts
 	validates_acceptance_of :terms_of_use
 
+	has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
 	def self.search(search)
   		return where("first_name LIKE ?", "%#{search}%") + where("last_name LIKE ?", "%#{search}%") - where(:privacy => "private")
 	end

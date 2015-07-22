@@ -1,7 +1,7 @@
 <h1>Key Screen 4: Project Page</h1><br />
 <table width="100%">
 	<tr>
-		<td width="25%"> Image Goes Here </td>
+		<td width="25%"> <%= image_tag @project.avatar.url(:thumb), :class => 'avatar'%></td>
 		<td width="25%">
 			<%=@project.name%> <br />
 			<%=@participants.size%> member(s) <br />

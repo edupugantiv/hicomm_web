@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721072833) do
+ActiveRecord::Schema.define(version: 20150721144017) do
 
   create_table "affiliations", id: false, force: :cascade do |t|
     t.integer "project_id", limit: 4, null: false
@@ -34,11 +34,15 @@ ActiveRecord::Schema.define(version: 20150721072833) do
   end
 
   create_table "groups", force: :cascade do |t|
-    t.string  "name",            limit: 255
-    t.integer "group_leader_id", limit: 4
-    t.string  "privacy",         limit: 255
-    t.string  "scale",           limit: 255
-    t.string  "location",        limit: 255
+    t.string   "name",                limit: 255
+    t.integer  "group_leader_id",     limit: 4
+    t.string   "privacy",             limit: 255
+    t.string   "scale",               limit: 255
+    t.string   "location",            limit: 255
+    t.string   "avatar_file_name",    limit: 255
+    t.string   "avatar_content_type", limit: 255
+    t.integer  "avatar_file_size",    limit: 4
+    t.datetime "avatar_updated_at"
   end
 
   create_table "members", id: false, force: :cascade do |t|
@@ -71,12 +75,16 @@ ActiveRecord::Schema.define(version: 20150721072833) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string  "name",               limit: 255
-    t.integer "project_manager_id", limit: 4
-    t.string  "location",           limit: 255
-    t.string  "scale",              limit: 255
-    t.string  "privacy",            limit: 255
-    t.string  "plan",               limit: 255
+    t.string   "name",                limit: 255
+    t.integer  "project_manager_id",  limit: 4
+    t.string   "location",            limit: 255
+    t.string   "scale",               limit: 255
+    t.string   "privacy",             limit: 255
+    t.string   "plan",                limit: 255
+    t.string   "avatar_file_name",    limit: 255
+    t.string   "avatar_content_type", limit: 255
+    t.integer  "avatar_file_size",    limit: 4
+    t.datetime "avatar_updated_at"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -104,6 +112,10 @@ ActiveRecord::Schema.define(version: 20150721072833) do
     t.string   "privacy",                limit: 255
     t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
+    t.string   "avatar_file_name",       limit: 255
+    t.string   "avatar_content_type",    limit: 255
+    t.integer  "avatar_file_size",       limit: 4
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

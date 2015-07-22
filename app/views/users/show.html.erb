@@ -2,7 +2,7 @@
 <table width=100%> 
 	<tr>
 		<td width="25%">
-			Image goes here 
+			<%=image_tag @user.avatar.url(:thumb), :class => 'avatar'%>
 		</td>
 		<td width="50%">
 			<%=@user.name%> <br />

@@ -32,6 +32,9 @@
     <%= f.email_field :email%>
   </div>
 
+  <%= f.label :avatar, "Profile Picture" %><br />
+  <%= f.file_field :avatar %><br />
+
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
