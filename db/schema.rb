@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 20150721144017) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "job",                    limit: 255
+    t.string   "job_title",                    limit: 255
     t.string   "location",               limit: 255
     t.string   "mobile",                 limit: 255
     t.string   "email",                  limit: 255, default: "", null: false

@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title HiComm Web
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  body
+    - if current_user
+      = render 'layouts/header'
+    - else
+      = render 'welcome/header'
+    .container-fluid
+      = yield

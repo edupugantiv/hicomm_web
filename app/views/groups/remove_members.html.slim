@@ -1,0 +1,13 @@
+=render partial: 'management'
+#section
+  h1
+    | Remove Members
+  - if @members.empty?
+    i
+      |  There are no members to remove from your group at this time
+  - else
+    ol
+      - @members.each do |member|
+        li
+          =link_to member.name, user_path(member)
+          =button_to "Remove Member", remove_group_member_path(:user_id => member, :group_id => @group), :method => 'put'

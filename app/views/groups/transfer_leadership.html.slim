@@ -1,0 +1,16 @@
+=render partial: 'management'
+#section
+  h1
+    | Transfer Group Leadership
+  |  Transfer leadership to: 
+  br
+  - if @members.empty?
+    i
+      | You can only transfer group leadership to current group members
+    =button_to "Add Members", pick_group_members_path(@group), :method => 'get'
+  - else
+    ol
+      - @members.each do |member|
+        li
+          =member.name
+          =button_to "Transfer Leadership", new_group_leader_path(:group_id => @group, :user_id => member), data: {confirm: "Are you sure you want to transfer leadership of #{@group.name} to #{member.name}?"}, :method => 'post'

@@ -1,0 +1,67 @@
+h1
+  | Key Screen 4: Project Page
+br
+table[width="100%"]
+  tr
+    td[width="25%"]
+      = image_tag @project.avatar.url(:thumb), :class => 'avatar'
+    td[width="25%"]
+      =@project.name
+      br
+      =@participants.size
+      |  member(s) 
+      br
+      |  Location: 
+      =@project.location
+      br
+      |  Scale: 
+      =@project.scale
+      br
+    td[width="25%"]
+      |  Contact:
+      br
+      =link_to @project_manager.name, user_path(@project_manager)
+      | : Project Manager 
+      br
+      |  Email: 
+      =@project_manager.email
+      br
+    td[width="25%"]
+      - if can? :transfer_leadership, @project
+        =button_to "Manage Project", manage_project_path(@project), :method => 'get'
+      - elsif can? :leave, @project
+        =button_to "Leave Project", leave_path(@project), data: {confirm: "Are you sure you want to leave #{@project.name}?"}, :method => 'put'
+      - else
+        =button_to "Join Project", join_path(@project), :method => 'put'
+hr
+table[width="100%"]
+  tr
+    td[width="25%"]
+      table
+        tr
+          td
+            - if can? :leave, @project
+              =button_to "New Conversation", new_convo_path(@project), :method => 'get'
+            |  Conversations: 
+            br
+            - if @conversations.empty?
+              =@project.name
+              |  has no conversations %> 
+            - else
+              - @conversations.each do |conversation|
+                - if conversation == @current_convo
+                  =conversation.name
+                  br
+                - else
+                  =link_to conversation.name, project_path(:project_id => @project, :conversation_id => conversation)
+                  br
+    td[width="50%"]
+      =render partial: 'conversations/conversation', object: @current_convo
+    td[width="25%"]
+      |  Participants: 
+      br
+      - if can? :add_users, @project
+        =button_to "Add Participants", pick_project_users_path(@project), :method => 'get'
+      - @participants.each do |participant|
+        =link_to participant.name, user_path(participant)
+        br

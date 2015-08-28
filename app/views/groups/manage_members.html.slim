@@ -1,0 +1,26 @@
+=render partial: 'management'
+#section
+  h1
+    | Manage Group
+  |  Members: 
+  br
+  ol
+    - @members.each do |member|
+      li
+        =link_to member.name, user_path(member)
+  =button_to "Add New Members", pick_group_members_path(@group), :method => 'get'
+  =button_to "Remove Members", remove_group_members_path(@group), :method => 'get'
+  br
+  |  Pending Requests: 
+  br
+  - if @requests.empty?
+    i
+      | There are no pending requests for 
+      =@group.name
+  - else
+    ol
+      - @requests.each do |request|
+        li
+          =link_to request.user.name, user_path(request.user)
+          = button_to "Approve", approve_request_path(request), :method => 'put'
+          = button_to "Decline", decline_request_path(request), :method => 'put'

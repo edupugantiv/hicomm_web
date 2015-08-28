@@ -1,0 +1,9 @@
+#nav
+  =link_to "Edit Group", edit_group_path(@group), :method => 'get'
+  br
+  =link_to "Manage Members", manage_group_path(@group), :method => 'get'
+  br
+  =link_to "Transfer Leadership", transfer_group_leadership_path(@group), :method => 'get'
+  br
+  =link_to "Done", group_path(@group), :method => 'get'
+  br

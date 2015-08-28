@@ -1,6 +1,7 @@
 class WelcomeController < ApplicationController
 	#before_action :authenticate_user!
-	def index 
+	def index
+		@user = User.new
 	end 
 
 	def home 

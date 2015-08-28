@@ -1,0 +1,7 @@
+| Add Users
+br
+- @users.each do |user|
+  =user.name
+  =button_to "Add", add_convo_users_path(:project_id => @project, :conversation_id =>@conversation, :user_id => user), :method => 'put'
+  br
+=button_to "Done", project_path(:project_id => @project, :conversation_id => @conversation), :method => 'get'

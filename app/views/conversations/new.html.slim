@@ -1,0 +1,6 @@
+| New Conversation 
+= form_for @conversation, :url => create_new_convo_path(@project) do |f|
+  = f.label "Conversation name:"
+  = f.text_field :name
+  br
+  =f.submit

@@ -1,0 +1,31 @@
+=render partial: 'users/management'
+#section
+  h1
+    | Change Password
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    = devise_error_messages!
+    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+      div
+        | Currently waiting confirmation for: 
+        = resource.unconfirmed_email
+    b
+      | Please enter your password to protect your account
+    .field
+      = f.label :current_password, "Current Password:"
+      br
+      = f.password_field :current_password, autocomplete: "off"
+      br
+    b
+      | Please enter your new password
+    .field
+      = f.label :password, "New Password:"
+      br
+      = f.password_field :password, autocomplete: "off"
+      br
+    .field
+      = f.label :password_confirmation, "Re-enter password:"
+      br
+      = f.password_field :password_confirmation, autocomplete: "off"
+    .actions
+      = f.submit "Update"
+  = link_to "Back", :back

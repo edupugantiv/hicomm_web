@@ -14,28 +14,31 @@
  *= require_self
  */
 
-.send {
-	display:inline;
-}
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
-.inbox { 
-	border-collapse: collapse;
-}
+// .send {
+// 	display:inline;
+// }
 
-#nav {
-    line-height:30px;
-    height:300px;
-    width:20%;
-    float:left;
-    padding:5px; 
-}
+// .inbox { 
+// 	border-collapse: collapse;
+// }
 
-#section {
-    width:70%;
-    float:left;
-    padding:10px; 
-}
+// #nav {
+//     line-height:30px;
+//     height:300px;
+//     width:20%;
+//     float:left;
+//     padding:5px; 
+// }
 
-ul#menu li {
-    display:inline;
-}
+// #section {
+//     width:70%;
+//     float:left;
+//     padding:10px; 
+// }
+
+// ul#menu li {
+//     display:inline;
+// }

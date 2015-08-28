@@ -1,0 +1,12 @@
+=render partial: 'management'
+#section
+  h1
+    | Remove Participants
+  br
+  - if @participants.empty?
+    i
+      | There are no users to remove from your project at this time
+  - else
+    - @participants.each do |participant|
+      =link_to participant.name, user_path(participant)
+      =button_to "Remove User", remove_project_participant_path(:user_id => participant, :project_id => @project), :method => 'put'

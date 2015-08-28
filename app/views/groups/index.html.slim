@@ -1,0 +1,23 @@
+p#notice
+  = notice
+h1
+  | Explore
+table
+  - @groups.each do |group|
+    tr
+      td
+        =link_to group.name, group_path(group)
+        br
+        |  Group Leader: 
+        =group.group_leader.name
+        br
+        |  Location: 
+        =group.location
+        br
+        |  Affiliations: 
+        - group.projects.each do |project|
+          =project.name
+        br
+        =group.users.size
+        |  member(s) 
+        = button_to "Join Group", join_group_path(group)

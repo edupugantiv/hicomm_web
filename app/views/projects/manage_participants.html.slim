@@ -1,0 +1,26 @@
+=render partial: 'management'
+#section
+  h1
+    | Manage Project
+  |  Current Participants
+  br
+  ol
+    - @participants.each do |participant|
+      li
+        =link_to participant.name, user_path(participant)
+  =button_to "Add Users", pick_project_users_path(@project), :method => 'get'
+  =button_to "Remove Users", remove_project_participants_path(@project), :method => 'get'
+  br
+  |  Pending Requests: 
+  br
+  - if @requests.empty?
+    i
+      | There are no pending requests for 
+      =@project.name
+  - else
+    ol
+      - @requests.each do |request|
+        li
+          =link_to request.user.name, user_path(request.user)
+          = button_to "Approve", approve_request_path(request), :method => 'put'
+          = button_to "Decline", decline_request_path(request), :method => 'put'

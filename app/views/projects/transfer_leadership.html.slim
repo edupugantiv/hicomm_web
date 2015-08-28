@@ -1,0 +1,18 @@
+=render partial: 'management'
+#section
+  h1
+    | Transfer Project Leadership
+  br
+  |  Transfer leadership of 
+  =@project.name
+  |  to: 
+  br
+  - if @participants.empty?
+    i
+      | You can only transfer leadership to current project participants 
+      br
+      =button_to "Add Participants", pick_project_users_path(@project), :method => 'get'
+  - else
+    - @participants.each do |participant|
+      =link_to participant.name, user_path(participant)
+      =button_to "Transfer Leadership", new_leader_path(:project_id => @project, :user_id => participant), data: {confirm: "Are you sure you want to transfer leadership of #{@project.name} to #{participant.name}?"}, :method => 'post'
