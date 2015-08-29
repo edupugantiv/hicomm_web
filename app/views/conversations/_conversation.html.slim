@@ -1,4 +1,8 @@
-=conversation.name
+.row
+  .col-sm-6
+    = conversation.name
+  .col-sm-6
+    = link_to "Edit", view_convo_path(conversation)
 br
 =conversation.users.map{|user| user.name}.join(', ')
 table.inbox[border="1" width="80%"]

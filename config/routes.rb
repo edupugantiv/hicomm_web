@@ -12,8 +12,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  get 'home' => 'ui#index'
 
   get 'projects/:id/edit' => 'projects#edit', as: 'edit_project'
   #put 'projects/:id/conversations/:id' => 'projects#update', as: 'update_project'
@@ -36,7 +35,7 @@ Rails.application.routes.draw do
 
   post 'messages/create' => 'messages#create', as: 'post_new_message'
   #get 'projects/:project_id/show/:conversation_id' => 'projects#show', as: 'project'
-  get 'projetcts/:project_id/show' => 'projects#show', as: 'project'
+  get 'projects/:project_id/show' => 'projects#show', as: 'project'
   patch 'projects/:id' => 'projects#update', as: 'update_project'
 
   get 'search' => 'welcome#search', as: 'search'

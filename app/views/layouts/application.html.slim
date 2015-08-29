@@ -12,4 +12,10 @@ html
     - else
       = render 'welcome/header'
     .container-fluid
-      = yield
+      - if current_user
+        .col-xs-2
+          = render 'projects/index'
+        .col-xs-10
+          = yield
+      - else
+        = yield

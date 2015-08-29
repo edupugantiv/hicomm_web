@@ -6,7 +6,7 @@ br
 - @conversers.each do |c|
   =c.name
 br
-- if can? add_users, @conversation
+- if can? :add_users, @conversation
   =button_to "Add Users", pick_convo_users_path(@conversation), :method => 'get'
   br
 |  Messages: 

@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController 
-	before_action :authenticate_user!
+
 	def show 
 		@user = current_user
 		@project = Project.find(params[:project_id])
@@ -30,11 +30,7 @@ class ProjectsController < ApplicationController
 
 	def create 
 		@project = Project.create(project_params.merge(:project_manager_id => current_user.id))
-		current_user.projects << @project
-		#current_user.managed_projects << @project
-		@project_wide_convo = Conversation.create(:name => "Project-Wide Conversation", :project_id => @project.id)
-		@project_wide_convo.users << current_user
-		redirect_to project_path(:project_id => @project, :conversation_id => @project_wide_convo)
+		redirect_to project_path(:project_id => @project, :conversation_id => @project.conversations.first)
 	end 
 
 	def destroy 
