@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   get 'home' => 'ui#index'
 
-  get 'incoming' => 'api#receive'
+  post 'incoming' => 'api#receive'
 
   get 'projects/:id/edit' => 'projects#edit', as: 'edit_project'
   #put 'projects/:id/conversations/:id' => 'projects#update', as: 'update_project'
