@@ -10,8 +10,8 @@ class Message <ActiveRecord::Base
         Curl.get('http://api.clickatell.com/http/sendmsg', {
           :user => 'youngsu',
           :password => 'GodBless15',
-          :api_id => user.country == 'USA' ? 3559754 : 0,
-          :from => user.country == 'USA' ? 12134585108 : 0,
+          :api_id => user.country == 'USA' ? 3559754 : 3549952,
+          :from => user.country == 'USA' ? 12134585108 : 44760,
           :MO => 1,
           :to => user.full_number,
           :text => full_body
