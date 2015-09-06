@@ -3,7 +3,32 @@ class ApiController < ApplicationController
   skip_before_action :authenticate_user!
 
   def receive
-    puts params[:data][:text]
+    body = params[:data][:text]
+    project, conversation = nil, nil
+    sender = User.find_by(:mobile => params[:data][:from][-10..-1])
+    strings = body.split(' ')
+    remaining_body = []
+    strings.each do |string|
+      if string.length == 4 and (string[0] == '@' or string[0] == '#')
+        if string[0] == '@'
+          project = Project.find_by(:code => string[1..-1])
+        elsif string[0] == '#'
+          conversation = Conversation.find_by(:code => string[1..-1])
+        end
+      else
+        remaining_body << string
+      end
+    end
+    if !sender or !project or !conversation or !project.conversations.include?(conversation)
+      render :nothing => true and return
+    end
+    Message.create(
+      :body => remaining_body.join(' ')
+      :sent => Time.parse(params[:data][:timestamp])
+      :sender => sender,
+      :conversation => conversation
+    )
+    render :nothing => true
   end
 
 end
