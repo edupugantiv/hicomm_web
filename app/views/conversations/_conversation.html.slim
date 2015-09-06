@@ -1,6 +1,6 @@
 .row
   .col-sm-6
-    = conversation.name
+    b = "\##{conversation.code}:#{conversation.name}"
   .col-sm-6
     = link_to "Edit", view_convo_path(conversation)
 br

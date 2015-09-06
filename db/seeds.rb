@@ -101,6 +101,9 @@ conversations = Conversation.all
 
 800.times do
   conversation = conversations.sample
+  if conversation.users.size == 0
+    next
+  end
   conversation.messages.create(
     :body => Faker::Hacker.say_something_smart,
     :sent => Faker::Time.between(1.month.ago, Time.now, :all),

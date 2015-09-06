@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150721144017) do
   end
 
   create_table "conversations", force: :cascade do |t|
+    t.string  "code",       limit: 255
     t.string  "name",       limit: 255
     t.integer "project_id", limit: 4
   end
@@ -79,6 +80,7 @@ ActiveRecord::Schema.define(version: 20150721144017) do
   end
 
   create_table "projects", force: :cascade do |t|
+    t.string   "code",                limit: 255
     t.string   "name",                limit: 255
     t.integer  "project_manager_id",  limit: 4
     t.string   "location",            limit: 255
@@ -100,7 +102,7 @@ ActiveRecord::Schema.define(version: 20150721144017) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "job_title",                    limit: 255
+    t.string   "job_title",              limit: 255
     t.string   "location",               limit: 255
     t.string   "mobile",                 limit: 255
     t.string   "email",                  limit: 255, default: "", null: false
