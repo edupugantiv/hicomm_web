@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
     case country
     when 'USA'
       '1'
-    when 'South Africa'
+    when 'South-Africa'
       '27'
     end
   end
