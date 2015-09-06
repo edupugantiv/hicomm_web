@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def full_number
-    "#{country_code}#{number}"
+    "#{country_code}#{mobile}"
   end
 
 end 
