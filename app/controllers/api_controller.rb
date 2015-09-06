@@ -6,6 +6,9 @@ class ApiController < ApplicationController
     body = URI::decode_www_form(params[:data][:text])[0][0]
     project, conversation = nil, nil
     sender = User.find_by(:mobile => params[:data][:from][-10..-1])
+    if !sender
+      sender = User.find_by(:mobile => params[:data][:from][-9..-1])
+    end
     strings = body.split(' ')
     remaining_body = []
     strings.each do |string|
