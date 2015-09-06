@@ -3,7 +3,7 @@ class ApiController < ApplicationController
   skip_before_action :authenticate_user!
 
   def receive
-    body = params[:data][:text]
+    body = URI::decode_www_form(params[:data][:text])[0][0]
     project, conversation = nil, nil
     sender = User.find_by(:mobile => params[:data][:from][-10..-1])
     strings = body.split(' ')
@@ -23,8 +23,8 @@ class ApiController < ApplicationController
       render :nothing => true and return
     end
     Message.create(
-      :body => remaining_body.join(' ')
-      :sent => Time.parse(params[:data][:timestamp])
+      :body => remaining_body.join(' '),
+      :sent => Time.parse(params[:data][:timestamp]),
       :sender => sender,
       :conversation => conversation
     )
