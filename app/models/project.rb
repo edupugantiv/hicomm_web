@@ -10,6 +10,7 @@ class Project < ActiveRecord::Base
 
   after_create :attach_to_manager
   after_create :create_project_wide_conversation
+  after_create :assign_tag
 
 	def self.search(search)
   		where("name LIKE ?", "%#{search}%") - where(:privacy => "private")
@@ -23,6 +24,14 @@ class Project < ActiveRecord::Base
   def create_project_wide_conversation
     conversation = conversations.create(:name => "Project-Wide Conversation")
     conversation.users << project_manager
+  end
+
+  def assign_tag
+    tag = Faker::Number.hexadecimal(3)
+    while Project.find_by(:code => tag)
+      tag = Faker::Number.hexadecimal(3)
+    end
+    update(:code => tag)
   end
 
 end

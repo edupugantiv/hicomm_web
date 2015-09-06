@@ -1,7 +1,7 @@
 | Key Screen 3 - Main Message Page aka Converation Page 
 =link_to @project.name, project_path(:project_id =>@project, :conversation_id => @project.conversations.first)
 br
-=@conversation.name
+= "\##{conversation.code}:#{conversation.name}"
 br
 - @conversers.each do |c|
   =c.name

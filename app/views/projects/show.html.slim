@@ -11,6 +11,9 @@ br
     = "Location: #{@project.location}"
     br
     = "Scale: #{@project.scale}"
+    br
+    b = "Code: @#{@project.code}"
+    br
   .col-sm-3
     p Contact:
     = link_to @project_manager.name, user_path(@project_manager)
@@ -33,9 +36,9 @@ br
     - else
       - @conversations.each do |conversation|
         - if conversation == @current_convo
-          = conversation.name
+          = "\##{conversation.code}:#{conversation.name}"
         - else
-          = link_to conversation.name, project_path(:project_id => @project, :conversation_id => conversation)
+          = link_to "\##{conversation.code}:#{conversation.name}", project_path(:project_id => @project, :conversation_id => conversation)
         br
   .col-sm-6
     = render partial: 'conversations/conversation', object: @current_convo
