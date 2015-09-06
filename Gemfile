@@ -52,6 +52,9 @@ gem 'devise'
 # Use Faker to generate fake data for database seed
 gem 'faker'
 
+# Use CURB to hit the ClickATell Endpoint
+gem 'curb'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

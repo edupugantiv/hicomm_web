@@ -67,6 +67,7 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     columnize (0.9.0)
+    curb (0.8.8)
     daemons (1.2.3)
     debug_inspector (0.0.2)
     devise (3.5.1)
@@ -207,6 +208,7 @@ DEPENDENCIES
   bootstrap-sass
   cancancan (~> 1.10)
   coffee-rails (~> 4.1.0)
+  curb
   devise
   faker
   jbuilder (~> 2.0)
