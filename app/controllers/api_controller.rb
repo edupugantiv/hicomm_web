@@ -12,7 +12,7 @@ class ApiController < ApplicationController
     strings = body.split(' ')
     remaining_body = []
     strings.each do |string|
-      if string.length == 4 and (string[0] == '@' or string[0] == '#')
+      if string[0] == '@' or string[0] == '#'
         if string[0] == '@'
           project = Project.find_by(:code => string[1..-1])
         elsif string[0] == '#'
@@ -22,7 +22,9 @@ class ApiController < ApplicationController
         remaining_body << string
       end
     end
+    logger.debug "sender: #{sender.id} project: #{project.id} conversation: #{conversation.id}"
     if !sender or !project or !conversation or !project.conversations.include?(conversation)
+      logger.debug "could not verify"
       render :nothing => true and return
     end
     Message.create(
