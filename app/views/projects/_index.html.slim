@@ -1,0 +1,8 @@
+.well
+  = button_to "Project Start", new_project_path, :method => 'get', :class => 'btn btn-primary center-block'
+  h4.text-center My Projects
+
+  - current_user.projects.each do |project|
+    = link_to project.name, project_path(project)
+    p = project.scale
+    p = project.plan

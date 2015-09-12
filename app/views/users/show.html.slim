@@ -1,0 +1,57 @@
+h1
+  | Personal Page
+table[width="100%"]
+  tr
+    td[width="25%"]
+      =image_tag @user.avatar.url(:thumb), :class => 'avatar'
+    td[width="50%"]
+      =@user.name
+      br
+      =@user.job_title
+      br
+      =@user.location
+      br
+      |  Contact: 
+      =@user.email
+      |  / Phone Number: 
+      =@user.mobile
+      br
+    td[width="25%"]
+      - if can? :update, @user
+        =button_to "Manage My Account", manage_user_path(@user), :method => 'get'
+      - elsif cannot? :add_colleague, @user
+        =button_to "Remove Contact", remove_contact_path(@user), :method => 'put'
+      - else
+        =button_to "Add Contact", add_contact_path(@user), :method => 'put'
+hr
+table[width="100%"]
+  tr
+    td[width="33%"]
+      |  Projects: 
+      br
+      - if @projects.empty?
+        =@user.name
+        |  is not a participant in any projects 
+      - else
+        - @projects.each do |project|
+          =link_to project.name, project_path(:project_id =>project, :conversation_id => project.conversations.first)
+          br
+    td[width="33%"]
+      |  Groups: 
+      br
+      - if @groups.empty?
+        =@user.name
+        |  is not a member of any groups 
+      - else
+        - @groups.each do |group|
+          =link_to group.name, group_path(group)
+          br
+    td[width="33%"]
+      |  Contacts: 
+      br
+      - if @contacts.empty?
+        =@user.name
+        |  has no contacts 
+      - else
+        - @contacts.each do |colleague|
+          =link_to colleague.name, user_path(colleague)

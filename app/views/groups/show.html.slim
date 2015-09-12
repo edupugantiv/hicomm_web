@@ -1,0 +1,77 @@
+h1
+  | Key Screen 6: Group Page
+table[width="100%"]
+  tr
+    td[width="25%"]
+      = image_tag @group.avatar.url(:thumb), :class => 'avatar'
+    td[width="25%"]
+      =@group.name
+      br
+      =@members.size
+      |  member(s)
+      br
+      |  Scale: 
+      =@group.scale
+      br
+      |  Location: 
+      =@group.location
+      br
+    td[width="25%"]
+      |  Contact: 
+      br
+      =link_to @group.group_leader.name, user_path(@group.group_leader)
+      |  / Project Manager 
+      br
+      =@group.group_leader.email
+      |  / 
+      =@group.group_leader.mobile
+      br
+    td[width="25%"]
+      - if can? :transfer_leadership, @group
+        =button_to "Manage Group", manage_group_path(@group), :method => 'get'
+      - elsif can? :leave, @group
+        =button_to "Leave Group", leave_group_path(@group), data: {confirm: "Are you sure you want to leave #{@group.name}?"}, :method => 'put'
+      - else
+        =button_to "Join Group", join_group_path(@group), :method => 'put'
+hr
+table[width="100%"]
+  tr
+    td[width="25%"]
+      - if can? :transfer_leadership, @group
+        =button_to "Add Members", add_group_members_path(@group)
+      |  Members: 
+      br
+      - @members.each do |member|
+        =link_to member.name, user_path(member)
+        br
+    td[width="50%"]
+      |  Posts: 
+      br
+      - if @posts.empty?
+        i
+          =@group.name
+          |  has no posts
+        =render partial: 'posts/new'
+      - else
+        table.inbox[width="80%" border="1"]
+          - @posts.each do |post|
+            tr
+              td
+                =link_to post.poster.name, user_path(post.poster)
+                | : 
+                =post.body
+                br
+                =post.posted
+          tr
+            td
+              = render partial: 'posts/new'
+    td[width="25%"]
+      |  Affiliated Projects: 
+      br
+      - if @projects.empty?
+        i
+          =@group.name
+          |  is not affiliated with any projects
+      - else
+        - @projects.each do |project|
+          =link_to project.name, project_path(:project_id => project, :conversation_id => project.conversations.first)

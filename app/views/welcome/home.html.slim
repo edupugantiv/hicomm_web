@@ -1,0 +1,53 @@
+h1
+  | Key Screen 2 - Main Page
+br
+- if !@lead_project_requests.empty?
+  |  Requests - You have been requested to lead the following projects 
+  br
+  - @lead_project_requests.each do |request|
+    =request.project.name
+    =button_to "Accept", approve_request_path(request), confirm: "Are you sure you want to assume leadership of #{project.name}?", :method => 'put'
+    =button_to "Decline", decline_request_path(request), :method => 'put'
+- if !@lead_group_requests.empty?
+  |  Requests - You have been requested to lead the following groups 
+  br
+  - @lead_group_requests.each do |request|
+    =request.group.name
+    =button_to "Accept", approve_request_path(request), confirm: "are you sure you want to assume leadership of #{group.name}?", :method => 'put'
+    =button_to "Decline", decline_request_path(request), :method => 'put'
+br
+hr
+table[width="100%"]
+  tr
+    td[width="25%"]
+      =button_to "New Project", new_project_path, :method => 'get'
+      |  My Projects: 
+      br
+      - @projects.each do |project|
+        =link_to project.name, project_path(:project_id => project, :conversation_id => project.conversations.first), :method => 'get'
+        br
+    td[width="50%"]
+      |  Inbox:
+      br
+      table.inbox[border="1" width="80%"]
+        - @conversations.each do |conversation|
+          tr
+            td
+              =link_to conversation.name, project_path(:project_id => conversation.project, :conversation_id => conversation)
+              br
+              - if conversation.messages.empty?
+                |  There are no messages in this conversation 
+              - else
+                =link_to conversation.messages.last.sender.name, user_path(conversation.messages.last.sender), :method => 'get'
+                | : 
+                = conversation.messages.last.body
+                br
+                =conversation.messages.last.sent
+    td[width="25%"]
+      =button_to "New Group", new_group_path, :method => 'get'
+      |  My Groups: 
+      br
+      - @groups.each do |group|
+        =link_to group.name, group_path(group), :method => 'get'
+        br
+      = button_to 'Explore', groups_path, :method => 'get'

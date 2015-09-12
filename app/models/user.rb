@@ -20,6 +20,19 @@ class User < ActiveRecord::Base
 
 	def name 
 		[first_name, last_name].join(' ')
-	end 
+	end
+
+  def country_code
+    case country
+    when 'USA'
+      '1'
+    when 'South-Africa'
+      '27'
+    end
+  end
+
+  def full_number
+    "#{country_code}#{mobile}"
+  end
 
 end 

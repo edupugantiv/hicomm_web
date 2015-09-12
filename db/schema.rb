@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150721144017) do
   end
 
   create_table "conversations", force: :cascade do |t|
+    t.string  "code",       limit: 255
     t.string  "name",       limit: 255
     t.integer "project_id", limit: 4
   end
@@ -32,6 +33,8 @@ ActiveRecord::Schema.define(version: 20150721144017) do
     t.integer "user_id",         limit: 4, null: false
     t.integer "conversation_id", limit: 4, null: false
   end
+
+  add_index "conversers", ["user_id", "conversation_id"], name: "index_conversers_on_user_id_and_conversation_id", unique: true, using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.string   "name",                limit: 255
@@ -67,6 +70,8 @@ ActiveRecord::Schema.define(version: 20150721144017) do
     t.integer "project_id", limit: 4, null: false
   end
 
+  add_index "participants", ["user_id", "project_id"], name: "index_participants_on_user_id_and_project_id", unique: true, using: :btree
+
   create_table "posts", force: :cascade do |t|
     t.text     "body",      limit: 65535
     t.datetime "posted"
@@ -75,6 +80,7 @@ ActiveRecord::Schema.define(version: 20150721144017) do
   end
 
   create_table "projects", force: :cascade do |t|
+    t.string   "code",                limit: 255
     t.string   "name",                limit: 255
     t.integer  "project_manager_id",  limit: 4
     t.string   "location",            limit: 255
@@ -96,8 +102,9 @@ ActiveRecord::Schema.define(version: 20150721144017) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "job",                    limit: 255
+    t.string   "job_title",              limit: 255
     t.string   "location",               limit: 255
+    t.string   "country",                limit: 255,              null: false
     t.string   "mobile",                 limit: 255
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false

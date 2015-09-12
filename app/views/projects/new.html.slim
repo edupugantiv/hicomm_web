@@ -1,0 +1,41 @@
+| New Project 
+br
+= form_for @project do |f|
+  = f.label "What's your project name?"
+  = f.text_field :name
+  br
+  = f.label "Project location:"
+  = f.text_field :location
+  br
+  = f.label "Project scale:"
+  = f.text_field :scale
+  br
+  = f.label :avatar, "Project Picture"
+  br
+  = f.file_field :avatar
+  br
+  |  Choose your privacy settings:
+  br
+  = f.label :privacy
+  br
+  = f.radio_button :privacy, "public", :checked => true
+  = f.label :privacy, "Public", :value => "public"
+  br
+  = f.radio_button :privacy, "semi-private"
+  = f.label :privacy, "Semi-Private", :value => "semi-private"
+  br
+  = f.radio_button :privacy, "private"
+  = f.label :privacy, "Private", :value => "private"
+  br
+  |  Choose your plan:
+  br
+  = f.radio_button :plan, 'Standard', :checked => true
+  = f.label :plan, 'Standard', :value => 'standard'
+  br
+  = f.radio_button :plan, 'Premium'
+  = f.label :plan, 'Premium', :value => 'premium'
+  br
+  = f.radio_button :plan, 'Enterprise'
+  = f.label :plan, 'Enterprise', :value => 'enterprise'
+  br
+  =f.submit

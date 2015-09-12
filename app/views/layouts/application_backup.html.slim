@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    title
+      | HicommWeb
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    - if (user_signed_in?)
+      ul#menu
+        li
+          =link_to "HiComm", welcome_path, :method => 'get'
+        li
+          | Signed in as 
+          =link_to current_user.name, user_path(current_user)
+        li
+          =link_to "Settings", manage_user_path(current_user), :method => 'get'
+        li
+          =link_to "Notifications (#{notification_count})", notifications_path, :method => 'get'
+        li
+          =link_to "Sign Out", destroy_user_session_path, :method => 'delete'
+        li
+          = form_tag(search_path, :method => "get", id: "search-form") do
+            = text_field_tag :search, params[:search], placeholder: "Search"
+            = submit_tag "Search"
+    - else
+      ul#menu
+        li
+          = link_to 'Sign In', user_session_path
+        li
+          = link_to 'Sign Up', new_user_registration_path
+    p.notice
+      = notice
+    p.alert
+      = alert
+    = yield

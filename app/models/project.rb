@@ -8,8 +8,30 @@ class Project < ActiveRecord::Base
 	has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
+  after_create :attach_to_manager
+  after_create :create_project_wide_conversation
+  after_create :assign_tag
+
 	def self.search(search)
   		where("name LIKE ?", "%#{search}%") - where(:privacy => "private")
   		#where("content LIKE ?", "%#{search}%")
 	end
-end 
+
+  def attach_to_manager
+    project_manager.projects << self
+  end
+
+  def create_project_wide_conversation
+    conversation = conversations.create(:name => "Project-Wide Conversation")
+    conversation.users << project_manager
+  end
+
+  def assign_tag
+    tag = Faker::Number.hexadecimal(3)
+    while Project.find_by(:code => tag)
+      tag = Faker::Number.hexadecimal(3)
+    end
+    update(:code => tag)
+  end
+
+end

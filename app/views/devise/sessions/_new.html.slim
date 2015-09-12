@@ -1,0 +1,8 @@
+h2 Log in
+= form_for @user, url: user_session_path do |f|
+  .form-group
+    = f.text_field :mobile, placeholder: "Mobile Phone Number", class: "form-control", autofocus: true
+  .form-group
+    = f.password_field :password, placeholder: "Password", class: "form-control"
+  .from-group
+    button.btn.btn-primary.center-block Sign In
