@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   
-  resources :users 
+  resources :users, only: [:show, :edit, :update]
   resources :conversations
   resources :messages
   resources :groups
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -78,6 +79,7 @@ Rails.application.routes.draw do
 
   get 'notifications' => 'welcome#notifications', as: 'notifications'
   get 'projects/:id/change_plan' => 'projects#change_plan', as: 'change_project_plan'
+
 
   #put  'projects/:id/conversations/:id' => 'conversations#update', as: 'update_convo'
 

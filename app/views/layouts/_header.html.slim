@@ -48,7 +48,7 @@ nav.navbar.navbar-default
               a href="#"  Something else here
             li.divider role="separator" 
             li
-              a data-method="edit" href="#{edit_user_path(current_user)}" rel="nofollow" Edit Settings
+              a data-method="edit" href="#{edit_user_path(@user)}" rel="nofollow" Edit Settings
             li
               a data-method="delete" href="#{destroy_user_session_path}" rel="nofollow" Logout
     /! /.navbar-collapse
