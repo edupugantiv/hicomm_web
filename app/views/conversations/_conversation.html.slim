@@ -5,6 +5,9 @@
     = link_to "Edit/Add People", view_convo_path(conversation)
 br
 =conversation.users.map{|user| user.name}.join(', ')
+br
+= "Total Messages: "
+=conversation.messages.count
 table.inbox[border="1" width="80%"]
   - conversation.messages.each do |message|
     tr
