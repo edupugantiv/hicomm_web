@@ -8,6 +8,7 @@ br
 br
 = "Total Messages: "
 =conversation.messages.count
+= render partial: 'conversations/chart'
 table.inbox[border="1" width="80%"]
   - conversation.messages.each do |message|
     tr
