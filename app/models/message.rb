@@ -24,4 +24,5 @@ class Message <ActiveRecord::Base
     "#{sender.name}: #{body} REPLY @#{conversation.project.code} \##{conversation.code}"
   end
 
+
 end 
