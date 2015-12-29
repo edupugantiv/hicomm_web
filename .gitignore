@@ -19,3 +19,9 @@
 
 # Ignore Paperclip uploads
 /public/system
+
+# Ignore bundle install
+/vendor/bundle
+
+# Ignore precompiled assets
+/public/assets
