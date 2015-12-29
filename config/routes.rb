@@ -36,6 +36,11 @@ Rails.application.routes.draw do
   get  'projects/:id/pick_users' => 'projects#pick_users', as: 'pick_project_users'
   put  'projects/:id/add_users/' => 'projects#add_users', as: 'add_project_users'
 
+  get 'projects/:id/dashboard' => 'projects#dashboard'
+  get 'dashboard/messages' => 'dashboard#messages'
+  get 'dashboard/equity' => 'dashboard#equity'
+  get 'dashboard/cloud' => 'dashboard#cloud'
+
   post 'messages/create' => 'messages#create', as: 'post_new_message'
   #get 'projects/:project_id/show/:conversation_id' => 'projects#show', as: 'project'
   get 'projects/:project_id/show' => 'projects#show', as: 'project'

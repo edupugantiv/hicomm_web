@@ -16,6 +16,8 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "jqcloud";
+@import "dashboard";
 
 .button {
 	background: #EA493F;
@@ -24,29 +26,3 @@
 .nav.navbar.navbar-default {
 	color: #FF0000;
 }
-
-// .send {
-// 	display:inline;
-// }
-
-// .inbox { 
-// 	border-collapse: collapse;
-// }
-
-// #nav {
-//     line-height:30px;
-//     height:300px;
-//     width:20%;
-//     float:left;
-//     padding:5px; 
-// }
-
-// #section {
-//     width:70%;
-//     float:left;
-//     padding:10px; 
-// }
-
-// ul#menu li {
-//     display:inline;
-// }

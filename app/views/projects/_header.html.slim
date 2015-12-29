@@ -1,0 +1,13 @@
+.col-sm-6
+  = image_tag @project.avatar.url(:thumb), :class => 'avatar'
+.col-sm-6
+  = "Project Name: #{@project.name}"
+  br
+  = "Size: #{@project.users.size} member(s)"
+  br
+  = "Location: #{@project.location}"
+  br
+  = "Scale: #{@project.scale}"
+  br
+  b = "Code: @#{@project.code}"
+  br

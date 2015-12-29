@@ -16,6 +16,7 @@
 #   :job_title => 'CEO',
 #   :location => 'Charlottesville',
 #   :mobile => '5719260367',
+#   :country => 'USA',
 #   :first_name => 'Alan',
 #   :last_name => 'Wei'
 # )
@@ -27,6 +28,7 @@
 #     :password => 'password',
 #     :job_title => Faker::Name.title,
 #     :location => Faker::Address.city,
+#     :country => 'USA',
 #     :mobile => Faker::Number.number(10),
 #     :first_name => first_name,
 #     :last_name => Faker::Name.last_name

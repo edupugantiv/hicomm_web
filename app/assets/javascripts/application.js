@@ -14,4 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require turbolinks
-//= require_tree .
+//= require jqcloud
+//= require Chart
+//= require jquery.readyselector
+//= require dashboard
