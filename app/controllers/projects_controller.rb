@@ -118,6 +118,10 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:id])
 	end
 
+	def dashboard
+		@project = Project.find(params[:id])
+	end
+
 	private 
 
 	def project_params 

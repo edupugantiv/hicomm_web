@@ -1,19 +1,8 @@
 h2 = "Project: #{@project.name}"
 br
 .row
-  .col-sm-3
-    = image_tag @project.avatar.url(:thumb), :class => 'avatar'
-  .col-sm-3
-    = "Project Name: #{@project.name}"
-    br
-    = "Size: #{@participants.size} member(s)"
-    br
-    = "Location: #{@project.location}"
-    br
-    = "Scale: #{@project.scale}"
-    br
-    b = "Code: @#{@project.code}"
-    br
+  .col-sm-6
+    = render 'header'
   .col-sm-3
     p Contact:
     = link_to @project_manager.name, user_path(@project_manager)
@@ -26,6 +15,7 @@ br
       = button_to "Leave Project", leave_path(@project), data: { confirm: "Are you sure you want to leave #{@project.name}?"}, :method => 'put', :class => 'btn btn-primary'
     - else
       = button_to "Join Project", join_path(@project), :method => 'put'
+    = button_to "Dashboard", "dashboard", :method => 'get', :class => 'btn btn-primary'
 .row
   .col-sm-3
     h2 Conversations
