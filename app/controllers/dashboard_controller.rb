@@ -5,27 +5,24 @@ class DashboardController < ApplicationController
     data = {}
     case params[:time]
     when 'week'
-      messages = @messages.where(:sent => 7.days.ago..Time.now)
       7.times do |i|
         data[i.days.ago.yday] = {
           :label => i.days.ago.strftime('%b %-d'),
-          :count => messages.where(:sent => (i + 1).days.ago..i.days.ago).count
+          :count => @messages.where(:sent => (i + 1).days.ago..i.days.ago).count
         }
       end
     when 'month'
-      messages = @messages.where(:sent => 4.weeks.ago..Time.now)
       4.times do |i|
         data[i.weeks.ago.yday] = {
           :label => "#{i} week(s) ago",
-          :count => messages.where(:sent => (i + 1).weeks.ago..i.weeks.ago).count
+          :count => @messages.where(:sent => (i + 1).weeks.ago..i.weeks.ago).count
         }
       end
     when 'year'
-      messages = @messages.where(:sent => 11.months.ago..Time.now)
       11.times do |i|
         data[i.months.ago.month] = {
           :label => i.months.ago.strftime('%b %Y'),
-          :count => messages.where(:sent => (i + 1).months.ago..i.months.ago).count
+          :count => @messages.where(:sent => (i + 1).months.ago..i.months.ago).count
         }
       end
     end
@@ -42,13 +39,34 @@ class DashboardController < ApplicationController
   end
 
   def equity
-    users = @messages.map(&:sender).uniq.map do |user|
+    minValue = -1
+    sum = 0
+    equities = @users.map do |user|
+      value = @messages.where(:sender => user).count
+      if minValue == -1 or value < minValue
+        minValue = value
+      end
+      sum += value
       {
-        :value => @messages.where(:sender => user).count,
+        :value => value,
         :label => user.name
       }
     end
-    render :json => users
+    equitySum = 0
+    equities = equities.map do |user|
+      if user[:value] == 0
+        nil
+      else
+        value = (user[:value] - minValue) / (sum ** 2).to_f
+        user[:value] = value
+        equitySum += value
+        user
+      end
+    end
+    render :json => {
+      :total => equitySum,
+      :equities => equities.compact
+    }
   end
 
   def cloud
@@ -75,8 +93,19 @@ class DashboardController < ApplicationController
     case params[:conversation]
     when 'all'
       @messages = @project.messages
+      @users = @project.users
     else
-      @messages = @project.conversations.find(params[:conversation]).messages
+      conversation = @project.conversations.find(params[:conversation])
+      @messages = conversation.messages
+      @users = conversation.users
+    end
+    case params[:time]
+    when 'week'
+      @messages = @messages.where(:sent => 7.days.ago..Time.now)
+    when 'month'
+      @messages = @messages.where(:sent => 4.weeks.ago..Time.now)
+    when 'year'
+      @messages = @messages.where(:sent => 11.months.ago..Time.now)
     end
   end
 

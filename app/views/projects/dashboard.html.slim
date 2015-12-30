@@ -12,24 +12,25 @@
       - @project.conversations.each do |conversation|
         li
           a id="#{conversation.id}" = conversation.name
+  .dropdown#time-range data-time="week"
+    button.btn.btn-default.dropdown-toggle data-toggle="dropdown" type="button"
+      | Last Week
+      span.caret
+    ul.dropdown-menu
+      li
+        a#week Last Week
+      li
+        a#month Last Month
+      li
+        a#year Last Year
 .row#dashboard
   .col-md-4
     h3 Message by Time
-    .dropdown#time-range data-time="week"
-      button.btn.btn-default.dropdown-toggle data-toggle="dropdown" type="button" 
-        | Last Week
-        span.caret
-      ul.dropdown-menu
-        li
-          a#week Last Week
-        li
-          a#month Last Month
-        li
-          a#year Last Year
     canvas#time
   .col-md-4
     h3 Messaging Equity
     canvas#equity
+    h3#equity-index
   .col-md-4
     h3 Word cloud
     #cloud
