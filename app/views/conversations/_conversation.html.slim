@@ -1,24 +1,72 @@
-.row
-  .col-sm-6
-    b = "\##{conversation.code}:#{conversation.name}"
-  .col-sm-6
-    = link_to "Edit/Add People", view_convo_path(conversation)
-br
-=conversation.users.map{|user| user.name}.join(', ')
-br
-= "Total Messages: "
-=conversation.messages.count
-table.inbox[border="1" width="80%"]
-  - conversation.messages.each do |message|
+/!
+  .row
+    .col-sm-6
+      b = "\##{conversation.code}:#{conversation.name}"
+    .col-sm-6
+      = link_to "Edit/Add People", view_convo_path(conversation)
+  br
+  =conversation.users.map{|user| user.name}.join(', ')
+  br
+  = "Total Messages: "
+  =conversation.messages.count
+  table.inbox[border="1" width="80%"]
+    - conversation.messages.each do |message|
+      tr
+        td
+          =link_to message.sender.name, user_path(message.sender)
+          | : 
+          =message.body
+          br
+          =message.sent
+          br
     tr
       td
-        =link_to message.sender.name, user_path(message.sender)
-        | : 
-        =message.body
-        br
-        =message.sent
-        br
-  tr
-    td
-      - if can? :leave, conversation.project
-        = render partial: 'messages/new'
+        - if can? :leave, conversation.project
+          = render partial: 'messages/new'
+
+
+
+
+
+.row.m-5-percentage 
+  .col-sm-9.m-t-20
+    .conversation-name.no-wrap
+      = "#{conversation.name}"
+    .conversation-members.no-wrap
+      span.glyphicon.glyphicon-user.grey-color 
+      = " #{conversation.users.map(&:first_name).join(',').truncate(40)}"
+  .col-sm-3.m-t-20
+    .pull-right
+      /! = "Edit" 
+      = link_to "Edit", view_convo_path(conversation)   
+      div.m-5  
+      .button.tag-btn 
+        = " ..."
+.row.m-0
+  .col-sm-11.p-0
+    input.form-control placeholder="Search" type="text" class="search-box project-search-box" 
+  .col-sm-1.p-l-0
+    button.btn.btn-default.project-search-button.m-l-minus-7 type="submit" 
+      span.glyphicon.glyphicon-search.project-search-glyphicon
+
+
+
+.row
+  .messages-list
+    - colors = ['#cac8d6', '#d9eaf1']
+    - index = 0
+    - conversation.messages.each do |message|
+      - index = index +1
+      - random_color = colors[index%2]
+
+      .chat-box-right style="background-color: #{random_color}"
+        = message.body
+      .sender
+        - if message.sender == current_user
+          = "You"
+        - else
+          = message.sender.first_name
+      
+  .send.message-send
+    - if can? :leave, conversation.project
+      = render partial: 'messages/new'

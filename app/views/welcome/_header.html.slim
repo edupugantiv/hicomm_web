@@ -1,23 +1,22 @@
-nav.navbar.navbar-default
-  .container-fluid
-    /! Brand and toggle get grouped for better mobile display
-    .navbar-header
-      button.navbar-toggle.collapsed aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      = render 'logo'
-    /! Collect the nav links, forms, and other content for toggling
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      form.navbar-form.navbar-right role="search"
-        button#login.btn.btn-default Login
-      ul.nav.navbar-nav.navbar-right
-        li
-          a href="#"  Contact Us
-      ul.nav.navbar-nav.navbar-right
-        li
-          a href="#"  Plan
-      ul.nav.navbar-nav.navbar-right
-        li
-          a href="#"  About
+.row
+  .col-md-12
+    /! header
+    nav.navbar.navbar-default.header-padding
+      .container-fluid.header-background
+        /! Brand and toggle get grouped for better mobile display
+        .navbar-header
+          a.navbar-brand href="#" 
+            img alt="" src=asset_path('logo.png') class="logo-style"
+        /! Collect the nav links, forms, and other content for toggling
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right.header-items
+            li
+              a href="#"  ABOUT
+            li
+              a href="#"  PLAN
+            li
+              a href="#"  CONTACT US
+            li
+              a href="#"  LOGIN
+        /! /.navbar-collapse
+      /! /.container-fluid

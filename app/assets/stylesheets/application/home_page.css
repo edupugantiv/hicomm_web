@@ -1,0 +1,88 @@
+.groups-list, .projects-list{
+	background-color: #f7f4f2 !important;
+	padding: 20px 20px 0 20px !important;
+}
+
+.project-block, .group-block{
+	border-top: 2px solid #b7b3b0 !important;
+	padding: 10% 0 5% 10% !important;
+}
+
+.suggested-group-block{
+	border-bottom: 2px solid #b7b3b0 !important;
+	padding: 10% 0 5% 10% !important;
+}
+
+.group-image, .project-image{
+	max-width: 100% !important;
+	max-height: 100% !important;
+	border-radius: 5px !important;
+}
+
+.project-name, .group-name{
+	font-weight: 900 !important;
+	color: #73706d !important;
+}
+
+.home-page-message-box-header{
+	color: #6d6767 !important;
+}
+
+.home-page-message-block{
+	height: 600px !important;
+	background-color: white;
+	border: 2px solid #e4e1e1;
+	margin-bottom: 60px !important;
+}
+
+.home-page-message-block-header{
+	margin: 1% 0 0 0 !important;
+	border-bottom: 2px solid #e4e1e1;
+	padding-bottom: 10px !important;
+}
+
+
+
+
+.home-page-messages-list{
+	margin: 20px 0 0 16px; 
+	margin-top: 20px;
+	height: 320px !important;
+	width: 96% !important;
+	background-color: white;
+	overflow-y: scroll;
+	border-bottom: 2px solid #e4e1e1;
+	padding: 0 20px !important;
+}
+
+.home-page-message-text-area{
+	width: 82% !important;
+}
+
+.explore{
+	color: #ee5223 !important;
+	font-size: 24px;
+	height: 40px !important;
+}
+
+.suggestted-groups{
+	background-color: #ffcba4 !important;
+	margin: 0 -20px 0 -20px !important;
+	
+}
+
+.last-message{
+	height: 60px !important;
+	border: 2px solid #e4e1e1;
+	cursor: pointer;
+}
+
+.block{
+	display: block;
+}
+
+.home-page-message-icon-block{
+	background-color: #F0F8FF !important;
+	height: 55px !important;
+	margin-left: 14px !important;
+}

@@ -1,29 +1,121 @@
-h2 Join HiComm
-= form_for @user, url: user_registration_path do |f|
-  .form-group
-    = f.text_field :first_name, placeholder: "First Name", class: "form-control" 
-  .form-group
-    = f.text_field :last_name, placeholder: "Last Name", class: "form-control"
-  .form-group
-    = f.text_field :job_title, placeholder: "Job Title", class: "form-control"
-  .form-group
-    = f.text_field :location, placeholder: "Location", class: "form-control"
-  .form-group
-    = f.select :country, ['USA', 'South-Africa'], {}, {:class => 'form-control'}
-  .form-group
-    = f.email_field :email, placeholder: "Email", class: "form-control"
-  .form-group
-    = f.password_field :password, placeholder: "New Password", class: "form-control"
-  .form-group
-    = f.password_field :password_confirmation, placeholder: "Re-Enter New Password", class: "form-control"
-  .form-group
-    = f.text_field :mobile, placeholder: "Mobile Phone Number", class: "form-control"
-  .form-group
-    .form-inline
-      .form-group
-        button.btn.btn-primary Authenticate
-      .form-group
-        input#code.form-control placeholder='Enter Code'
-        small ex. 12345
-  .form-group
-    button.btn.btn-primary.center-block Sign Up
+/!  
+  h2 Join HiComm
+  = form_for @user, url: user_registration_path do |f|
+    .form-group
+      = f.text_field :first_name, placeholder: "First Name", class: "form-control" 
+    .form-group
+      = f.text_field :last_name, placeholder: "Last Name", class: "form-control"
+    /.form-group
+    /  = f.text_field :job_title, placeholder: "Job Title", class: "form-control"
+    .form-group
+      = f.text_field :location, placeholder: "Location", class: "form-control"
+    /.form-group
+     / = f.select :country, ['USA', 'South-Africa'], {}, {:class => 'form-control'}
+    .form-group
+      = f.email_field :email, placeholder: "Email", class: "form-control"
+    .form-group
+      = f.password_field :password, placeholder: "New Password", class: "form-control"
+    .form-group
+      = f.password_field :password_confirmation, placeholder: "Re-Enter New Password", class: "form-control"
+    .form-group
+      = f.text_field :mobile, placeholder: "Mobile Phone Number", class: "form-control"
+    .form-group
+      .form-inline
+        .form-group
+          button.btn.btn-primary Authenticate
+        .form-group
+          input#code.form-control placeholder='Enter Code'
+          small ex. 12345
+    .form-group
+      button.btn.btn-primary.center-block Sign Up
+
+
+
+ body2
+.row
+  .col-md-12
+    .form-container.pull-right
+      .form-style 
+        h1
+          small.f-24  Join HiComm
+        = form_for @user, url: user_registration_path do |f|
+          .form-group
+            .row
+              .col-md-11
+                = f.text_field :first_name, placeholder: "First Name", class: "form-control" 
+              .col-md-1.sign-up-text-box
+                h1
+                  small *
+          .form-group
+            .row
+              .col-md-11
+                = f.text_field :last_name, placeholder: "Last Name", class: "form-control"
+          .form-group
+            .row
+              .col-md-11
+                = f.email_field :email, placeholder: "Email", class: "form-control"
+              .col-md-1.sign-up-text-box
+                h1
+                  small *
+          .form-group
+            .row
+              .col-md-11
+                = f.text_field :job, placeholder: "Job", class: "form-control"
+              .col-md-1.sign-up-text-box
+                h1
+                  small *
+          .form-group
+            .row
+              .col-md-11
+                = f.text_field :location, placeholder: "Location", class: "form-control"
+              .col-md-1.sign-up-text-box
+                h1
+                  small *
+          .form-group
+            .row
+              .col-md-11
+                = f.select :country, ['USA', 'South-Africa'], {}, {:class => 'form-control'}
+              .col-md-1.sign-up-text-box
+                h1
+                  small *
+          .form-group
+            .row
+              .col-md-11
+                = f.password_field :password, placeholder: "New Password", class: "form-control"
+              .col-md-1.sign-up-text-box
+                h1
+                  small *
+          .form-group
+            .row
+              .col-md-11
+                = f.password_field :password_confirmation, placeholder: "Re-Enter New Password", class: "form-control"
+              .col-md-1.sign-up-text-box
+                h1
+                  small *
+          .form-group
+            .row
+              .col-md-11
+                = f.text_field :mobile, placeholder: "Mobile Phone Number", class: "form-control"
+              .col-md-1.sign-up-text-box
+                h1
+                  small *
+          .form-group        
+            .row
+              .col-md-6
+                .form-group
+                  button.button-format-inverse Authenticate
+              .col-md-5 
+                  input#code.m-l-minus-32.form-control placeholder='Enter Code' 
+              .col-md-1.m-l-minus-50
+                h4
+                  small Ex.9801Y
+          .form-group
+            .row
+              .col-md-12
+                h4
+                  small
+                    i * Required Field
+          .form-group
+            .row.m-t-20
+              .col-md-offset-3.col-md-6
+                button.button-format Sign Up

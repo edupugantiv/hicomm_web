@@ -1,0 +1,259 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 27, 2016, 7:25:15 PM
+    Author     : vinaykumarv
+*/
+
+.header-background {
+    margin-top: 10px;
+    background-color: rgb(217,79,50) !important;
+    height: 65px;
+}
+.navbar-default .navbar-nav > li > a {
+    color:white;
+    font-size: 20px;
+}
+
+.navbar-default .navbar-nav header-items > li:last-child a{
+    color:white;
+    padding:10px;
+    padding-left:40px;
+    padding-right:40px;
+    margin-top:6px;
+    border:4px solid white;
+    border-radius: 25px;
+    font-size: 20px;
+}
+
+.navbar-default .navbar-nav > li {
+    padding-right:35px;
+}
+
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    margin-left: 55px;
+}
+.container-fluid
+{
+    margin-top: 17px;
+}
+.form-style {
+    margin: 25px;
+    padding-right: 50px;
+    padding-left: 0px;
+    padding-bottom: 38px;
+    padding-top: 2px;
+    width: 380px;
+}
+.form-container {
+    background-color: #E6E2E1;
+    width: 380px;
+    border:2px solid #E6E2E1;
+    border-radius: 5px;
+}
+.button-format {
+    background-color: rgb(217,79,50);
+    height: 40px;
+    width: 133px;
+    color: white;
+    border: 2px solid #e62e00;
+    border-radius: 5px;
+    font-size: 20px;
+}
+.button-format-inverse {
+    background-color: #969493;
+    height: 40px;
+    width: 135px;
+    color: white;
+    border: 2px solid #A8A2A0;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+
+.transfer-leadership-button {
+    background-color: rgb(217,79,50);
+    height: 30px;
+    width: 200px;
+    color: white;
+    border: 2px solid #e62e00;
+    border-radius: 5px;
+    
+}
+/*.list-group-item:first-child{
+    color:white;
+    font-size: 16pt;
+  background-color:rgb(228,109,36);   
+}
+.list-group-item:first-child > a{
+  background-color: rgb(244,175,127); 
+}
+.list-group-item:first-child:hover {
+    background-color:rgb(228,109,36);
+    color:white;
+}
+*/a.list-group-item {
+    font-size:16pt;               
+    color:rgb(215,110,68);
+    background-color: rgb(244,175,127);
+}
+a.list-group-item:hover {
+    color:rgb(215,110,68);
+    background-color: rgb(244,175,127);
+}
+.form-elements input[type=text] {
+    margin-top:8px;
+    height: 45px;
+}
+::-webkit-input-placeholder {
+ font-size: 15px;
+ color: #d0cdfa;
+}
+::-moz-input-placeholder {
+ font-size: 18px;
+ color: #d0cdfa;
+}
+::-input-placeholder {
+ font-size: 18px;
+ color: #d0cdfa;
+}
+::-ms-input-placeholder {
+ font-size: 18px;
+ color: #d0cdfa;
+}
+.fa-lg {
+    color:rgb(163,32,32);
+    font-size: 35px;
+}
+#file_upload_btn:after {
+}
+.navbar-default {
+    background-color: none;
+    border-color: none;
+}
+.navbar-nav > li > a:hover,.navbar-nav > li > a:active,.navbar-nav > li > a:visited,.navbar-nav > li > a:link{
+background-color:rgb(217,79,50);
+padding-bottom:5px;
+}
+
+
+.search-box{
+    margin-top: 10px;
+    margin-right: 0;
+    margin-left: 25px;
+    width: 25em !important; 
+}
+
+.search-submit-button{
+    margin-top: 10px;
+    margin-left: -7px;
+}
+
+ 
+
+ .edit-profile-page{
+    background-color:rgb(247,244,242);
+    margin:45px;
+    padding:65px;
+    margin-top: -26px;
+ }
+
+
+.form-elements input[type=password] {
+    margin-top:8px;
+    height: 45px;
+}
+
+
+
+.selected-tab{
+  color:white;
+  font-size: 16pt;
+  background-color:rgb(228,109,36);
+  padding: 10px 15px;
+  display: block;
+  text-decoration: none;   
+   
+}
+
+
+.selected-tab:hover{
+    color: white !important;
+}
+
+
+.logout-btn{
+    background-color: #ff8d00 !important;
+    margin-top: 10px;
+    padding-bottom: 15px !important;
+    border: none;
+    border-radius: 15px;
+    color: white;
+}
+
+.logout-btn:hover, .logout-btn:focus{
+    color: white !important;
+}
+
+
+
+.logout-btn-drop-down{
+    background-color: rgb(217,79,50) !important;
+    color: white !important;
+}
+    
+.logout-btn-drop-down>li>a:focus, .dropdown-menu>li>a:hover, {
+    background: none !important;
+}
+
+.fill {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden
+}
+.fill img {
+    flex-shrink:0;
+    min-width:100%;
+    min-height:100%
+}
+
+.badge1 {
+    position:relative;
+    color:rgb(163,32,32);
+    font-size:35px;
+}
+
+.edit-profile-link{
+    color:rgb(163,32,32);
+    font-size:35px;
+}
+
+
+.badge1[data-badge]:after {
+    content:attr(data-badge);
+    position:absolute;
+    top:-5px;
+    right:-5px;
+    font-size:.4em;
+    background:blue;
+    color:white;
+    width:18px;height:18px;
+    text-align:center;
+    line-height:15px;
+    border-radius:50%;
+    box-shadow:0 0 1px #333;
+}
+
+.header-search-box{
+    width: 337px !important;
+}
+
+
+.logo{
+    margin-left: 0px !important;
+    padding-right: 55px !important;
+}

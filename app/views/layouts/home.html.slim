@@ -1,0 +1,13 @@
+doctype html
+layoutstml
+  head
+    title HiComm Web
+    = stylesheet_link_tag 'home', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'home', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  body
+    = render 'welcome/header'
+    .container-fluid
+      = yield
+    = render 'layouts/footer'

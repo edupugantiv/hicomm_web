@@ -1,11 +1,35 @@
-#nav
-  =link_to "Change Password", edit_user_registration_path, :method => 'get'
-  br
-  =link_to "Edit Account", edit_user_path(@user), :method => 'get'
-  br
-  =link_to "Payment Options"
-  br
-  =link_to "Delete Account"
-  br
-  =link_to "Done", user_path(@user), :method => 'get'
-  br
+/!  
+  #nav
+    =link_to "Change Password", edit_user_registration_path, :method => 'get'
+    br
+    =link_to "Edit Account", edit_user_path(@user), :method => 'get'
+    br
+    =link_to "Payment Options"
+    br
+    =link_to "Delete Account"
+    br
+    =link_to "Done", user_path(@user), :method => 'get'
+    br
+
+s
+
+
+
+
+.list-group        
+
+  - if current_page?(action: "edit") && !params["id"].nil?
+    a.selected-tab href=edit_user_path(@user) 
+      | Profile
+  - else   
+    a.list-group-item href=edit_user_path(@user)
+      | Profile
+  - if current_page?(controller: "users/registrations", action: "edit")
+    a.selected-tab href=edit_user_registration_path
+      | Change Password
+  - else   
+    a.list-group-item href=edit_user_registration_path
+      | Change Password
+
+  a.list-group-item href="#"  My Payment
+  a.list-group-item href="#"  Delete Account

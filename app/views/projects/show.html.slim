@@ -1,41 +1,125 @@
-h2 = "Project: #{@project.name}"
-br
 .row
+  .col-sm-offset-1.col-sm-2
+    .project-img
+      = image_tag @project.avatar.url(:medium)
+
+
   .col-sm-6
-    = render 'header'
-  .col-sm-3
-    p Contact:
-    = link_to @project_manager.name, user_path(@project_manager)
-    | : Project Manager
-    p = "Email: #{@project_manager.email}"
+    .row
+      .col-sm-offset-2.col-sm-5
+        h2.text-muted.project-name
+          b.no-wrap
+            = @project.name
+      .col-sm-5
+        h3.text-muted
+    .row
+      .col-sm-offset-2.col-sm-10
+        h3.text-muted 
+          = "#{@participants.count} Members"
+    .row
+      .col-sm-offset-2.col-sm-4
+        .row
+          .col-sm-6
+            h3.text-muted Type
+          .col-sm-6
+            h3  Type
+        .row
+          .col-sm-6
+            h3.text-muted Location
+          .col-sm-6
+            h3 
+              = @project.location
+        .row
+          .col-sm-6
+            h3.text-muted Scale
+          .col-sm-6
+            h3 
+              = @project.scale
+      .col-sm-offset-1.col-sm-5
+        .row
+          .col-sm-4
+            h3.text-muted Contact
+          .col-sm-8
+            h3.no-wrap
+              = @project_manager.name
+        .row
+          .col-sm-4
+          .col-sm-8
+            h3 
+              = @project_manager.email
+        .row
+          .col-sm-4
+          .col-sm-8
+            h3 
+              = @project_manager.mobile
   .col-sm-3
     - if can? :transfer_leadership, @project
-      = button_to "Manage Project", manage_project_path(@project), :method => 'get', :class => 'btn btn-primary'
+      = button_to "Manage Project", manage_project_path(@project), :method => 'get', :class => 'go-to-dashboard-button'
     - elsif can? :leave, @project
-      = button_to "Leave Project", leave_path(@project), data: { confirm: "Are you sure you want to leave #{@project.name}?"}, :method => 'put', :class => 'btn btn-primary'
+      = button_to "Leave Project", leave_path(@project), data: { confirm: "Are you sure you want to leave #{@project.name}?"}, :method => 'put', :class => 'go-to-dashboard-button'
     - else
-      = button_to "Join Project", join_path(@project), :method => 'put'
-    = button_to "Dashboard", "dashboard", :method => 'get', :class => 'btn btn-primary'
-.row
-  .col-sm-3
-    h2 Conversations
-    - if can? :leave, @project
-      = button_to "New Conversation", new_convo_path(@project), :method => 'get', :class => 'btn btn-info'
-    - if @conversations.empty?
-      p = "#{@project.name} has no conversations"
-    - else
-      - @conversations.each do |conversation|
-        - if conversation == @current_convo
-          = "\##{conversation.code}:#{conversation.name}"
-        - else
-          = link_to "\##{conversation.code}:#{conversation.name}", project_path(:project_id => @project, :conversation_id => conversation)
-        br
-  .col-sm-6
-    = render partial: 'conversations/conversation', object: @current_convo
-  .col-sm-3
-    h2 Participants
-    - if can? :add_users, @project
-      = button_to "Add Participants", pick_project_users_path(@project), :method => 'get', :class => 'btn btn-info'
-    - @participants.each do |participant|
-      = link_to participant.name, user_path(participant)
-      br
+      = button_to "Join Project", join_path(@project), :method => 'put', :class => 'go-to-dashboard-button'
+    = button_to "Go to dashboard", "dashboard", :method => 'get', :class => 'go-to-dashboard-button'
+    
+.row.m-30
+  .col-sm-12
+    hr.project-details-bottom-border
+div.project-details-block
+  .row.m-30
+    .col-sm-3
+      .row.text-center
+        .f-24
+          = "Message"
+      .row.text-center
+        /! = button_to "Project Message", new_convo_path(@project), :method => 'get', :class => 'add-conversation-button'
+        - if can? :leave, @project  
+          = button_to "New Conversation", new_convo_path(@project), :method => 'get', :class => 'add-conversation-button'
+
+      .row
+        .conversation-list.no-wrap
+          - if @conversations.empty?
+            p = "#{@project.name} has no conversations"
+          - else
+            - @conversations.each do |conversation|
+              - if conversation == @current_convo
+                = "\##{conversation.code}:#{conversation.name}"
+              - else
+                = link_to "\##{conversation.code}:#{conversation.name}", project_path(:project_id => @project, :conversation_id => conversation)
+              br
+
+
+    .col-sm-6
+      .conversation-detail
+        = render partial: 'conversations/conversation', object: @current_convo
+
+
+    .col-sm-3.p-r-0
+      .row
+        .col-sm-offset-2.col-sm-4 
+          h3.text-muted.project-members-header  Members
+        .col-sm-offset-2.col-sm-4
+          - if can? :add_users, @project
+            = button_to "Add+", pick_project_users_path(@project), :method => 'get', :class => 'btn btn-info add-button'
+          .row
+            .col-sm-12
+              p.project-members-see-all   See All
+      .col-sm-12.p-r-0
+        .row
+          .col-sm-12
+            hr.project-member-border
+
+        .row.m-t-minus-30    
+          - @participants.each do |participant|
+            .row.m-t-30.m-0
+              .col-sm-4.p-0
+                .div-rounded
+              .col-sm-8.p-l-10-percentage
+                h3.project-members-name
+                  b.no-wrap
+                    = link_to participant.name, user_path(participant)
+                h3.heading-styles.silver-color  
+                  = participant.location
+
+
+
+

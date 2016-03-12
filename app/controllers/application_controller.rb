@@ -4,8 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :notification_count
   before_action :authenticate_user!
-
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  layout :layout_by_resource
+  
 
   protected
 
@@ -27,8 +29,22 @@ class ApplicationController < ActionController::Base
     return @notifications.size
   end
 
+  def check_current_user
+    if current_user.nil?
+      redirect_to root_path
+    end  
+  end
+
+  def layout_by_resource
+    if current_user.nil?
+      "home"
+    else
+      "application"
+    end
+  end
+
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :location, :country, :job_title, :mobile, :email, :password, :password_confirmation) }
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :location, :country, :job, :mobile, :email, :password, :password_confirmation) }
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:mobile, :password) }
   end
 end

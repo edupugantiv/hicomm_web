@@ -120,6 +120,7 @@ class ProjectsController < ApplicationController
 
 	def dashboard
 		@project = Project.find(params[:id])
+		@total_messages_count = @project.messages.count
 	end
 
 	private 

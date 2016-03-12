@@ -1,22 +1,48 @@
-=render partial: 'management'
-#section
-  h1
-    | Profile 
-  |  First Name: 
-  =@user.first_name
-  br
-  |  Last Name: 
-  =@user.last_name
-  br
-  |  Job Title: 
-  =@user.job_title
-  br
-  |  Location: 
-  =@user.location
-  br
-  |  Email: 
-  =@user.email
-  br
-  |  Mobile: 
-  =@user.mobile
-  br
+/!  
+  =render partial: 'management'
+  #section
+    h1
+      | Profile 
+    |  First Name: 
+    =@user.first_name
+    br
+    |  Last Name: 
+    =@user.last_name
+    br
+    |  Job Title: 
+    =@user.job
+    br
+    |  Location: 
+    =@user.location
+    br
+    |  Email: 
+    =@user.email
+    br
+    |  Mobile: 
+    =@user.mobile
+    br
+div.edit-profile-page
+  .row
+    .col-md-3
+      = render partial: 'management'
+    .col-md-offset-1.col-md-4
+      #section
+        h1
+          | Profile 
+        |  First Name: 
+        =@user.first_name
+        br
+        |  Last Name: 
+        =@user.last_name
+        br
+        |  Job Title: 
+        =@user.job
+        br
+        |  Location: 
+        =@user.location
+        br
+        |  Email: 
+        =@user.email
+        br
+        |  Mobile: 
+        =@user.mobile

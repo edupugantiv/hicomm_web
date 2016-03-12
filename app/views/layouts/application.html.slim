@@ -1,21 +1,45 @@
 doctype html
-html
+layoutstml
   head
     title HiComm Web
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-  body
-    - if current_user
-      = render 'layouts/header'
-    - else
-      = render 'welcome/header'
-    .container-fluid
+  /!
+    body
       - if current_user
-        .col-xs-2
-          = render 'projects/index'
-        .col-xs-10
-          = yield
+        = render 'layouts/header'
       - else
+        = render 'welcome/header'
+      .container-fluid
+        - if current_user
+          .col-xs-2
+            = render 'projects/index'
+          .col-xs-10
+            = yield
+        - else
+          = yield
+
+      = render 'layouts/footer'
+
+
+  body
+    .container-fluid
+      .row
+        .col-md-12
+          = render 'layouts/header'
+          
+      .main-body
         = yield
+      = render 'layouts/footer'
+
+    /!
+      <div class="row"
+      <div class="col-md-12"
+      footer
+      <div class="container-fluid  header-background footer"
+      
+      </div
+      </div
+      </div

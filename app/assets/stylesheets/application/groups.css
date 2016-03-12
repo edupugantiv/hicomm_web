@@ -1,0 +1,140 @@
+.panel-holder {
+    height: 265px;
+    width: 398px;
+    background-color:rgb(255,255,255);
+}
+.div-vertical {
+    
+    width:35px;
+    height:450px;
+    background-color:rgb(249,249,250);
+}
+.div-rounded {
+    height: 85px;
+    width:85px;
+   background-color:rgb(245,233,233);
+   border:1px solid rgb(245,233,233);
+   border-radius: 65px;
+}
+.heading-styles {
+    margin-top:10px;
+    margin-bottom:0px;
+}
+.well-modified {
+    background-color:rgb(255,255,255);
+    border:1px solid rgb(255,255,255);
+}
+.decendent-well-active {
+/*background-image:none;*/
+    height:75px;
+    width:90px;
+    /*background-color:rgb(243,208,182);*/
+}
+.decendent-well-inactive {
+background-image:none;
+    height:75px;
+    width:90px;
+    background-color:rgb(251,245,239);
+    border:1px solid rgb(251,245,239);
+}
+.add-button {
+    background-color: rgb(247,244,242);
+    padding: 9px 21px 10px 27px;
+    border: 3px solid rgb(214,61,38);
+    border-radius: 8px;
+    color: rgb(214,61,38);
+    font-size: 13pt;
+    margin-top: 34px;
+}
+.mng-button {
+  margin-top:30px;
+  background-color:rgb(238,82,35);
+  font-size:14pt;
+  padding:9px;
+  color:white;
+  border:1px solid rgb(238,82,35);
+  border-radius:6px;
+  margin-left:120px;
+  width:135px;
+
+}
+
+
+.groups-map{
+  height: 200px !important;
+  width: 300px !important;
+}
+
+.group-img{
+  /*background-image:none;*/
+  height:250px;
+  width:320px;
+  
+}
+
+.group-name, .project-name{
+  color:rgb(238,82,35);
+}
+
+.group-silver-border{
+   border:3px solid silver !important;
+}
+
+.group-details-block, .project-details-block{
+  background-color:rgb(247,244,242);
+  margin:45px;
+  padding:65px;
+  margin-top: -55px;
+}
+
+.group-projects-list, .group-members-list-header{
+  color: rgb(96,97,99) !important;
+  margin-left:86px !important;
+  margin-top: 46px !important;
+}
+
+.group-projects-list-see-all{
+  color:rgb(214,61,38) !important;
+  margin-top:54px !important;
+  font-size:12pt !important;
+}
+
+.group-members-list-header-see-all{
+  color:rgb(214,61,38) !important;
+  font-size:12pt !important;
+  margin-top:20px !important;
+}
+
+.group-projects-members-separator{
+width: 35px !important;
+height: 450px !important;
+background-color: rgb(249,249,250) !important;
+}
+
+
+.group-member-border, .project-member-border{
+  border:2px solid rgb(236,234,234)!important; 
+}
+
+.group-members{
+  margin-top: -30px !important;
+  text-decoration: none !important;
+
+}
+
+iframe{
+  width: 300px;
+  height: 200px;
+}
+
+.groups-members-name, .project-members-name{
+  color:rgb(105,106,109);
+}
+
+.groups-members-location{
+  color:silver;
+}
+
+.group-project-block a{
+  color: #333 !important;
+}

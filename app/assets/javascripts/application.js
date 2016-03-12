@@ -17,4 +17,10 @@
 //= require jqcloud
 //= require Chart
 //= require jquery.readyselector
-//= require dashboard
+//= require_tree ./application
+
+
+$(document).ready(function() {
+    $(".dropdown-toggle").dropdown();
+});
+		
