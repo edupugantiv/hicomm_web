@@ -1,13 +1,57 @@
-#nav
-  =link_to "Edit Project", edit_project_path(:project_id => @project), :method => 'get'
-  br
-  =link_to "Change Plan", change_project_plan_path(@project), :method => 'get'
-  br
-  =link_to "Manage Participants", manage_project_path(@project), :method => 'get'
-  br
-  =link_to "Transfer Leadership", transfer_project_leadership_path(@project), :method => 'get'
-  br
-  =link_to "Add Affiliations", add_affiliations_path(@project), :method => 'get'
-  br
-  =link_to "Done", project_path(:project_id => @project, :conversation_id => @project.conversations.first), :method => 'get'
-  br
+/!
+  #nav
+    =link_to "Edit Project", edit_project_path(:project_id => @project), :method => 'get'
+    br
+    =link_to "Change Plan", change_project_plan_path(@project), :method => 'get'
+    br
+    =link_to "Manage Participants", manage_project_path(@project), :method => 'get'
+    br
+    =link_to "Transfer Leadership", transfer_project_leadership_path(@project), :method => 'get'
+    br
+    =link_to "Add Affiliations", add_affiliations_path(@project), :method => 'get'
+    br
+    =link_to "Done", project_path(:project_id => @project, :conversation_id => @project.conversations.first), :method => 'get'
+    br
+
+
+
+
+.list-group        
+
+  - if current_page?(action: "edit") && !params["id"].nil?
+    a.selected-tab
+      | Edit Project
+  - else   
+    a.list-group-item href=edit_project_path
+      | Edit Project
+  - if current_page?(action: "change_plan") && !params["id"].nil?
+    a.selected-tab
+      | Change Plan
+  - else   
+    a.list-group-item href=change_project_plan_path
+      | Change Plan
+
+  - if (current_page?(action: "manage_participants") && !params["id"].nil?) || (current_page?(action: "pick_users") && !params["id"].nil?) || (current_page?(action: "remove_participants") && !params["id"].nil?)
+    a.selected-tab
+      | Manage Participants
+  - else   
+    a.list-group-item href=manage_project_path
+      | Manage Participants
+
+  - if current_page?(action: "transfer_leadership") && !params["id"].nil?
+    a.selected-tab
+      | Transfer Leadership
+  - else   
+    a.list-group-item href=transfer_project_leadership_path
+      | Transfer Leadership
+
+  - if current_page?(action: "add_affiliations") && !params["id"].nil?
+    a.selected-tab
+      | Add Affiliations
+  - else   
+    a.list-group-item href=add_affiliations_path
+      | Add Affiliations
+
+  a.list-group-item href=project_path(@project)
+    | Done
+

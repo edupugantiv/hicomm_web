@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :sessions => "users/sessions", :registrations => "users/registrations"}
+
   
   resources :users, only: [:show, :edit, :update]
   resources :conversations
@@ -46,7 +47,7 @@ Rails.application.routes.draw do
   get 'projects/:project_id/show' => 'projects#show', as: 'project'
   patch 'projects/:id' => 'projects#update', as: 'update_project'
 
-  get 'search' => 'welcome#search', as: 'search'
+  # get 'search' => 'welcome#search', as: 'search'
 
   get 'users/:id/manage' => 'users#manage', as: 'manage_user'
 
@@ -84,6 +85,15 @@ Rails.application.routes.draw do
 
   get 'notifications' => 'welcome#notifications', as: 'notifications'
   get 'projects/:id/change_plan' => 'projects#change_plan', as: 'change_project_plan'
+  
+
+  get 'search' => 'search#index', :as => 'search'
+  get 'search/contacts' => 'search#contacts', :as => 'contacts_results'
+  get 'search/projects' => 'search#projects', :as => 'projects_results'
+  get 'search/groups' => 'search#groups', :as => 'groups_results'
+
+
+
 
 
   #put  'projects/:id/conversations/:id' => 'conversations#update', as: 'update_convo'

@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
 	def update 
 		@project = Project.find(params[:id])
 		@project.update_attributes(project_params)
-		redirect_to manage_project_path(@project), notice: "Your project information has been edited"
+		redirect_to :back, notice: "Your project information has been edited"
 	end 
 
 	def new 

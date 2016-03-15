@@ -1,8 +1,46 @@
-.well
-  = button_to "Project Start", new_project_path, :method => 'get', :class => 'btn btn-primary center-block'
-  h4.text-center My Projects
+/!	
+	.well
+	  = button_to "Project Start", new_project_path, :method => 'get', :class => 'btn btn-primary center-block'
+	  h4.text-center My Projects
 
-  - current_user.projects.each do |project|
-    = link_to project.name, project_path(project)
-    p = project.scale
-    p = project.plan
+	  - current_user.projects.each do |project|
+		= link_to project.name, project_path(project)
+		p = project.scale
+		p = project.plan
+
+
+.projects-list
+  .row.text-center
+	= button_to "Project Start", new_project_path, :method => 'get', :class => 'add-conversation-button'
+  .row
+  	h3.m-t-20.text-center My Projects
+  .row
+	.no-wrap.m-t-30
+	  - if @projects.blank?
+			p 
+				You have no projects
+	  - else
+			- @projects.each do |project|
+				.project-block
+					.row
+						.col-sm-3
+							= image_tag project.avatar.url(:thumb), :class => 'avatar project-image'
+						.col-sm-8
+							= link_to project.name, project_path(project), :class => 'project-name' 
+							p.m-b-none
+								a = "@#{project.code}"
+							p.m-b-none 
+								= "Type"
+							p.m-b-none
+							 = project.scale
+							p.m-b-none
+							 = project.location
+					.row
+						- project.conversations.each do |conversation|
+							- if conversation == @current_convo
+							  = "\##{conversation.code}:#{conversation.name}"
+							- else
+							  = link_to "\##{conversation.code}:#{conversation.name}", home_path(:project_id => @project, :conversation_id => conversation)
+							br  
+
+			

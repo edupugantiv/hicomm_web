@@ -1,0 +1,41 @@
+.row.home-page-message-block-header
+  .col-sm-9.m-t-20
+    .no-wrap.m-b-10
+      .font-weight-900
+        = "#{@project.name} "
+        = " "
+        a = "@#{@project.code}"
+    .conversation-members.no-wrap
+      span.glyphicon.glyphicon-user.grey-color 
+      = " #{conversation.users.map(&:first_name).join(',').truncate(40)}"
+  .col-sm-3.m-t-20
+    .pull-right
+      - if @project.messages.blank?
+        = "No messages yet"
+      - else  
+        = @project.messages.last.sent.strftime("%m/%d/%y")
+      div.m-5  
+      .button.tag-btn 
+        = " ..."
+
+
+
+.row
+  .home-page-messages-list
+    - colors = ['#cac8d6', '#d9eaf1']
+    - index = 0
+    - conversation.messages.each do |message|
+      - index = index +1
+      - random_color = colors[index%2]
+
+      .chat-box-right style="background-color: #{random_color}"
+        = message.body
+      .sender
+        - if message.sender == current_user
+          = "You"
+        - else
+          = message.sender.first_name
+      
+  .send.message-send
+    - if can? :leave, conversation.project
+      = render partial: 'message'

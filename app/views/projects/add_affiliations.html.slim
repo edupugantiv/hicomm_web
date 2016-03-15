@@ -1,18 +1,50 @@
-=render partial: 'management'
-h1
-  |  Manage Affiliations 
-#section
-  |  Affiliate 
-  =@project.name
-  |  with: 
-  br
-  - if @project.groups.size >= 3
-    i
-      | Your project is already affiliated with the maximum number of groups
-  - elsif @groups.empty?
-    i
-      | There are no groups to affiliate your project with at this time
-  - else
-    - @groups.each do |group|
-      =link_to group.name, group_path(group)
-      =button_to "Affiliate", affiliate_path(:project_id => @project, :group_id => group), :method => 'put'
+/!  
+  =render partial: 'management'
+  h1
+    |  Manage Affiliations 
+  #section
+    |  Affiliate 
+    =@project.name
+    |  with: 
+    br
+    - if @project.groups.size >= 3
+      i
+        | Your project is already affiliated with the maximum number of groups
+    - elsif @groups.empty?
+      i
+        | There are no groups to affiliate your project with at this time
+    - else
+      - @groups.each do |group|
+        =link_to group.name, group_path(group)
+        =button_to "Affiliate", affiliate_path(:project_id => @project, :group_id => group), :method => 'put'
+
+
+div.edit-profile-page
+  .row
+    .col-md-3
+      = render partial: 'management'
+    .col-md-offset-1.col-md-4
+      .form-elements
+        h1
+          Manage Affiliations
+        h4
+          |  Affiliate 
+          =@project.name
+          |  with: 
+             
+        .m-b-20
+        - if @project.groups.size >= 3
+          i
+            | Your project is already affiliated with the maximum number of groups
+        - elsif @groups.empty?
+          i
+            | There are no groups to affiliate your project with at this time
+        - else
+          - @groups.each do |group|
+            .row.m-b-20
+              .col-sm-5
+                =link_to group.name, group_path(group)
+              .col-sm-6  
+                =button_to "Affiliate", affiliate_path(:project_id => @project, :group_id => group), :method => 'put', :class => 'button transfer-leadership-button'
+
+

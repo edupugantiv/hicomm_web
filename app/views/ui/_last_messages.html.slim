@@ -1,0 +1,19 @@
+- @projects.each do |project|
+	- if !project.messages.blank?
+		.last-message onclick="location.href='#{home_path(:project_id => project, :conversation_id => project.messages.last.conversation)}';"
+			.row.font-weight-900
+				.col-sm-1.text-center.home-page-message-icon-block
+					span.glyphicon.glyphicon-envelope.grey-color 
+				.col-sm-10.m-t-10
+					.row
+						.col-sm-4
+							= User.find(project.messages.last.sender_id).first_name	
+						.col-sm-4	
+							= project.name 
+							a = " 	@#{project.code}"
+						.col-sm-4
+							.pull-right
+								= project.messages.last.sent.strftime("%m/%d/%y")
+					.row.p-l-16
+						= project.messages.last.body.truncate(40)		
+			br

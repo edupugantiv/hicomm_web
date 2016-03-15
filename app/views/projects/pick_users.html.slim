@@ -1,13 +1,40 @@
-=render partial: 'management'
-#section
-  h1
-    | Add Participants
-  br
-  - if @users.empty?
-    i
-      | There are no more users to add to your project at this time
-  - else
-    - @users.each do |user|
-      =link_to user.name, user_path(user)
-      =button_to "Add", add_project_users_path(:project_id => @project, :user_id => user), :method => 'put'
-      br
+/!  
+  =render partial: 'management'
+  #section
+    h1
+      | Add Participants
+    br
+    - if @users.empty?
+      i
+        | There are no more users to add to your project at this time
+    - else
+      - @users.each do |user|
+        =link_to user.name, user_path(user)
+        =button_to "Add", add_project_users_path(:project_id => @project, :user_id => user), :method => 'put'
+        br
+
+
+div.edit-profile-page
+  .row
+    .col-md-3
+      = render partial: 'management'
+    .col-md-offset-1.col-md-4
+      .form-elements
+        h1
+          To Participants
+        small Add participants to 
+        = @project.name
+        br
+        .m-b-20
+        - if @users.empty?
+          i
+            | There are no more users to add to your project at this time
+        - else
+          - @users.each do |user|
+            .row.m-b-10
+              .col-sm-5
+                =link_to user.name, user_path(user)
+              .col-sm-6
+                =button_to "Add", add_project_users_path(:project_id => @project, :user_id => user), :method => 'put', :class => 'transfer-leadership-button'
+            br
+

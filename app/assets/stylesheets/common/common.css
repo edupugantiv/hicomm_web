@@ -1,3 +1,10 @@
+@media screen and (min-width: 1000px) {
+    .sign-in-block, .sign-up-block {
+        float: right !important;        
+    }
+}
+
+
  
 .f-24 {
 	font-size:24pt;
@@ -120,7 +127,7 @@
 }
 
 .logo-style{
-	height: 32px;
+	height: 56px;
 	width: 155px;
 }
 

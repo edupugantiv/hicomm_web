@@ -1,0 +1,98 @@
+.search-page
+  .row.p-l-40
+    h3
+      = "Search results for " 
+      b
+        = " #{@search_key}"
+
+
+  .search-contacts
+    .row.p-l-55
+      .col-sm-3
+        h4
+          = "Contacts (#{@users_count})"
+      .col-sm-9.text-right
+        - if @users_count > 0
+          h5
+            a.search-see-all href=contacts_results_path(search_key: @search_key)
+              = "See all"    
+    .p-t-10
+      - if @users.present?
+        .p-l-13
+          .row
+            - @users.each do |user|
+              .col-sm-4
+                .search-contact onclick="location.href='#{user_path(user)}';"
+                  .row
+                    .col-sm-2
+                      = image_tag user.avatar.url(:thumb), :class => 'avatar search-user-image'
+                    .col-sm-10
+                      .font-weight-900
+                        = user.name
+                      = user.job  
+      - else
+        .p-l-40
+          = "No results found"    
+
+        
+  .search-projects
+    .row.p-l-55
+      .col-sm-3
+        h4
+          = "Projects (#{@projects_count})"
+      .col-sm-9.text-right
+        - if @projects_count > 0
+          h5
+            a.search-see-all href=projects_results_path(search_key: @search_key)
+              = "See all"    
+    .p-t-10
+      - if @projects.present?
+        .p-l-13
+          .row
+            - @projects.each do |project|
+              .col-sm-4
+                .search-contact onclick="location.href='#{project_path(project)}';"
+                  .row
+                    .col-sm-2
+                      = image_tag project.avatar.url(:thumb), :class => 'avatar search-project-image'
+                    .col-sm-10
+                      .font-weight-900
+                        = project.name
+                      = project.scale  
+                      br
+                      = project.location  
+      - else
+        .p-l-40
+          = "No results found"    
+
+  
+  .search-groups
+    .row.p-l-55
+      .col-sm-3
+        h4
+          = "Groups (#{@groups_count})"
+      .col-sm-9.text-right
+        - if @groups_count > 0
+          h5
+            a.search-see-all href=groups_results_path(search_key: @search_key)
+              = "See all"    
+
+    .p-t-10
+      - if @groups.present?
+        .p-l-13
+          .row
+            - @groups.each do |group|
+              .col-sm-4
+                .search-contact onclick="location.href='#{group_path(group)}';"
+                  .row
+                    .col-sm-2
+                      = image_tag group.avatar.url(:thumb), :class => 'avatar search-group-image'
+                    .col-sm-10
+                      .font-weight-900
+                        = group.name
+                      = group.scale  
+                      br
+                      = group.location  
+      - else
+        .p-l-40
+          = "No results found"    

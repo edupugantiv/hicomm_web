@@ -1,17 +1,44 @@
-=render partial: 'management'
-#section
-  h1
-    | Change Plan
-  =form_for @project, url: update_project_path(@project) do |f|
-    |  Choose your plan:
-    br
-    = f.radio_button :plan, 'Standard', :checked => true
-    = f.label :plan, 'Standard', :value => 'standard'
-    br
-    = f.radio_button :plan, 'Premium'
-    = f.label :plan, 'Premium', :value => 'premium'
-    br
-    = f.radio_button :plan, 'Enterprise'
-    = f.label :plan, 'Enterprise', :value => 'enterprise'
-    br
-    =f.submit
+/!    
+    =render partial: 'management'
+    #section
+      h1
+        | Change Plan
+      =form_for @project, url: update_project_path(@project) do |f|
+        |  Choose your plan:
+        br
+        = f.radio_button :plan, 'Standard', :checked => true
+        = f.label :plan, 'Standard', :value => 'standard'
+        br
+        = f.radio_button :plan, 'Premium'
+        = f.label :plan, 'Premium', :value => 'premium'
+        br
+        = f.radio_button :plan, 'Enterprise'
+        = f.label :plan, 'Enterprise', :value => 'enterprise'
+        br
+        =f.submit
+
+
+div.edit-profile-page
+  .row
+    .col-md-3
+      = render partial: 'management'
+    .col-md-offset-1.col-md-4
+      .form-elements
+        h1
+          small Edit Project
+        = form_for @project, url: update_project_path(@project) do |f|
+          b Change Plan
+          div.m-l-minus-21
+            .checkbox
+              label
+                = f.radio_button :plan, :value => "standard"
+                b Standard
+            .checkbox
+              label
+                = f.radio_button :plan, :value => "premium"
+                b Premium
+            .checkbox
+              label
+                = f.radio_button :plan, value="enterprise"
+                b Enterprise
+          button.button-format.pull-right.m-t-30  Submit

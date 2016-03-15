@@ -1,0 +1,37 @@
+.search-page
+  .row.p-l-40
+    h3
+      = "Search results in groups for " 
+      b
+        = " #{@search_key}"
+
+
+  .search-groups
+    .row.p-l-55
+      .col-sm-3
+        h4
+          = "Groups (#{@groups_count})"
+      .col-sm-9.text-right
+        h5
+          a.search-see-all href="#{search_path}?search=#{@search_key}"
+            = "Back"
+
+    .p-t-10
+      - if @groups.present?
+        .p-l-13
+          .row
+            - @groups.each do |group|
+              .col-sm-4
+                .search-contact onclick="location.href='#{group_path(group)}';"
+                  .row
+                    .col-sm-2
+                      = image_tag group.avatar.url(:thumb), :class => 'avatar search-group-image'
+                    .col-sm-10
+                      .font-weight-900
+                        = group.name
+                      = group.scale  
+                      br
+                      = group.location  
+      - else
+        .p-l-40
+          = "No results found"    

@@ -1,0 +1,40 @@
+.search-contact{
+	height: 100px !important;
+	width: 100% !important;
+	background-color: #f7f4f2 !important;
+	padding: 20px 0 0 15px !important;
+	cursor: pointer;
+	margin-bottom: 15px !important;
+}
+
+.search-page{
+	margin: -20px 0 -52px 0 !important;
+	padding: 0 34px !important;
+	background-color: white !important;
+	border-left: 20px solid #f7f4f2 !important;
+	border-right: 20px solid #f7f4f2 !important;
+	min-height: 84vh !important;
+}
+
+.search-contacts, .search-projects, .search-groups{
+	padding: 30px 0 10px 0 !important;
+}
+
+
+
+.search-user-image{
+	max-width: 50px !important;
+	border-radius: 50% !important;
+}
+
+.search-project-image, .search-group-image{
+	max-width: 100% !important;
+	border-radius: 10% !important;
+}
+
+
+.search-see-all{
+	padding-right: 54px !important;
+	color: #ff7766 !important;
+	cursor: pointer;
+}

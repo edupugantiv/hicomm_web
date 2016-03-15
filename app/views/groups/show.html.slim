@@ -1,77 +1,259 @@
-h1
-  | Key Screen 6: Group Page
-table[width="100%"]
-  tr
-    td[width="25%"]
-      = image_tag @group.avatar.url(:thumb), :class => 'avatar'
-    td[width="25%"]
-      =@group.name
-      br
-      =@members.size
-      |  member(s)
-      br
-      |  Scale: 
-      =@group.scale
-      br
-      |  Location: 
-      =@group.location
-      br
-    td[width="25%"]
-      |  Contact: 
-      br
-      =link_to @group.group_leader.name, user_path(@group.group_leader)
-      |  / Project Manager 
-      br
-      =@group.group_leader.email
-      |  / 
-      =@group.group_leader.mobile
-      br
-    td[width="25%"]
-      - if can? :transfer_leadership, @group
-        =button_to "Manage Group", manage_group_path(@group), :method => 'get'
-      - elsif can? :leave, @group
-        =button_to "Leave Group", leave_group_path(@group), data: {confirm: "Are you sure you want to leave #{@group.name}?"}, :method => 'put'
-      - else
-        =button_to "Join Group", join_group_path(@group), :method => 'put'
-hr
-table[width="100%"]
-  tr
-    td[width="25%"]
-      - if can? :transfer_leadership, @group
-        =button_to "Add Members", add_group_members_path(@group)
-      |  Members: 
-      br
-      - @members.each do |member|
-        =link_to member.name, user_path(member)
+/!
+  h1
+    | Key Screen 6: Group Page
+  table[width="100%"]
+    tr
+      td[width="25%"]
+        = image_tag @group.avatar.url(:thumb), :class => 'avatar'
+      td[width="25%"]
+        =@group.name
         br
-    td[width="50%"]
-      |  Posts: 
-      br
-      - if @posts.empty?
-        i
-          =@group.name
-          |  has no posts
-        =render partial: 'posts/new'
-      - else
-        table.inbox[width="80%" border="1"]
-          - @posts.each do |post|
+        =@members.size
+        |  member(s)
+        br
+        |  Scale: 
+        =@group.scale
+        br
+        |  Location: 
+        =@group.location
+        br
+      td[width="25%"]
+        |  Contact: 
+        br
+        =link_to @group.group_leader.name, user_path(@group.group_leader)
+        |  / Project Manager 
+        br
+        =@group.group_leader.email
+        |  / 
+        =@group.group_leader.mobile
+        br
+      td[width="25%"]
+        - if can? :transfer_leadership, @group
+          =button_to "Manage Group", manage_group_path(@group), :method => 'get'
+        - elsif can? :leave, @group
+          =button_to "Leave Group", leave_group_path(@group), data: {confirm: "Are you sure you want to leave #{@group.name}?"}, :method => 'put'
+        - else
+          =button_to "Join Group", join_group_path(@group), :method => 'put'
+  hr
+  table[width="100%"]
+    tr
+      td[width="25%"]
+        - if can? :transfer_leadership, @group
+          =button_to "Add Members", add_group_members_path(@group)
+
+        |  Members: 
+        br
+        - @members.each do |member|
+          =link_to member.name, user_path(member)
+          br
+      td[width="50%"]
+        |  Posts: 
+        br
+        - if @posts.empty?
+          i
+            =@group.name
+            |  has no posts
+          =render partial: 'posts/new'
+        - else
+          table.inbox[width="80%" border="1"]
+            - @posts.each do |post|
+              tr
+                td
+                  =link_to post.poster.name, user_path(post.poster)
+                  | : 
+                  =post.body
+                  br
+                  =post.posted
             tr
               td
-                =link_to post.poster.name, user_path(post.poster)
-                | : 
-                =post.body
-                br
-                =post.posted
-          tr
-            td
-              = render partial: 'posts/new'
-    td[width="25%"]
-      |  Affiliated Projects: 
-      br
-      - if @projects.empty?
-        i
-          =@group.name
-          |  is not affiliated with any projects
-      - else
-        - @projects.each do |project|
-          =link_to project.name, project_path(:project_id => project, :conversation_id => project.conversations.first)
+                = render partial: 'posts/new'
+      td[width="25%"]
+        |  Affiliated Projects: 
+        br
+        - if @projects.empty?
+          i
+            =@group.name
+            |  is not affiliated with any projects
+        - else
+          - @projects.each do |project|
+            =link_to project.name, project_path(:project_id => project, :conversation_id => project.conversations.first)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.row.p-t-4
+  .col-md-offset-1.col-md-2
+    .group-img 
+      = image_tag @group.avatar.url(:medium)
+  .col-md-6
+    .row
+      .col-md-offset-2.col-md-10
+        h2.group-name 
+          b 
+            = @group.name
+    .row
+      .col-md-offset-2.col-md-10
+        h3.text-muted
+          = "#{@members.size} Member(s)"
+    .row
+      .col-md-offset-2.col-md-4
+        .row
+          .col-md-6
+            h3.text-muted Type
+          .col-md-6
+            h3  Type
+        .row
+          .col-md-6
+            h3.text-muted Location
+          .col-md-6
+            h3 
+              = @group.location
+        .row
+          .col-md-6
+            h3.text-muted Scale
+          .col-md-6
+            h3 
+              = @group.scale
+      .col-md-offset-1.col-md-5
+        .row
+          .col-md-4
+            h3.text-muted Contact
+          .col-md-8
+            h3 
+              =link_to @group.group_leader.name, user_path(@group.group_leader)
+        .row
+          .col-md-4
+          .col-md-8
+            h3 
+              =@group.group_leader.email
+        .row
+          .col-md-4
+          .col-md-8
+            h3 
+              =@group.group_leader.mobile
+  .col-md-3
+    / img alt="" src=asset_path('map2.jpg') class="groups-map"
+    .groups-map
+      iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA1SW3MPMF_i009FmEMzNfCj2NPhUk0Ixc&q=#{@group.location}"
+    
+
+    br/
+    - if can? :transfer_leadership, @group
+      =button_to "Manage", manage_group_path(@group), :method => 'get', :class => 'mng-button'
+    - elsif can? :leave, @group
+      =button_to "Leave Group", leave_group_path(@group), data: {confirm: "Are you sure you want to leave #{@group.name}?"}, :method => 'put', :class => 'mng-button'
+    - else
+      =button_to "Join Group", join_group_path(@group), :method => 'put', :class => 'mng-button'
+
+.row.m-30
+  .col-md-12
+    hr.group-silver-border
+  
+div.group-details-block 
+  .row
+    .col-md-8
+      .row
+        .col-md-1
+          h3.text-muted.group-projects-list Projects
+
+        .col-md-offset-9.col-md-2
+          p.group-projects-list-see-all  See All
+    .col-md-4
+      .row
+        .col-md-offset-2.col-md-4
+          h3.text-muted.group-members-list-header   Members
+        .col-md-offset-2.col-md-4
+          - if can? :transfer_leadership, @group
+            / =button_to "Add Members", add_group_members_path(@group), :class => 'add-button'
+            =button_to "Add Members", pick_group_members_path(@group), :method => 'get', :class => 'add-button'
+
+          .row
+            .col-md-8
+              p.group-members-list-header-see-all   See All
+  .row
+    .col-md-8
+      .row
+        - if @projects.empty?
+          .row.text-center
+            i
+              =@group.name
+              |  is not affiliated with any projects
+
+        - else
+          - @projects.each do |project| 
+            .col-md-6
+              .well.well-modified
+                .group-project-block
+                  a href=project_path(project)
+                    .row
+                      .col-md-3
+                        .decendent-well-active
+                          = image_tag project.avatar.url(:thumb)
+                      .col-md-offset-1.col-md-8
+                        h4.text-primary.heading-styles 
+                          = "@#{project.code}"
+                        br/
+                        h4.heading-styles 
+                          = project.name
+                        .row
+                          .col-md-6
+                            h4.heading-styles Type
+                          .col-md-6
+                            h4.heading-styles 
+                              = "project type"
+                        .row
+                          .col-md-6
+                            h4.heading-styles Location
+                          .col-md-6
+                            h4.heading-styles 
+                              = project.location
+                        .row
+                          .col-md-6
+                            h4.heading-styles Scale
+                          .col-md-6
+                            h4.heading-styles 
+                              = project.scale
+                    .row
+                      .col-md-12
+                        h3
+                          small
+                            | Description text goes here Nullam Cursus jthk lectus tristique pretium laoreet. Nullam Cursus
+                            | lectus tristique pretium laoreet jjrll oal ppol...
+    .col-md-1
+      .div-vertical.group-projects-members-separator  
+    .col-md-3
+      .row
+        .col-md-12
+          hr.group-member-border
+      .group-members
+        - @members.each do |member|
+          .row.m-t-30
+            .col-md-4
+              .div-rounded
+            .col-md-6
+              h3.groups-members-name
+                =link_to member.name, user_path(member)
+              h3.heading-styles.groups-members-location 
+                = member.location

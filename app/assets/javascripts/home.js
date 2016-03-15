@@ -14,14 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require turbolinks
-//= require jqcloud
-//= require Chart
 //= require jquery.readyselector
-//= require_tree ./application
 //= require_tree ./common
-
-
-$(document).ready(function() {
-    $(".dropdown-toggle").dropdown();
-});
-		

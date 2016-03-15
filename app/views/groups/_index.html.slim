@@ -1,0 +1,70 @@
+/!	
+	.well
+	  = button_to "Group Start", new_group_path, :method => 'get', :class => 'btn btn-primary center-block'
+	  h4.text-center My groups
+
+	  - current_user.groups.each do |group|
+		= link_to group.name, group_path(group)
+		p = group.scale
+	
+
+.groups-list
+  .row.text-center
+		= button_to "Group Start", new_group_path, :method => 'get', :class => 'add-conversation-button'
+  .row
+  	h3.m-t-20.text-center My Groups
+
+  .row
+		.no-wrap.m-t-30
+		  - if @groups.blank?
+				p 
+					You have no groups
+		  - else
+				- @groups.each do |group|
+					.group-block
+						= link_to group.name, group_path(group), :class => 'group-name'
+						br
+						= "#{group.users.count} Members"
+						.row
+							.col-sm-4.light-color
+								= "Type"
+							.col-sm-4
+								= "Type"
+						.row
+							.col-sm-4.light-color
+								= "Scale"
+							.col-sm-4
+								= group.scale
+						.row
+							.col-sm-4.light-color
+								= "Location"
+							.col-sm-4
+								= group.location
+  .row.suggestted-groups.b-t-2
+		.no-wrap.m-t-30.text-center
+			.explore
+				= "Explore"
+	  	- if @suggested_groups.blank?
+				p.text-center 
+					= "No suggested groups"
+	  	- else
+				- @suggested_groups.each do |group|
+					.suggested-group-block
+						= link_to group.name, group_path(group), :class => 'group-name'
+						br
+						= "#{group.users.count} Members"
+						.row
+							.col-sm-4.light-color
+								= "Type"
+							.col-sm-4
+								= "Type"
+						.row
+							.col-sm-4.light-color
+								= "Scale"
+							.col-sm-4
+								= group.scale
+						.row
+							.col-sm-4.light-color
+								= "Location"
+							.col-sm-4
+								= group.location

@@ -1,3 +1,3 @@
 = form_for @message, url: post_new_message_path(:id => @current_convo) do |f|
-  = f.text_area :body, rows: "3", class:"message-text-area"
+  = f.text_area :body, rows: "3", class:"message-text-area", :onkeypress=>"onTestChange()"
   =f.submit "Send", class:"message-send-button"

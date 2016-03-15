@@ -1,12 +1,37 @@
-=render partial: 'management'
-#section
-  h1
-    | Remove Participants
-  br
-  - if @participants.empty?
-    i
-      | There are no users to remove from your project at this time
-  - else
-    - @participants.each do |participant|
-      =link_to participant.name, user_path(participant)
-      =button_to "Remove User", remove_project_participant_path(:user_id => participant, :project_id => @project), :method => 'put'
+/!  
+  =render partial: 'management'
+  #section
+    h1
+      | Remove Participants
+    br
+    - if @participants.empty?
+      i
+        | There are no users to remove from your project at this time
+    - else
+      - @participants.each do |participant|
+        =link_to participant.name, user_path(participant)
+        =button_to "Remove User", remove_project_participant_path(:user_id => participant, :project_id => @project), :method => 'put'
+
+
+div.edit-profile-page
+  .row
+    .col-md-3
+      = render partial: 'management'
+    .col-md-offset-1.col-md-4
+      .form-elements
+        h1
+          Remove Participants
+        small Remove participants from 
+        = @project.name
+        br
+        .m-b-20
+        - if @participants.empty?
+          i
+            | There are no users to remove from your project at this time
+        - else
+          - @participants.each do |participant|
+            .row.m-b-20
+              .col-sm-5
+                =link_to participant.name, user_path(participant)
+              .col-sm-6  
+                =button_to "Remove User", remove_project_participant_path(:user_id => participant, :project_id => @project), :method => 'put', :class => 'button transfer-leadership-button'
