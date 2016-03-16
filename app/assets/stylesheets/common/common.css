@@ -1,7 +1,30 @@
 @media screen and (min-width: 1000px) {
+
+	
+	.main-body{
+		height: auto !important;
+		min-height: 100vh !important;
+	}
     .sign-in-block, .sign-up-block {
         float: right !important;        
     }
+
+    .search-box{
+    	/*padding-left: 20% !important;*/
+    }
+
+    .extra-header-links{
+    	float: right !important;
+    }
+
+
+}
+
+@media screen and (max-width: 1000px) and (min-width: 768px) {
+	.main-body{
+		min-height: 200vh !important;
+		height: auto !important;
+	}
 }
 
 
@@ -12,6 +35,10 @@
 
 .m-t-minus-30{
 	margin-top: -30px !important;
+}
+
+.m-t-minus-14{
+	margin-top: -14px !important;
 }
 
 .m-t-minus-32{
@@ -79,6 +106,11 @@
 	margin-right: 85px;
 }
 
+.m-h-minus-15{
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
 .m-t-94{
 	margin-top:94px;
 }
@@ -109,6 +141,7 @@
 .m-b-none{
     margin-bottom: 0px;
 }
+
 
 .m-b-10{
     margin-bottom: 10px;
@@ -172,9 +205,6 @@
 	margin-left: 15% !important;
 }
 
-.main-body{
-	min-height: 73vh;
-}
 
 .m-30{
 	margin: 30px !important;
@@ -216,7 +246,8 @@ a:hover{
 
 .glyphicon.glyphicon-envelope{
 	font-size: 24px !important;
-	margin-top: 40% !important;
+	padding-top: 14px !important;
+	left: -10px !important;
 }
 
 .p-l-16{
@@ -245,3 +276,54 @@ a:hover{
 .p-t-20{
 	padding-top: 20px !important;
 }
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+}
+
+
+
+
+
+.font-32{
+  font-size: 32px
+}
+  
+.font-14{
+  font-size: 14px
+}
+
+
+.center{
+  align-self: center
+}
+  
+
+.m-r-5{
+  margin-right: 5px
+}
+
+
+
+
+
+
+
+
+
+
+.home-header{
+    background-color: rgb(217,79,50) !important;
+    background-image: none !important;
+    border: 1px solid rgb(217,79,50) !important;
+    box-shadow: none !important;
+}
+
+.home-header > li {
+    background-color:  rgb(241, 43, 2) !important;
+    box-shadow: none !important;
+}
+
+.navbar-inverse .navbar-form, .navbar-right,.navbar-inverse .navbar-collapse{
+    box-shadow: none !important;
+    border-color: rgb(217,79,50) !important;
+}    

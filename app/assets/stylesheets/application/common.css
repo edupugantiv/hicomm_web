@@ -8,6 +8,62 @@ and open the template in the editor.
     Author     : vinaykumarv
 */
 
+@media(max-width:1000px)  {
+
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+
+    .navbar-collapse {
+        overflow-x: visible !important;
+    }
+
+    .navbar-collapse.in {
+      overflow-y: auto !important;
+    }
+
+    .collapse.in {
+      display: block !important;
+    }
+
+     .navbar-toggle {
+      display: block !important; 
+    } 
+     .navbar-header { 
+        width: 100%; height: 60px; 
+    }
+
+}
+
+
+/*
+@media (max-width: 1280px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}*/
+
 .header-background {
     margin-top: 10px;
     background-color: rgb(217,79,50) !important;
@@ -38,7 +94,7 @@ and open the template in the editor.
 }
 .container-fluid
 {
-    margin-top: 17px;
+    /*margin-top: 17px;*/
 }
 .form-style {
     margin: 25px;
@@ -143,8 +199,6 @@ padding-bottom:5px;
 .search-box{
     margin-top: 10px;
     margin-right: 0;
-    margin-left: 25px;
-    width: 25em !important; 
 }
 
 .search-submit-button{
@@ -187,7 +241,7 @@ padding-bottom:5px;
 
 .logout-btn{
     background-color: #ff8d00 !important;
-    margin-top: 10px;
+    margin-top: 6px;
     padding-bottom: 15px !important;
     border: none;
     border-radius: 15px;
@@ -254,6 +308,20 @@ padding-bottom:5px;
 
 
 .logo{
-    margin-left: 0px !important;
     padding-right: 55px !important;
+    /*margin-left: 0px !important;*/
+    /*padding-right: 55px !important;*/
+    /*float: left;*/
+    /*height: 50px;*/
+    /*font-size: 18px;*/
+    /*line-height: 20px;*/
+}
+
+#search{
+    width: 22em !important;
+}
+
+.search-block{
+    margin-top: -3px !important;
+    /*margin-left: 70px !important;*/
 }

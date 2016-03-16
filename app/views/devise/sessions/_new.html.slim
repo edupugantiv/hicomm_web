@@ -10,28 +10,28 @@
 
 /! body2
 .row.m-b-10
-  .col-md-12
-    .form-container.pull-right
+  .col-xs-12
+    .form-container.sign-in-block
       .login-form-style 
         h1.m-t-0
           small.f-24  Log in
         = form_for @user, url: user_session_path do |f|
           .form-group
             .row
-              .col-md-11
+              .col-xs-11
                 = f.text_field :mobile, placeholder: "Mobile Phone Number", class: "form-control", autofocus: true
-              .col-md-1.sign-up-text-box
+              .col-xs-1.sign-up-text-box
                 h1
                   small *
           .form-group
             .row
-              .col-md-11
+              .col-xs-11
                 = f.password_field :password, placeholder: "Password", class: "form-control"
-              .col-md-1.sign-up-text-box
+              .col-xs-1.sign-up-text-box
                 h1
                   small *
           .form-group
             .row.m-t-20
-              .col-md-offset-3.col-md-6
+              .col-xs-offset-3.col-xs-6
                 button.button-format Sign In
 

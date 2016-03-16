@@ -65,22 +65,77 @@
 
 
 
+/!
+  nav.navbar.m-t-minus-30
+    .container-fluid.header-background
+      /! Brand and toggle get grouped for better mobile display
+      .navbar-header
+        a.logo href=home_path 
+          img alt="" src=asset_path('logo.png') class="logo-style"
+        .navbar-form.navbar-left role="search" 
+          = form_tag search_path, :method => :get do
+            = text_field_tag "search", "", :class=>"form-control search-box"
+            
+            button.btn.btn-default.m-t-10.m-l-minus-7 type="submit" 
+              span.glyphicon.glyphicon-search
 
-nav.navbar.m-t-minus-30
-  .container-fluid.header-background
-    /! Brand and toggle get grouped for better mobile display
+    
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        ul.nav.navbar-nav.navbar-right.header-items
+          li
+            a href="#" 
+              span.glyphicon.glyphicon-bell title="#{notification_count} new notifications" data-badge="#{notification_count}" class="badge1"
+          li
+            a href=manage_user_path(current_user) 
+              span.glyphicon.glyphicon-cog class="edit-profile-link" title="Edit profile" 
+
+          li.dropdown
+            a.logout-btn.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" 
+              = current_user.first_name
+              = " "
+              span.caret
+            ul.dropdown-menu.logout-btn-drop-down
+              li
+                a.white-color href="#"  Action
+              li
+                a.white-color href="#"  Another action
+              li
+                a.white-color href=manage_user_path(current_user)  Edit Profile
+              li.divider.white-color role="separator" 
+              li
+                a.white-color data-method="delete" href="#{destroy_user_session_path}" rel="nofollow" Logout
+
+
+      /! /.navbar-collapse
+    /! /.container-fluid
+
+
+
+
+nav.navbar.navbar-inverse.home-header.m-h-minus-15 role="navigation" 
+  .container-fluid
+    /! add header
     .navbar-header
-      a.logo href=home_path 
-        img alt="" src=asset_path('logo.png') class="logo-style"
+      button.navbar-toggle data-target="#navbar1" data-toggle="collapse" type="button" 
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a href=home_path 
+        img alt="" src=asset_path('logo.png') class="logo-style logo"
+    
+    /! add menu
+    #navbar1.collapse.navbar-collapse
+   
       .navbar-form.navbar-left role="search" 
-        = form_tag search_path, :method => :get do
-          = text_field_tag "search", "", :class=>"form-control search-box"
-          
-          button.btn.btn-default.m-t-10.m-l-minus-7 type="submit" 
-            span.glyphicon.glyphicon-search
+        .input-group.search-block
+          = form_tag search_path, :method => :get do
+            = text_field_tag "search", "", :class=>"form-control search-box"
+            span.input-group-btn            
+              button.btn.btn-default.m-t-10.m-l-minus-7 type="submit" 
+                span.glyphicon.glyphicon-search
 
-  
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      
       ul.nav.navbar-nav.navbar-right.header-items
         li
           a href="#" 
@@ -105,6 +160,3 @@ nav.navbar.m-t-minus-30
             li
               a.white-color data-method="delete" href="#{destroy_user_session_path}" rel="nofollow" Logout
 
-
-    /! /.navbar-collapse
-  /! /.container-fluid

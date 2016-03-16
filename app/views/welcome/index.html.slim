@@ -16,8 +16,9 @@
 		.col-md-6
 		  .well
 		   	h3 Plan
-		   	p Our mission is to create an open, active, and collaborative network of communities, university groups, and service organizations in order to foster empowered and sustainable community partnerships that overcome development challenges.
- 
+		   	p HiComm empowers both communities and service organizations to communicate and exchange information through an accessible, low-cost, and networkable platform. We do this by combining a powerful web application with an SMS interface and subsidizing the cost of SMS messages sent from the field. By overcoming the burdens and expenditures associated with community development logistics, HiComm can assist organizations and communities overcome logistical barriers and focus on the task at hand. We believe that an open, active, and collaborative network of communities, non-profits, and universities, primary stakeholders involved in community development projects, fosters, empowers, and sustains community partnerships. 
+		   	<img src="<%= asset_path( 'plan.png' ) %>" />
+
 	.row
 		.col-md-6
 		  .well
@@ -25,33 +26,34 @@
 
 
 
-.row.m-h-85.m-t-94
-  .col-md-6
+.row.m-t-94.m-5-percentage.text-center
+  .col-md-6.col-xs-12.text-left
     /! body1
     h1
       small HiComm's Mission
     h3
       small.m-t-16
-        | Our mission is to create an open, active, and collaborative network of communities, 
-        | university groups, and service organizations in order to foster empowered and 
-        | sustainable community partnerships that overcome development challenges.
+        | Lorem Ipsum dolor sit amet, consectetur adipiscing elit.Eitum at sus-
+        | cipit metus. Donec at molestie arcu. Integer et leo ut nibh eleifend
+        | ornare nec quis libero. Nam nisl sapien, imperdiet finibus aliquam
+        | vitae, molestie id neque.In hac habitasse platea dictumst.Nulla facilisi.
+        | Nam magna mi, faucibus nec diam id, posuere finibus purus.
+        | Aliquam pretium nibh non dolor convallis blandit. Donec aliquam
+
     h1
-      small Plan
-        
+	  small Plan
     h3
       small.m-t-16
-        | HiComm empowers both communities and service organizations to communicate and 
-        | exchange information through an accessible, low-cost, and networkable platform. We 
-        | do this by combining a powerful web application with an SMS interface and 
-        | subsidizing the cost of SMS messages sent from the field. By overcoming the burdens 
-        | and expenditures associated with community development logistics, HiComm can assist 
-        | organizations and communities overcome logistical barriers and focus on the task at 
-        | hand. We believe that an open, active, and collaborative network of communities, non-
-        | profits, and universities, primary stakeholders involved in community development 
-        | projects, fosters, empowers, and sustains community partnerships.
-        
-    button.button-format.m-t-30  Learn More
-  .col-md-6
-    = render 'devise/sessions/new'
-    = render 'devise/registrations/new'
+	   	| HiComm empowers both communities and service organizations to communicate and exchange information through an accessible, low-cost, and networkable platform. We 
+	   	| do this by combining a powerful web application with an SMS interface and subsidizing the cost of SMS messages sent from the field. By overcoming the burdens 
+	   	| and expenditures associated with community development logistics, HiComm can assist organizations and communities overcome logistical barriers and focus on the 
+	   	| task at hand. We believe that an open, active, and collaborative network of communities, non-profits, and universities, primary stakeholders involved in 
+	   	| community development projects, fosters, empowers, and sustains community partnerships. 
+    
+    button.button-format.m-t-30.m-b-20  Learn More
+
+
+  .col-md-6.col-xs-12.sign-in-sign-up-block.centre
+  	= render 'devise/sessions/new'
+  	= render 'devise/registrations/new'
 

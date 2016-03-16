@@ -23,9 +23,9 @@
 			- @projects.each do |project|
 				.project-block
 					.row
-						.col-sm-3
+						.col-sm-3.col-xs-3.p-l-0
 							= image_tag project.avatar.url(:thumb), :class => 'avatar project-image'
-						.col-sm-8
+						.col-sm-8.col-xs-8
 							= link_to project.name, project_path(project), :class => 'project-name' 
 							p.m-b-none
 								a = "@#{project.code}"

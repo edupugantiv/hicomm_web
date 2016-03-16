@@ -1,54 +1,56 @@
-.row
-  .col-md-12
-    /! header
-    nav.navbar.navbar-default.header-padding
-      .container-fluid.header-background
-        /! Brand and toggle get grouped for better mobile display
-        .navbar-header
-          a.logo href=home_path 
-            img alt="Hicomm Web" src=asset_path('logo.png') class="logo-style"
-        /! Collect the nav links, forms, and other content for toggling
-        #bs-example-navbar-collapse-1.collapse.navbar-collapse
-          ul.nav.navbar-nav.navbar-right.header-items
-            li
-              a href="#"  ABOUT
-            li
-              a href="#"  PLAN
-            li
-              a href="#"  CONTACT US
-            li
-              a href="#"  LOGIN
-        /! /.navbar-collapse
-      /! /.container-fluid
-
-
-
 /!
-  nav.navbar.navbar-inverse.home-header role="navigation" 
-    .container-fluid
-      /! add header
-      .navbar-header
-        button.navbar-toggle data-target="#navbar1" data-toggle="collapse" type="button" 
-          span.sr-only Toggle navigation
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        a.logo href=home_path 
-          img alt="" src=asset_path('logo.png') class="logo-style"
-      
-      /! add menu
-      #navbar1.collapse.navbar-collapse
+  .row
+    .col-md-12
+      /! header
+      nav.navbar.navbar-default.header-padding
+        .container-fluid.header-background
+          /! Brand and toggle get grouped for better mobile display
+          .navbar-header
+            a.logo href=home_path 
+              img alt="Hicomm Web" src=asset_path('logo.png') class="logo-style"
+          /! Collect the nav links, forms, and other content for toggling
+          #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            ul.nav.navbar-nav.navbar-right.header-items.p-l-40
+              li
+                a href="#"  ABOUT
+              li
+                a href="#"  PLAN
+              li
+                a href="#"  CONTACT US
+              li
+                a href="#"  LOGIN
+          /! /.navbar-collapse
+        /! /.container-fluid
+
+
+
+nav.navbar.navbar-inverse.home-header role="navigation" 
+  .container-fluid
+    /! add header
+    .navbar-header
+      button.navbar-toggle data-target="#navbar1" data-toggle="collapse" type="button" 
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a href=home_path 
+        img alt="" src=asset_path('logo.png') class="logo-style logo"
+    
+    /! add menu
+    #navbar1.collapse.navbar-collapse.search-box
+      /!
         form.navbar-form.navbar-left role="search" 
           .input-group
             input.form-control placeholder=("Search this site") type="text" /
             span.input-group-btn
               button.btn.btn-default type="submit" 
                 span.glyphicon.glyphicon-search
-        ul.nav.navbar-nav
-          li
-            a href="#"  Home
-          li
-            a href="#"  About
-          li
-            a href="#"  Services
-        /! add search form
+      ul.nav.navbar-nav.extra-header-links.p-l-40
+        li
+          a href="#"  ABOUT
+        li
+          a href="#"  PLAN
+        li
+          a href="#"  CONTACT US
+        li
+          a href="#"  LOGIN
