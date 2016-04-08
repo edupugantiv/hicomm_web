@@ -1,13 +1,40 @@
-=render partial: 'management'
-#section
-  h1
-    | Remove Members
-  - if @members.empty?
-    i
-      |  There are no members to remove from your group at this time
-  - else
-    ol
-      - @members.each do |member|
-        li
-          =link_to member.name, user_path(member)
-          =button_to "Remove Member", remove_group_member_path(:user_id => member, :group_id => @group), :method => 'put'
+/!
+  =render partial: 'management'
+  #section
+    h1
+      | Remove Members
+    - if @members.empty?
+      i
+        |  There are no members to remove from your group at this time
+    - else
+      ol
+        - @members.each do |member|
+          li
+            =link_to member.name, user_path(member)
+            =button_to "Remove Member", remove_group_member_path(:user_id => member, :group_id => @group), :method => 'put'
+
+
+div.edit-profile-page
+  .row
+    .col-md-3
+      = render partial: 'management'
+    .col-md-offset-1.col-md-4
+      .form-elements
+        h1
+          Remove Members
+        small Remove Members from 
+        = @group.name
+        br
+        .m-b-20
+        - if @members.empty?
+          i
+            | There are no users to remove from your group at this time
+        - else
+          - @members.each do |member|
+            .row.m-b-20
+              .col-sm-5
+                =link_to member.name, user_path(member)
+              .col-sm-6  
+                =button_to "Remove User", remove_group_member_path(:user_id => member, :group_id => @group), :method => 'put', :class => 'button transfer-leadership-button'
+    .col-md-4.text-right
+        = link_to 'Back', manage_group_path(@group)

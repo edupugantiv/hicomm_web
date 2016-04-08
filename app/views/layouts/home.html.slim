@@ -3,10 +3,12 @@ layoutstml
   head
     title HiComm Web
     = stylesheet_link_tag 'home', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag href='https://fonts.googleapis.com/css?family=Raleway:500,900,200' , 'data-turbolinks-track' => true
+    = javascript_include_tag src='http://maps.google.com/maps/api/js?sensor=false'
     = javascript_include_tag 'home', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-  body
+  body onload="initialize()"
     = render 'welcome/header'
     .row#flash
       - flash.each do |type, message|

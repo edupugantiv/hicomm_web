@@ -1,11 +1,15 @@
 source 'https://rubygems.org'
-ruby '2.2.2'
+ruby '2.2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 
 # Use mysql as the database for Active Record
-gem 'mysql2'
+#gem 'mysql2'
+gem 'mysql2', '~> 0.3.18'
+
+# To avoid the following error TZInfo::DataSourceNotFound: No source of timezone data could be found. in windows environment
+gem 'tzinfo-data'
 
 # Use Slim for templating
 gem 'slim-rails'
@@ -27,6 +31,9 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
+# for css
+gem 'coffee-script-source', '1.8.0'
 
 # Use ChartJS as charting library (v1.0.2 stable)
 gem 'chart-js-rails'
@@ -56,7 +63,7 @@ gem 'faker'
 gem 'curb'
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

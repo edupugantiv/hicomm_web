@@ -3,8 +3,10 @@ layoutstml
   head
     title HiComm Web
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag href='https://fonts.googleapis.com/css?family=Raleway:500,900,200' , 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+
 
   /!
     body
@@ -29,6 +31,19 @@ layoutstml
       .row
         .col-md-12
           = render 'layouts/header'
+      .row#flash
+        - flash.each do |type, message|
+          - if type == 'notice'
+            - msg_type = 'success'
+          - elsif type == 'alert'
+            -msg_type = 'warning'
+          - elsif type == 'error'
+            -msg_type = 'danger'
+          .alert.alert-dismissible.text-center role="alert" class="alert-#{msg_type}" 
+            button.close data-dismiss="alert" type="button" 
+              span aria-hidden="true"  ×
+            = message.html_safe
+    
           
       .main-body
         = yield

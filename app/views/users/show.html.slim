@@ -7,7 +7,7 @@ table[width="100%"]
     td[width="50%"]
       =@user.name
       br
-      =@user.job_title
+      =@user.job
       br
       =@user.location
       br
@@ -17,12 +17,21 @@ table[width="100%"]
       =@user.mobile
       br
     td[width="25%"]
-      - if can? :update, @user
-        =button_to "Manage My Account", manage_user_path(@user), :method => 'get'
-      - elsif cannot? :add_colleague, @user
-        =button_to "Remove Contact", remove_contact_path(@user), :method => 'put'
+
+      - if current_user.is_admin?
+        - if @user.is_active?
+          = button_to "Disable", update_user_status_path(@user), :method => 'put', :class => 'manage-group-btn'
+        - else
+          = button_to "Enable", update_user_status_path(@user), :method => 'put', :class => 'manage-group-btn'
+
       - else
-        =button_to "Add Contact", add_contact_path(@user), :method => 'put'
+
+        - if can? :update, @user
+          =button_to "Manage My Account", manage_user_path(@user), :method => 'get'
+        - elsif cannot? :add_colleague, @user
+          =button_to "Remove Contact", remove_contact_path(@user), :method => 'put'
+        - else
+          =button_to "Add Contact", add_contact_path(@user), :method => 'put'
 hr
 table[width="100%"]
   tr

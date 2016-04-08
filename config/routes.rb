@@ -93,6 +93,9 @@ Rails.application.routes.draw do
   get 'search/groups' => 'search#groups', :as => 'groups_results'
 
 
+  put 'admin/:id/change_user_status' => 'admin#change_user_status', :as => 'update_user_status' 
+  put 'admin/:id/change_project_status' => 'admin#change_project_status', :as => 'update_project_status' 
+  put 'admin/:id/change_group_status' => 'admin#change_group_status', :as => 'update_group_status' 
 
 
 

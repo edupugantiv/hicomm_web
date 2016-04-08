@@ -20,7 +20,7 @@
 
 }
 
-@media screen and (max-width: 1000px) and (min-width: 768px) {
+@media screen and (max-width: 1000px) {
 	.main-body{
 		min-height: 200vh !important;
 		height: auto !important;
@@ -60,6 +60,13 @@
 	margin-top: 20px;
 }
 
+.m-t-25{
+	margin-top: 25px;
+}
+
+.m-l-0{
+	margin-left: 0px !important;
+}
 .p-t-4{
 	padding-top: 4px !important;
 }
@@ -86,11 +93,15 @@
 }
 
 .p-l-10-percentage{
-	padding-left: 20%;
+	padding-left: 10%;
 }
 
 .p-l-5-percentage{
 	padding-left: 5%;
+}
+
+.p-l-15-percentage{
+	padding-left: 15%;
 }
 
 .m-l-minus-7{
@@ -147,8 +158,17 @@
     margin-bottom: 10px;
 }
 
+.m-v-30{
+	margin-top: 30px !important;
+	margin-bottom: 30px !important;
+}
+
 .m-b-20{
     margin-bottom: 20px;
+}
+
+.m-b-30{
+    margin-bottom: 30px !important;
 }
 
 .m-t-60{
@@ -292,6 +312,16 @@ a:hover{
   font-size: 14px
 }
 
+  
+.font-20{
+  font-size: 20px
+}
+
+  
+.font-12{
+  font-size: 12px
+}
+
 
 .center{
   align-self: center
@@ -302,8 +332,32 @@ a:hover{
   margin-right: 5px
 }
 
+.height-500{
+	height: 500px !important;
+}
+
+.b-r-2{
+	border-right: 2px solid #ddd;
+}
+
+.b-l-2{
+	border-left: 2px solid #ddd;
+}
 
 
+.b-b-2{
+	border-bottom: 2px solid #ddd;
+}
+
+.b-t-2{
+	border-top: 2px solid #ddd;
+}
+
+
+
+.p-t-5{
+	padding-top: 5px !important;
+}
 
 
 

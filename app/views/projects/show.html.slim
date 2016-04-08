@@ -1,72 +1,79 @@
 .row
-  .col-sm-offset-1.col-sm-2
+  .col-md-offset-1.col-md-2.col-sm-4
     .project-img
-      = image_tag @project.avatar.url(:medium)
+      = image_tag @project.avatar.url(:medium), class: 'project-img-width'
 
 
-  .col-sm-6
-    .row
-      .col-sm-offset-2.col-sm-5
-        h2.text-muted.project-name
+  .col-md-6.col-sm-8.col-xs-12
+    .row.p-l-15-percentage
+      .col-md-offset-2.col-sm-6.col-md-5.col-xs-6
+        h3.text-muted.project-name
           b.no-wrap
             = @project.name
-      .col-sm-5
-        h3.text-muted
-    .row
-      .col-sm-offset-2.col-sm-10
-        h3.text-muted 
+      .col-sm-6.col-md-5.col-xs-6
+        h4.text-muted.m-t-20
           = "#{@participants.count} Members"
-    .row
-      .col-sm-offset-2.col-sm-4
+      .row
+      .col-md-offset-2.col-md-4.col-sm-6
         .row
-          .col-sm-6
-            h3.text-muted Type
-          .col-sm-6
-            h3  Type
+          .col-md-6.col-sm-6.col-xs-6
+            h4.text-muted Type
+          .col-md-6.col-sm-6.col-xs-6
+            h4  Type
         .row
-          .col-sm-6
-            h3.text-muted Location
-          .col-sm-6
-            h3 
+          .col-md-6.col-sm-6.col-xs-6
+            h4.text-muted Location
+          .col-md-6.col-sm-6.col-xs-6
+            h4 
               = @project.location
         .row
-          .col-sm-6
-            h3.text-muted Scale
-          .col-sm-6
-            h3 
+          .col-md-6.col-sm-6.col-xs-6
+            h4.text-muted Scale
+          .col-md-6.col-sm-6.col-xs-6
+            h4 
               = @project.scale
-      .col-sm-offset-1.col-sm-5
+      .col-md-offset-1.col-md-5.col-sm-6
         .row
-          .col-sm-4
-            h3.text-muted Contact
-          .col-sm-8
-            h3.no-wrap
+          .col-md-4.col-sm-4.col-xs-6
+            h4.text-muted Contact
+          .col-md-8.col-sm-8
+            h4.no-wrap.col-xs-6
               = @project_manager.name
         .row
-          .col-sm-4
-          .col-sm-8
-            h3 
+          .col-md-4.col-sm-4.col-xs-6
+          .col-md-8.col-sm-8.col-xs-6
+            h4 
               = @project_manager.email
         .row
-          .col-sm-4
-          .col-sm-8
-            h3 
+          .col-md-4.col-sm-4.col-xs-6
+          .col-md-8.col-sm-8.col-xs-6
+            h4 
               = @project_manager.mobile
-  .col-sm-3
-    - if can? :transfer_leadership, @project
-      = button_to "Manage Project", manage_project_path(@project), :method => 'get', :class => 'go-to-dashboard-button'
-    - elsif can? :leave, @project
-      = button_to "Leave Project", leave_path(@project), data: { confirm: "Are you sure you want to leave #{@project.name}?"}, :method => 'put', :class => 'go-to-dashboard-button'
-    - else
-      = button_to "Join Project", join_path(@project), :method => 'put', :class => 'go-to-dashboard-button'
-    = button_to "Go to dashboard", "dashboard", :method => 'get', :class => 'go-to-dashboard-button'
+
+  .col-md-3.col-sm-12.col-xs-12
+    .col-md-12.col-sm-3.col-xs-6
+      - if current_user.is_admin?
+        - if @project.is_active?
+          = button_to "Disable", update_project_status_path(@project.id), :method => 'put', :class => 'go-to-dashboard-button'
+        - else
+          = button_to "Enable", update_project_status_path(@project.id), :method => 'put', :class => 'go-to-dashboard-button'
+
+      - else
+        - if can? :transfer_leadership, @project
+          = button_to "Manage Project", manage_project_path(@project), :method => 'get', :class => 'go-to-dashboard-button'
+        - elsif can? :leave, @project
+          = button_to "Leave Project", leave_path(@project), data: { confirm: "Are you sure you want to leave #{@project.name}?"}, :method => 'put', :class => 'go-to-dashboard-button'
+        - else
+          = button_to "Join Project", join_path(@project), :method => 'put', :class => 'go-to-dashboard-button'
+    .col-md-12.col-sm-3.col-xs-6
+      = button_to "Go to dashboard", "dashboard", :method => 'get', :class => 'go-to-dashboard-button'
     
-.row.m-30
-  .col-sm-12
+.row.m-v-30
+  .col-md-12
     hr.project-details-bottom-border
-div.project-details-block
-  .row.m-30
-    .col-sm-3
+div.project-details-block.project-details-block-xs
+  .row.project-details-block-1
+    .col-md-3.col-sm-4.col-xs-12
       .row.text-center
         .f-24
           = "Message"
@@ -76,7 +83,7 @@ div.project-details-block
           = button_to "New Conversation", new_convo_path(@project), :method => 'get', :class => 'add-conversation-button'
 
       .row
-        .conversation-list.no-wrap
+        .conversation-list.no-wrap.m-b-30
           - if @conversations.empty?
             p = "#{@project.name} has no conversations"
           - else
@@ -88,36 +95,36 @@ div.project-details-block
               br
 
 
-    .col-sm-6
+    .col-md-6.col-sm-8.col-xs-12.p-0
       .conversation-detail
         = render partial: 'conversations/conversation', object: @current_convo
 
 
-    .col-sm-3.p-r-0
+    .col-md-3.col-sm-12.col-xs-12.p-r-0
       .row
-        .col-sm-offset-2.col-sm-4 
+        .col-md-offset.col-md-4.col-sm-4.col-xs-4 
           h3.text-muted.project-members-header  Members
-        .col-sm-offset-2.col-sm-4
-          - if can? :add_users, @project
-            = button_to "Add+", pick_project_users_path(@project), :method => 'get', :class => 'btn btn-info add-button'
-          .row
-            .col-sm-12
-              p.project-members-see-all   See All
-      .col-sm-12.p-r-0
+        .col-md-offset-2.col-md-4.col-sm-8.col-xs-8
+          .col-sm-6.col-md-12.col-xs-6
+            - if can? :add_users, @project
+              = button_to "Add+", pick_project_users_path(@project), :method => 'get', :class => 'btn add-button'
+          .col-xs-6.col-sm-6.col-md-12.m-t-25
+            p.project-members-see-all   See All
+      .col-md-12.p-r-0
         .row
-          .col-sm-12
+          .col-md-12
             hr.project-member-border
 
         .row.m-t-minus-30    
           - @participants.each do |participant|
-            .row.m-t-30.m-0
-              .col-sm-4.p-0
+            .participants-list.col-xs-12.col-sm-6.col-md-12.m-t-30.m-0.p-0
+              .col-xs-3.col-sm-3.col-md-4.p-0
                 .div-rounded
-              .col-sm-8.p-l-10-percentage
-                h3.project-members-name
+              .col-xs-9.col-sm-9.col-md-8.p-l-10-percentage
+                h4.project-members-name
                   b.no-wrap
                     = link_to participant.name, user_path(participant)
-                h3.heading-styles.silver-color  
+                h4.heading-styles.silver-color  
                   = participant.location
 
 

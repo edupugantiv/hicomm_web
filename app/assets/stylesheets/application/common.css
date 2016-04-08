@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : vinaykumarv
 */
 
-@media(max-width:1000px)  {
+@media(max-width:992px)  {
 
     .navbar-collapse.collapse {
         display: none !important;
@@ -36,33 +36,60 @@ and open the template in the editor.
 }
 
 
-/*
-@media (max-width: 1280px) {
-    .navbar-header {
-        float: none;
-    }
-    .navbar-toggle {
-        display: block;
-    }
-    .navbar-collapse {
-        border-top: 1px solid transparent;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-    .navbar-collapse.collapse {
-        display: none!important;
-    }
-    .navbar-nav {
-        float: none!important;
-        margin: 7.5px -15px;
-    }
-    .navbar-nav>li {
-        float: none;
-    }
-    .navbar-nav>li>a {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-}*/
+
+@media(max-width: 767px){
+
+  .navbar-header{
+    margin-left: 0px !important;
+  }
+
+
+  .request-page{
+      /*margin: -20px 0 -52px 0 !important;*/
+      padding: 0 !important;
+      background-color: white !important;
+      min-height: 84vh !important;
+}
+
+
+.request-block{
+    text-align: center;
+    height: 300px !important;
+    border-radius: 15px;
+    background-color: #f7f4f2 !important;
+    padding: 20px 0 0 15px !important;
+    margin-bottom: 15px !important;
+    display: block;
+    margin: auto;
+}
+
+  
+
+
+}
+
+@media(min-width: 768px){
+
+    .request-page{
+        /*margin: -20px 0 -52px 0 !important;*/
+        padding: 0 34px !important;
+        background-color: white !important;
+        min-height: 84vh !important;
+}
+
+
+  .request-block{
+      height: 180px !important;
+      border-radius: 15px;
+      background-color: #f7f4f2 !important;
+      padding: 20px 0 0 15px !important;
+      margin-bottom: 15px !important;
+      display: block;
+      margin: auto;
+  }
+
+}
+
 
 .header-background {
     margin-top: 10px;
@@ -246,12 +273,12 @@ padding-bottom:5px;
     border: none;
     border-radius: 15px;
     color: white;
+    background-image: none !important;
 }
 
 .logout-btn:hover, .logout-btn:focus{
     color: white !important;
 }
-
 
 
 .logout-btn-drop-down{
@@ -308,7 +335,7 @@ padding-bottom:5px;
 
 
 .logo{
-    padding-right: 55px !important;
+    /*padding-right: 55px !important;*/
     /*margin-left: 0px !important;*/
     /*padding-right: 55px !important;*/
     /*float: left;*/
@@ -324,4 +351,16 @@ padding-bottom:5px;
 .search-block{
     margin-top: -3px !important;
     /*margin-left: 70px !important;*/
+}
+
+
+.request-approve-button{
+    border: 2px solid rgb(238,82,35);
+    background-color: white;
+    color: rgb(238,82,35);
+    border-radius: 5px;
+    height: 43px;
+    margin: 10px 0;
+    width: 150px !important;
+
 }

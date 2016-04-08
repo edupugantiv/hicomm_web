@@ -14,6 +14,12 @@ class Project < ActiveRecord::Base
   after_create :create_project_wide_conversation
   after_create :assign_tag
 
+  after_create :send_request_to_admin
+
+  scope :active, -> { where(:is_active => true) }
+
+
+
 	def self.search(search)
   		where("name LIKE ?", "%#{search}%") - where(:privacy => "private")
   		#where("content LIKE ?", "%#{search}%")
@@ -36,4 +42,11 @@ class Project < ActiveRecord::Base
     update(:code => tag)
   end
 
+
+
+    private
+
+    def send_request_to_admin
+      NewProject.create(:project_id => self.id, :pending => true)
+    end  
 end

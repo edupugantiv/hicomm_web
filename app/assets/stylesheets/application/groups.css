@@ -1,3 +1,24 @@
+@media(max-width:767px)  {
+
+  .group-img-width{
+    all: inherit;
+  }
+
+
+  .group-details-block-xs{
+    margin: 45px 0px !important;
+    margin-top: -20px !important;
+    padding: 0px !important;
+  }
+}
+
+@media(min-width: 1200px){
+  .group-img-lg{
+    padding-left: 25% !important;
+  }
+
+}
+
 .panel-holder {
     height: 265px;
     width: 398px;
@@ -46,6 +67,11 @@ background-image:none;
     font-size: 13pt;
     margin-top: 34px;
 }
+
+.add-button:hover{
+  color: rgb(214,61,38) !important;   
+}
+
 .mng-button {
   margin-top:30px;
   background-color:rgb(238,82,35);
@@ -59,17 +85,18 @@ background-image:none;
 
 }
 
+.manage-group-btn {
+  margin-top:30px;
+  background-color:rgb(238,82,35);
+  font-size:14pt;
+  padding:9px;
+  color:white;
+  border:1px solid rgb(238,82,35);
+  border-radius:6px;
+  width:135px;
+  margin: 30px auto;  
+  display: block;
 
-.groups-map{
-  height: 200px !important;
-  width: 300px !important;
-}
-
-.group-img{
-  /*background-image:none;*/
-  height:250px;
-  width:320px;
-  
 }
 
 .group-name, .project-name{
@@ -80,16 +107,16 @@ background-image:none;
    border:3px solid silver !important;
 }
 
-.group-details-block, .project-details-block{
+.group-details-block{
   background-color:rgb(247,244,242);
   margin:45px;
   padding:65px;
-  margin-top: -55px;
+  margin-top: -20px;
 }
 
 .group-projects-list, .group-members-list-header{
   color: rgb(96,97,99) !important;
-  margin-left:86px !important;
+  /*margin-left:86px !important;*/
   margin-top: 46px !important;
 }
 
@@ -123,8 +150,11 @@ background-color: rgb(249,249,250) !important;
 }
 
 iframe{
-  width: 300px;
+  width: 100%;
   height: 200px;
+  display: block;
+  margin: 0 auto;
+  max-width: 350px !important;
 }
 
 .groups-members-name, .project-members-name{

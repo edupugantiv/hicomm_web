@@ -29,13 +29,13 @@
 
 
 .row.m-5-percentage 
-  .col-sm-9.m-t-20
+  .col-xs-9.col-sm-9.m-t-20
     .conversation-name.no-wrap
       = "#{conversation.name}"
     .conversation-members.no-wrap
-      span.glyphicon.glyphicon-user.grey-color 
+      span.glyphicon.glyphicon-user.grey-color
       = " #{conversation.users.map(&:first_name).join(',').truncate(40)}"
-  .col-sm-3.m-t-20
+  .col-xs-3.col-sm-3.m-t-20
     .pull-right
       /! = "Edit" 
       = link_to "Edit", view_convo_path(conversation)   
@@ -43,9 +43,9 @@
       .button.tag-btn 
         = " ..."
 .row.m-0
-  .col-sm-11.p-0
+  .col-xs-11.col-sm-11.p-0
     input.form-control placeholder="Search" type="text" class="search-box project-search-box" 
-  .col-sm-1.p-l-0
+  .col-xs-1.col-sm-1.p-l-0
     button.btn.btn-default.project-search-button.m-l-minus-7 type="submit" 
       span.glyphicon.glyphicon-search.project-search-glyphicon
 

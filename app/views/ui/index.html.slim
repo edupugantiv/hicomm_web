@@ -1,16 +1,4 @@
-.col-sm-3
-  = render 'projects/index'
-
-.col-sm-6
-	.h2.home-page-message-box-header
-		= "Message Inbox"
-	.home-page-message-block
-		- if @current_conversation.blank? || @project.blank?
-	 		= render partial: 'last_messages'
-	 	- else	
-	 		= render partial: 'conversation', object: @current_conversation
-
-
-.col-sm-3
-  = render 'groups/index'
-
+- if current_user.is_admin?
+	= render partial: 'admin'
+- else 
+	= render partial: 'user'

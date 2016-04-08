@@ -1,3 +1,83 @@
+@media(max-width:767px)  {
+
+	.project-img-width{
+		all: inherit;
+	}
+	
+	.project-details-block-xs{
+		margin: 45px 0px !important;
+		margin-top: -55px !important;
+	}
+}
+
+@media(max-width: 992px) and (min-width: 768px) {
+
+	.word-cloud{
+		margin-left: 30% !important;
+		
+	}	
+}
+
+
+
+@media(max-width: 767px) and (min-width: 500px) {
+
+	.word-cloud{
+		margin-left: 20% !important;
+		
+	}	
+}
+
+
+@media(max-width: 500px) {
+
+	.word-cloud{
+		margin-left: 10% !important;
+		
+	}	
+}
+
+@media(max-width: 1200px) and (min-width: 1000px){
+
+	.word-cloud{
+		margin-left: -9% !important;
+		
+	}		
+}
+
+@media(max-width: 1350px) and (min-width: 1200px){
+
+	.word-cloud{
+		margin-left: 3% !important;
+		
+	}		
+}
+
+@media(min-width: 1350px){
+
+	.word-cloud{
+		margin-left: 9% !important;
+		
+	}		
+}
+
+
+
+
+
+
+
+.project-details-block{
+  background-color:rgb(247,244,242);
+  margin:45px;
+  padding-top:25px;
+  margin-top: -55px;
+}
+
+.project-details-block-1{
+	margin: 30px 10px !important;
+}
+
 .add-conversation-button {
   margin-top:30px;
   background-color:rgb(238,82,35);
@@ -25,8 +105,12 @@
 }
 
 .conversation-name{
-	font-size: 24px;
+	font-size: 20px;
 	color: #1777cc;
+}
+
+.conversation-members{
+	font-size: 12px !important;
 }
 
 .tag-btn {
@@ -70,7 +154,7 @@
 	margin: 20px 0 0 35px; 
 	margin-top: 20px;
 	height: 220px !important;
-	width: 90% !important;
+	width: 88% !important;
 	background-color: white;
 	overflow-y: scroll;
 }
@@ -86,7 +170,7 @@
 
 .project-img{
   height:250px;
-  width:300px;
+  width:100%;
   
 }
 
@@ -118,7 +202,7 @@
 	color:rgb(214,61,38);
 	font-size:12pt;
 	margin-top:20px;
-	margin-left: 27px;
+	
 	margin-right: -27px;
 }
 
@@ -163,4 +247,11 @@
 
 .no-wrap{
 	white-space: nowrap;
+}
+
+
+#dashboard{
+	border-top: 2px solid #ddd;
+	margin: 30px 0px -65px 0px;
+	height: 500px !important"
 }

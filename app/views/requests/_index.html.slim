@@ -1,0 +1,201 @@
+.request-page
+  .row
+    h3
+      = "New Requests(#{@requests.count})" 
+
+
+  .row.search-contacts
+    .p-l-55
+      h4
+        = "New User Requests (#{@new_user_requests.count})"
+      .p-t-10
+      - if @new_user_requests.present?
+        - @new_user_requests.each do |request|
+	        .col-md-6.col-sm-10.col-sm-offset-1.col-md-offset-0.col-xs-12  
+	          .request-block
+	          	.col-md-6.col-sm-6.col-xs-12
+	              = "Name"
+	              .font-weight-900
+	                a href=user_path(request.user) #{request.user.name}
+	          	.col-md-6.col-sm-6.col-xs-12
+	              = button_to "Approve", approve_request_path(request), :method => 'put', :class => 'request-approve-button'
+	              = button_to "Decline", decline_request_path(request), :method => 'put', :class => 'request-approve-button'
+      - else
+      	= "No New User Requests"
+		                      
+
+
+
+  .row.search-contacts
+    .p-l-55
+      h4
+        = "New Project Requests (#{@new_project_requests.count})"
+      .p-t-10
+      - if @new_project_requests.present?
+        - @new_project_requests.each do |request|
+          .col-md-6.col-sm-10.col-sm-offset-1.col-md-offset-0.col-xs-12
+	          .request-block
+	          	.col-md-6.col-sm-6.col-xs-12
+		          	.col-md-12.col-sm-12.col-xs-12
+		              = "Project Name"
+		              .font-weight-900
+		                a href=project_path(request.project) #{request.project.name}
+		          	.col-xs-12.col-sm-12.col-md-12.p-t-10
+		          	.col-xs-12.col-sm-12.col-md-12
+			              = "Project Manager"
+			              .font-weight-900
+			              	a href=user_path(request.project.project_manager) #{request.project.project_manager.name}
+	          	.col-md-6.col-sm-6.col-xs-12
+	              = button_to "Approve", approve_request_path(request), :method => 'put', :class => 'request-approve-button'
+	              = button_to "Decline", decline_request_path(request), :method => 'put', :class => 'request-approve-button'
+      - else
+      	= "No New Project Requests"
+		                      
+
+    .row.search-contacts
+    .p-l-55
+      h4
+        = "New Group Requests (#{@new_group_requests.count})"
+      .p-t-10
+      - if @new_group_requests.present?
+        - @new_group_requests.each do |request|
+          .col-md-6.col-sm-10.col-sm-offset-1.col-md-offset-0.col-xs-12
+	          .request-block
+	          	.col-md-6.col-sm-6.col-xs-12
+		          	.col-md-12.col-sm-12.col-xs-12
+		              = "Group Name"
+		              .font-weight-900
+		                a href=group_path(request.group) #{request.group.name}
+		          	.col-xs-12.col-sm-12.col-md-12.p-t-10
+		          	.col-xs-12.col-sm-12.col-md-12
+			              = "Group Leader"
+			              .font-weight-900
+			                a href=user_path(request.group.group_leader) #{request.group.group_leader.name}
+	          	.col-md-6.col-sm-6.col-xs-12
+	              = button_to "Approve", approve_request_path(request), :method => 'put', :class => 'request-approve-button'
+	              = button_to "Decline", decline_request_path(request), :method => 'put', :class => 'request-approve-button'
+      - else
+      	= "No New Group Requests"
+		                      
+
+  
+
+  .row.search-contacts
+    .p-l-55
+      h4
+        = "Join Project Requests (#{@join_project_requests.count})"
+      .p-t-10
+      - if @join_project_requests.present?
+        - @join_project_requests.each do |request|
+          .col-md-6.col-sm-10.col-sm-offset-1.col-md-offset-0.col-xs-12
+	          .request-block
+	          	.col-md-6.col-sm-6.col-xs-12
+		          	.col-md-12.col-sm-12.col-xs-12
+		              = "Project Name"
+		              .font-weight-900
+		                a href=project_path(request.project) #{request.project.name}
+		          	.col-xs-12.col-sm-12.col-md-12.p-t-10
+	            		= "User Name"
+		            	.font-weight-900 
+		            		a href=user_path(request.user) #{request.user.name}
+		          	.col-xs-12.col-sm-12.col-md-12.p-t-10
+		              = "Project Manager"
+		              .font-weight-900
+		                a href=user_path(request.project.project_manager) #{request.project.project_manager.name}
+	          	.col-md-6.col-sm-6.col-xs-12
+	              = button_to "Approve", approve_request_path(request), :method => 'put', :class => 'request-approve-button'
+	              = button_to "Decline", decline_request_path(request), :method => 'put', :class => 'request-approve-button'
+      - else
+      	= "No Join Project Requests"
+
+  
+
+  .row.search-contacts
+    .p-l-55
+      h4
+        = "Join Group Requests (#{@join_group_requests.count})"
+      .p-t-10
+      - if @join_group_requests.present?
+        - @join_group_requests.each do |request|
+	        .col-md-6.col-sm-10.col-sm-offset-1.col-md-offset-0.col-xs-12
+	          .request-block
+	          	.col-md-6.col-sm-6.col-xs-12
+		          	.col-md-12.col-sm-12.col-xs-12
+		              = "Group Name"
+		              .font-weight-900
+		                a href=group_path(request.group) #{request.group.name}
+		          	.col-xs-12.col-sm-12.col-md-12.p-t-10
+	            		= "User Name"
+		            	.font-weight-900 
+		            		a href=user_path(request.user) #{request.user.name}
+		          	.col-xs-12.col-sm-12.col-md-12.p-t-10
+		              = "Group Leader"
+		              .font-weight-900
+		                a href=user_path(request.group.group_leader) #{request.group.group_leader.name}
+	          	.col-md-6.col-sm-6.col-xs-12
+	              = button_to "Approve", approve_request_path(request), :method => 'put', :class => 'request-approve-button'
+	              = button_to "Decline", decline_request_path(request), :method => 'put', :class => 'request-approve-button'
+      - else
+      	= "No Join Group Requests"
+  
+
+    
+
+  .row.search-contacts
+    .p-l-55
+      h4
+        = "Lead Project Requests (#{@lead_project_requests.count})"
+      .p-t-10
+      - if @lead_project_requests.present?
+        - @lead_project_requests.each do |request|
+	        .col-md-6.col-sm-10.col-sm-offset-1.col-md-offset-0.col-xs-12
+	          .request-block
+	          	.col-md-6.col-sm-6.col-xs-12
+		          	.col-md-12.col-sm-12.col-xs-12
+		              = "Project Name"
+		              .font-weight-900
+		                a href=project_path(request.project) #{request.project.name}
+		          	.col-xs-12.col-sm-12.col-md-12.p-t-10
+	            		= "User Name"
+		            	.font-weight-900 
+		            		a href=user_path(request.user) #{request.user.name}
+		          	.col-xs-12.col-sm-12.col-md-12.p-t-10
+		              = "Project Manager"
+		              .font-weight-900
+		                a href=user_path(request.project.project_manager) #{request.project.project_manager.name}
+	          	.col-md-6.col-sm-6.col-xs-12
+	              = button_to "Approve", approve_request_path(request), :method => 'put', :class => 'request-approve-button'
+	              = button_to "Decline", decline_request_path(request), :method => 'put', :class => 'request-approve-button'
+      - else
+      	= "No Lead Project Requests"
+
+
+
+
+  .row.search-contacts
+    .p-l-55
+      h4
+        = "Lead Group Requests (#{@lead_group_requests.count})"
+      .p-t-10
+      - if @lead_group_requests.present?
+        - @lead_group_requests.each do |request|
+	        .col-md-6.col-sm-10.col-sm-offset-1.col-md-offset-0.col-xs-12  
+	          .request-block
+	          	.col-md-6.col-sm-6.col-xs-12
+		          	.col-md-12.col-sm-12.col-xs-12
+		              = "Group Name"
+		              .font-weight-900
+		                a href=group_path(request.group) #{request.group.name}
+		          	.col-xs-12.col-sm-12.col-md-12.p-t-10
+	            		= "User Name"
+		            	.font-weight-900 
+		            		a href=user_path(request.user) #{request.user.name}
+		          	.col-xs-12.col-sm-12.col-md-12.p-t-10
+		              = "Group Leader"
+		              .font-weight-900
+		                a href=user_path(request.group.group_leader) #{request.group.group_leader.name}
+	          	.col-md-6.col-sm-6.col-xs-12
+	              = button_to "Approve", "approve_request_path(request)", :method => 'put', :class => 'request-approve-button'
+	              = button_to "Decline", "decline_request_path(request)", :method => 'put', :class => 'request-approve-button'
+      - else
+      	= "No New Project Requests"

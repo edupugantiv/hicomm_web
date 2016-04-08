@@ -56,7 +56,11 @@ class UsersController < ApplicationController
 	private 
 
 	def user_params 
-		params.require(:user).permit(:first_name, :last_name, :job, :location, :mobile, :email, :privacy, :avatar)
+		if current_user.is_admin?
+			params.require(:admin).permit(:first_name, :last_name, :job, :location, :mobile, :email, :privacy, :avatar)
+		else
+			params.require(:user).permit(:first_name, :last_name, :job, :location, :mobile, :email, :privacy, :avatar)
+		end	
 	end 
 
 	def account_update_params 

@@ -1,3 +1,5 @@
+require 'net/http'
+
 class Message <ActiveRecord::Base 
 	belongs_to :conversation 
 	belongs_to :sender, :class_name => "User"
@@ -25,3 +27,4 @@ class Message <ActiveRecord::Base
   end
 
 end 
+

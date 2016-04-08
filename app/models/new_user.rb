@@ -1,0 +1,2 @@
+class NewUser < Request
+end 

@@ -1,41 +1,139 @@
-h1
-  | Search Page Key Screen 7
-|  Users (
-=@users.size
-| )
-br
-- if @users.present?
-  - @users.each do |user|
-    =link_to user.name, user_path(user)
-    br
-- else
-  p
-    | There are no Users matching the term(s) 
-    = params[:search]
-    | .
-|  Projects (
-=@projects.size
-| )
-br
-- if @projects.present?
-  - @projects.each do |project|
-    =link_to project.name, project_path(:project_id => project, :conversation_id => project.conversations.first)
-    br
-- else
-  p
-    | There are no Projects matching the term(s) 
-    = params[:search]
-    | .
-|  Groups (
-=@groups.size
-| ) 
-br
-- if @groups.present?
-  - @groups.each do |group|
-    =link_to group.name, group_path(group)
-    br
-- else
-  p
-    | There are no Groups matching the term(s) 
-    = params[:search]
-    | .
+/!  
+  h1
+    | Search Page Key Screen 7
+  |  Users (
+  =@users.size
+  | )
+  br
+  - if @users.present?
+    - @users.each do |user|
+      =link_to user.name, user_path(user)
+      br
+  - else
+    p
+      | There are no Users matching the term(s) 
+      = params[:search]
+      | .
+  |  Projects (
+  =@projects.size
+  | )
+  br
+  - if @projects.present?
+    - @projects.each do |project|
+      =link_to project.name, project_path(:project_id => project, :conversation_id => project.conversations.first)
+      br
+  - else
+    p
+      | There are no Projects matching the term(s) 
+      = params[:search]
+      | .
+  |  Groups (
+  =@groups.size
+  | ) 
+  br
+  - if @groups.present?
+    - @groups.each do |group|
+      =link_to group.name, group_path(group)
+      br
+  - else
+    p
+      | There are no Groups matching the term(s) 
+      = params[:search]
+      | .
+
+
+.search-page
+  .row.p-l-40
+    h3
+      = "Search results for " 
+      b
+        = " #{@search_key}"
+
+
+  .search-contacts
+    .row.p-l-55
+      .col-sm-3
+        h4
+          = "Contacts (#{@users.count})"
+      .col-sm-9.text-right
+        h5
+          a.search-see-all
+            = "See all"    
+    .p-t-10
+      - if @users.present?
+        .p-l-13
+          .row
+            - @users.each do |user|
+              .col-sm-4
+                .search-contact onclick="location.href='#{user_path(user)}';"
+                  .row
+                    .col-sm-2
+                      = image_tag user.avatar.url(:thumb), :class => 'avatar search-user-image'
+                    .col-sm-10
+                      .font-weight-900
+                        = user.name
+                      = user.job  
+      - else
+        .p-l-40
+          = "No results found"    
+
+        
+  .search-projects
+    .row.p-l-55
+      .col-sm-3
+        h4
+          = "Projects (#{@projects.count})"
+      .col-sm-9.text-right
+        h5
+          a.search-see-all
+            = "See all"    
+    .p-t-10
+      - if @projects.present?
+        .p-l-13
+          .row
+            - @projects.each do |project|
+              .col-sm-4
+                .search-contact onclick="location.href='#{project_path(project)}';"
+                  .row
+                    .col-sm-2
+                      = image_tag project.avatar.url(:thumb), :class => 'avatar search-project-image'
+                    .col-sm-10
+                      .font-weight-900
+                        = project.name
+                      = project.scale  
+                      br
+                      = project.location  
+      - else
+        .p-l-40
+          = "No results found"    
+
+  
+  .search-groups
+    .row.p-l-55
+      .col-sm-3
+        h4
+          = "Groups (#{@groups.count})"
+      .col-sm-9.text-right
+        h5
+          a.search-see-all
+            = "See all"    
+
+    .p-t-10
+      - if @groups.present?
+        .p-l-13
+          .row
+            - @groups.each do |group|
+              .col-sm-4
+                .search-contact onclick="location.href='#{group_path(group)}';"
+                  .row
+                    .col-sm-2
+                      = image_tag group.avatar.url(:thumb), :class => 'avatar search-group-image'
+                    .col-sm-10
+                      .font-weight-900
+                        = group.name
+                      = group.scale  
+                      br
+                      = group.location  
+      - else
+        .p-l-40
+          = "No results found"    

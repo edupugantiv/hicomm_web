@@ -7,12 +7,27 @@ class Group < ActiveRecord::Base
   	has_many :posts
     validates_uniqueness_of :name, :message => "Sorry, this group name has already been taken"
 
+
     has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
     validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
+    after_create :send_request_to_admin
+
+    scope :active, -> { where(:is_active => true) }
+
+
+
+
 
   	def self.search(search)
   		return where("name LIKE ?", "%#{search}%") - where(:privacy => "private")
   		#where("content LIKE ?", "%#{search}%")
-	end
+	  end
+
+    private
+
+    def send_request_to_admin
+      NewGroup.create(:group_id => self.id, :pending => true)
+    end  
 
 end

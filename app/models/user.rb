@@ -10,10 +10,16 @@ class User < ActiveRecord::Base
 	has_many :contacts 
 	has_many :colleagues, :through => :contacts
 	validates_acceptance_of :terms_of_use
+  has_many :requests
 
 	has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
  	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   
+  after_create :send_request_to_admin
+
+  scope :active, -> { where(:is_active => true) }
+
+
 
 
 	def self.search(search)
@@ -36,5 +42,15 @@ class User < ActiveRecord::Base
   def full_number
     "#{country_code}#{mobile}"
   end
+
+  def is_admin?
+    self.type == 'Admin'
+  end  
+
+    private
+
+    def send_request_to_admin
+      NewUser.create(:user_id => self.id, :pending => true)
+    end  
 
 end 

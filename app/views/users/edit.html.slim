@@ -1,54 +1,3 @@
-/!  
-  =render partial: 'management'
-  #section
-    h1
-      | Edit Account
-    = form_for @user do |f|
-      .field
-        = f.label :first_name
-        br
-        = f.text_field :first_name, autofocus: true
-      .field
-        = f.label :last_name
-        br
-        = f.text_field :last_name
-      /!.field
-          = f.label :job_title
-          br
-          = f.text_field :job_title
-      .field
-        = f.label :location
-        br
-        = f.text_field :location
-      .field
-        = f.label :mobile
-        br
-        = f.text_field :mobile
-      .field
-        = f.label :email
-        br
-        = f.email_field :email
-      = f.label :avatar, "Profile Picture"
-      br
-      = f.file_field :avatar
-      br
-      |  Choose your privacy settings:
-      br
-      = f.label :privacy
-      br
-      = f.radio_button :privacy, "public", :checked => true
-      = f.label :privacy, "Public", :value => "public"
-      br
-      = f.radio_button :privacy, "semi-private"
-      = f.label :privacy, "Semi-Private", :value => "semi-private"
-      br
-      = f.radio_button :privacy, "private"
-      = f.label :privacy, "Private", :value => "private"
-      br
-      =f.submit
-
-
-
 div.edit-profile-page
   .row
     .col-md-3
@@ -57,7 +6,7 @@ div.edit-profile-page
       .form-elements
         h1
           small Edit Profile
-        = form_for @user do |f|
+        = form_for @user, url: user_path(@user) do |f|
           = f.text_field :first_name, placeholder: "First Name", class: "form-control"   
           = f.text_field :last_name, placeholder: "Last Name", class: "form-control"   
           = f.text_field :job, placeholder: "Job", class: "form-control"   
@@ -66,7 +15,7 @@ div.edit-profile-page
           = f.text_field :mobile, placeholder: "Mobile", class: "form-control"   
           label.m-t-10   Profile Picture
           div
-            input.m-t-10 type="file" /
+            = f.file_field :avatar
           p.m-t-10  Choose your privacy settings:
           br/
           b Privacy

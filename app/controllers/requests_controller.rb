@@ -1,4 +1,5 @@
 class RequestsController <ApplicationController 
+	
 	def new 
 		@request = Request.new
 	end 
@@ -10,18 +11,30 @@ class RequestsController <ApplicationController
 	def approve
 		@request = Request.find(params[:id])
 		@user = @request.user
+		@project = @request.project
+		@group = @request.group
+
 		if @request.type == 'JoinProject' 
-			@request.project.users << @user
-			@request.project.conversations.where(:name => "Project-Wide Conversation").users << @user
+			@project.users << @user
+			@project.conversations.find_by(:name => "Project-Wide Conversation").users << @user
 			@request.update_attributes(:pending => false)
 		elsif @request.type == 'LeadProject'
-			@request.project.update_attributes(:project_manager_id => @user.id)
+			@project.update_attributes(:project_manager_id => @user.id)
 			@request.update_attributes(:pending => false)
 		elsif @request.type == 'JoinGroup' 
-			@request.group.users << @user
+			@group.users << @user
 			@request.update_attributes(:pending => false)
-		else 
-			@request.group.update_attributes(:group_manager_id => @user.id) 
+		elsif @request.type == 'LeadGroup' 
+			@group.update_attributes(:group_manager_id => @user.id) 
+			@request.update_attributes(:pending => false)
+		elsif @request.type == 'NewUser'
+			@user.update(is_active: true)
+			@request.update_attributes(:pending => false)
+		elsif @request.type == 'NewProject'
+			@project.update(is_active: true)
+			@request.update_attributes(:pending => false)
+		elsif @request.type == 'NewGroup'
+			@group.update(is_active: true)
 			@request.update_attributes(:pending => false)
 		end 
 		redirect_to :back, notice: "Request Accepted"

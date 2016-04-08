@@ -20,4 +20,10 @@ table
         br
         =group.users.size
         |  member(s) 
-        = button_to "Join Group", join_group_path(group)
+        - if can? :transfer_leadership, group
+          =button_to "Manage", manage_group_path(group), :method => 'get', :class => 'mng-button'
+        - elsif can? :leave, group
+          =button_to "Leave Group", leave_group_path(group), data: {confirm: "Are you sure you want to leave #{@group.name}?"}, :method => 'put', :class => 'mng-button'
+        - else
+          =button_to "Join Group", join_group_path(group.id), :method => 'put', :class => 'mng-button'
+

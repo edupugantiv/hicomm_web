@@ -141,7 +141,7 @@ nav.navbar.navbar-inverse.home-header.m-h-minus-15 role="navigation"
           a href="#" 
             span.glyphicon.glyphicon-bell title="#{notification_count} new notifications" data-badge="#{notification_count}" class="badge1"
         li
-          a href=manage_user_path(current_user) 
+          a href=edit_user_path(current_user) 
             span.glyphicon.glyphicon-cog class="edit-profile-link" title="Edit profile" 
 
         li.dropdown
@@ -150,12 +150,13 @@ nav.navbar.navbar-inverse.home-header.m-h-minus-15 role="navigation"
             = " "
             span.caret
           ul.dropdown-menu.logout-btn-drop-down
+            /!
+              li
+                a.white-color href="#"  Action
+              li
+                a.white-color href="#"  Another action
             li
-              a.white-color href="#"  Action
-            li
-              a.white-color href="#"  Another action
-            li
-              a.white-color href=manage_user_path(current_user)  Edit Profile
+              a.white-color href=edit_user_path(current_user)  Edit Profile
             li.divider.white-color role="separator" 
             li
               a.white-color data-method="delete" href="#{destroy_user_session_path}" rel="nofollow" Logout

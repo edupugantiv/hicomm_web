@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   skip_before_action :authenticate_user!
+  
 
   def index
     if current_user
@@ -24,9 +25,10 @@ class WelcomeController < ApplicationController
   def search
     @results = []
     #if params[:search]
-    @users = User.search(params[:search])#.order("created_at DESC")
-    @projects = Project.search(params[:search])#.order("created_at DESC")
-    @groups = Group.search(params[:search])#.order("created_at DESC")
+    @search_key = params[:search]
+    @users = User.search(@search_key)#.order("created_at DESC")
+    @projects = Project.search(@search_key)#.order("created_at DESC")
+    @groups = Group.search(@search_key)#.order("created_at DESC")
     #else
       #@posts = Post.all.order('created_at DESC')
     #end

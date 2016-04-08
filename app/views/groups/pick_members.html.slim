@@ -1,13 +1,45 @@
-=render partial: 'management'
-#section
-  h1
-    | Add Members
-  - if @users.empty?
-    i
-      |  There are no users to add to your group at this time
-  - else
-    ol
-      - @users.each do |user|
-        li
-          =link_to user.name, user_path(user)
-          =button_to "Add", add_group_members_path(:group_id => @group, :user_id => user), :method => 'put'
+/! 
+  =render partial: 'management'
+  #section
+    h1
+      | Add Members
+    - if @users.empty?
+      i
+        |  There are no users to add to your group at this time
+    - else
+      ol
+        - @users.each do |user|
+          li
+            =link_to user.name, user_path(user)
+            =button_to "Add", add_group_members_path(:group_id => @group, :user_id => user), :method => 'put'
+
+
+
+
+
+div.edit-profile-page
+  .row
+    .col-md-3
+      = render partial: 'management'
+    .col-md-offset-1.col-md-4
+      .form-elements
+        h1
+          To Members
+        small Add Members to 
+        = @group.name
+        br
+        .m-b-20
+        - if @users.empty?
+          i
+            | There are no more users to add to your group at this time
+        - else
+          - @users.each do |user|
+            .row.m-b-10
+              .col-sm-5
+                =link_to user.name, user_path(user)
+              .col-sm-6
+                =button_to "Add", add_group_members_path(:group_id => @group, :user_id => user), :method => 'put', :class => 'transfer-leadership-button'
+            br
+
+    .col-md-4.text-right
+        = link_to 'Back', manage_group_path(@group)

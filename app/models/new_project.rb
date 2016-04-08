@@ -1,0 +1,2 @@
+class NewProject < Request
+end 

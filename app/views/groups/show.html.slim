@@ -103,97 +103,97 @@
 
 
 
-.row.p-t-4
-  .col-md-offset-1.col-md-2
-    .group-img 
-      = image_tag @group.avatar.url(:medium)
-  .col-md-6
-    .row
-      .col-md-offset-2.col-md-10
-        h2.group-name 
-          b 
+
+
+
+
+
+.row
+  .col-md-2.col-sm-4
+    .project-img
+      = image_tag @group.avatar.url(:medium), class: 'group-img-width group-img-lg'
+
+
+  .col-md-6.col-sm-8.col-xs-12
+    .row.p-l-15-percentage
+      .col-md-offset-2.col-sm-6.col-md-5.col-xs-6
+        h3.text-muted.project-name
+          b.no-wrap
             = @group.name
-    .row
-      .col-md-offset-2.col-md-10
-        h3.text-muted
-          = "#{@members.size} Member(s)"
-    .row
-      .col-md-offset-2.col-md-4
+      .col-sm-6.col-md-5.col-xs-6
+        h4.text-muted.m-t-20
+          = "#{@members.size} Members"
+      .row
+      .col-md-offset-2.col-md-4.col-sm-6
         .row
-          .col-md-6
-            h3.text-muted Type
-          .col-md-6
-            h3  Type
+          .col-md-6.col-sm-6.col-xs-6
+            h4.text-muted Type
+          .col-md-6.col-sm-6.col-xs-6
+            h4  Type
         .row
-          .col-md-6
-            h3.text-muted Location
-          .col-md-6
-            h3 
+          .col-md-6.col-sm-6.col-xs-6
+            h4.text-muted Location
+          .col-md-6.col-sm-6.col-xs-6
+            h4 
               = @group.location
         .row
-          .col-md-6
-            h3.text-muted Scale
-          .col-md-6
-            h3 
+          .col-md-6.col-sm-6.col-xs-6
+            h4.text-muted Scale
+          .col-md-6.col-sm-6.col-xs-6
+            h4 
               = @group.scale
-      .col-md-offset-1.col-md-5
+      .col-md-offset-1.col-md-5.col-sm-6
         .row
-          .col-md-4
-            h3.text-muted Contact
-          .col-md-8
-            h3 
-              =link_to @group.group_leader.name, user_path(@group.group_leader)
+          .col-md-4.col-sm-4.col-xs-6
+            h4.text-muted Contact
+          .col-md-8.col-sm-8
+            h4.no-wrap.col-xs-6.p-l-0
+              = @group.group_leader.name
         .row
-          .col-md-4
-          .col-md-8
-            h3 
-              =@group.group_leader.email
+          .col-md-4.col-sm-4.col-xs-6
+          .col-md-8.col-sm-8.col-xs-6
+            h4 
+              = @group.group_leader.email
         .row
-          .col-md-4
-          .col-md-8
-            h3 
-              =@group.group_leader.mobile
-  .col-md-3
-    / img alt="" src=asset_path('map2.jpg') class="groups-map"
-    .groups-map
-      iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA1SW3MPMF_i009FmEMzNfCj2NPhUk0Ixc&q=#{@group.location}"
-    
+          .col-md-4.col-sm-4.col-xs-6
+          .col-md-8.col-sm-8.col-xs-6
+            h4 
+              = @group.group_leader.mobile
 
-    br/
-    - if can? :transfer_leadership, @group
-      =button_to "Manage", manage_group_path(@group), :method => 'get', :class => 'mng-button'
-    - elsif can? :leave, @group
-      =button_to "Leave Group", leave_group_path(@group), data: {confirm: "Are you sure you want to leave #{@group.name}?"}, :method => 'put', :class => 'mng-button'
-    - else
-      =button_to "Join Group", join_group_path(@group), :method => 'put', :class => 'mng-button'
+  .col-md-4.col-sm-12.col-xs-12
+    .col-md-12.col-sm-6.col-xs-12
+      .groups-map
+        iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA1SW3MPMF_i009FmEMzNfCj2NPhUk0Ixc&q=#{@group.location}"
 
-.row.m-30
+    .col-md-12.col-sm-3.col-xs-12
+      - if current_user.is_admin?
+        - if @group.is_active?
+          = button_to "Disable", update_group_status_path(@group), :method => 'put', :class => 'manage-group-btn'
+        - else
+          = button_to "Enable", update_group_status_path(@group), :method => 'put', :class => 'manage-group-btn'
+
+      - else
+
+        - if can? :transfer_leadership, @group
+          =button_to "Manage", manage_group_path(@group), :method => 'get', :class => 'manage-group-btn'
+        - elsif can? :leave, @group
+          =button_to "Leave Group", leave_group_path(@group), data: {confirm: "Are you sure you want to leave #{@group.name}?"}, :method => 'put', :class => 'manage-group-btn'
+        - else
+          =button_to "Join Group", join_group_path(@group), :method => 'put', :class => 'manage-group-btn'
+  
+.row
   .col-md-12
     hr.group-silver-border
   
-div.group-details-block 
+div.group-details-block.group-details-block-xs
   .row
     .col-md-8
       .row
-        .col-md-1
+        .col-xs-9.col-sm-10
           h3.text-muted.group-projects-list Projects
 
-        .col-md-offset-9.col-md-2
+        .col-xs-3.col-sm-2
           p.group-projects-list-see-all  See All
-    .col-md-4
-      .row
-        .col-md-offset-2.col-md-4
-          h3.text-muted.group-members-list-header   Members
-        .col-md-offset-2.col-md-4
-          - if can? :transfer_leadership, @group
-            / =button_to "Add Members", add_group_members_path(@group), :class => 'add-button'
-            =button_to "Add Members", pick_group_members_path(@group), :method => 'get', :class => 'add-button'
-
-          .row
-            .col-md-8
-              p.group-members-list-header-see-all   See All
-  .row
-    .col-md-8
       .row
         - if @projects.empty?
           .row.text-center
@@ -203,57 +203,68 @@ div.group-details-block
 
         - else
           - @projects.each do |project| 
-            .col-md-6
+            .col-md-6.col-lg-6
               .well.well-modified
                 .group-project-block
                   a href=project_path(project)
                     .row
-                      .col-md-3
+                      .col-sm-4.col-xs-6.col-lg-5
                         .decendent-well-active
                           = image_tag project.avatar.url(:thumb)
-                      .col-md-offset-1.col-md-8
-                        h4.text-primary.heading-styles 
+                      .col-md-6.col-lg-7
+                        h5.text-primary.heading-styles 
                           = "@#{project.code}"
                         br/
-                        h4.heading-styles 
+                        h5.heading-styles 
                           = project.name
-                        .row
-                          .col-md-6
-                            h4.heading-styles Type
-                          .col-md-6
-                            h4.heading-styles 
-                              = "project type"
-                        .row
-                          .col-md-6
-                            h4.heading-styles Location
-                          .col-md-6
-                            h4.heading-styles 
-                              = project.location
-                        .row
-                          .col-md-6
-                            h4.heading-styles Scale
-                          .col-md-6
-                            h4.heading-styles 
-                              = project.scale
+                    .row    
+                      .col-xs-4.col-lg-4
+                        h5.heading-styles Type
+                      .col-xs-8.col-lg-8
+                        h5.heading-styles 
+                          = "project type"
+                      .col-xs-4.col-lg-4
+                        h5.heading-styles Location
+                      .col-xs-8.col-lg-8
+                        h5.heading-styles 
+                          = project.location
+                      .col-xs-4.col-lg-4
+                        h5.heading-styles Scale
+                      .col-xs-8.col-lg-8
+                        h5.heading-styles 
+                          = project.scale
                     .row
                       .col-md-12
-                        h3
+                        h4
                           small
                             | Description text goes here Nullam Cursus jthk lectus tristique pretium laoreet. Nullam Cursus
                             | lectus tristique pretium laoreet jjrll oal ppol...
-    .col-md-1
-      .div-vertical.group-projects-members-separator  
-    .col-md-3
+
+    .col-md-4.col-sm-12.col-xs-12.p-r-0
       .row
-        .col-md-12
-          hr.group-member-border
-      .group-members
-        - @members.each do |member|
-          .row.m-t-30
-            .col-md-4
-              .div-rounded
-            .col-md-6
-              h3.groups-members-name
-                =link_to member.name, user_path(member)
-              h3.heading-styles.groups-members-location 
-                = member.location
+        .col-md-offset.col-md-4.col-sm-4.col-xs-4 
+          h3.text-muted.project-members-header  Members
+        .col-md-offset-2.col-md-4.col-sm-8.col-xs-8
+          .col-sm-6.col-md-12.col-xs-6
+          - if can? :transfer_leadership, @group
+            =button_to "Add +", pick_group_members_path(@group), :method => 'get', :class => 'add-button'
+          .col-xs-6.col-sm-6.col-md-12.m-t-25
+            p.project-members-see-all   See All
+      .col-md-12.p-r-0
+        .row
+          .col-md-12
+            hr.project-member-border
+
+        .row.m-t-minus-30
+          - @members.each do |member|
+            .participants-list.col-xs-12.col-sm-6.col-md-12.m-t-30.m-0.p-0
+              .col-xs-3.col-sm-3.col-md-4.p-0
+                .div-rounded
+              .col-xs-9.col-sm-9.col-md-8.p-l-10-percentage
+                h4.project-members-name
+                  b.no-wrap
+                    = link_to member.name, user_path(member)
+                h4.heading-styles.silver-color  
+                  = member.location
+
+

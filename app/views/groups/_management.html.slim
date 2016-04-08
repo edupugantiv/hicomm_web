@@ -1,9 +1,40 @@
-#nav
-  =link_to "Edit Group", edit_group_path(@group), :method => 'get'
-  br
-  =link_to "Manage Members", manage_group_path(@group), :method => 'get'
-  br
-  =link_to "Transfer Leadership", transfer_group_leadership_path(@group), :method => 'get'
-  br
-  =link_to "Done", group_path(@group), :method => 'get'
-  br
+/!
+	#nav
+	  =link_to "Edit Group", edit_group_path(@group), :method => 'get'
+	  br
+	  =link_to "Manage Members", manage_group_path(@group), :method => 'get'
+	  br
+	  =link_to "Transfer Leadership", transfer_group_leadership_path(@group), :method => 'get'
+	  br
+	  =link_to "Done", group_path(@group), :method => 'get'
+	  br
+
+
+
+.list-group        
+
+  - if current_page?(action: "edit") && !params["id"].nil?
+    a.selected-tab
+      | Edit Group
+  - else   
+    a.list-group-item href=edit_group_path
+      | Edit Group
+
+  - if (current_page?(action: "manage_members") && !params["id"].nil?) || (current_page?(action: "pick_members") && !params["id"].nil?) || (current_page?(action: "remove_members") && !params["id"].nil?)
+    a.selected-tab
+      | Manage Members
+  - else   
+    a.list-group-item href=manage_group_path
+      | Manage Members
+
+  - if current_page?(action: "transfer_leadership") && !params["id"].nil?
+    a.selected-tab
+      | Transfer Leadership
+  - else   
+    a.list-group-item href=transfer_group_leadership_path
+      | Transfer Leadership
+
+
+  a.list-group-item href=group_path(@group)
+    | Done
+
