@@ -21,9 +21,9 @@ module Users
         resource.errors.full_messages.each {|x| flash[x] = x}
         redirect_to root_path
       end
-    end  
+    end
   end
-end 
+end
 
 
 

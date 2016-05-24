@@ -1,0 +1,37 @@
+.search-page
+  .row.p-l-40
+    h3
+      = "List of users in group" 
+      b
+        = " #{@group.name}"
+
+
+  .search-contacts
+    .row.p-l-55
+      .col-sm-3
+        h4
+          = "Users (#{@user_count})"
+      .col-sm-9.text-right
+        h5
+          a.search-see-all href="#{group_path(@group)}"
+            = "Back"
+    .p-t-10
+      - if @users.present?
+        .p-l-13
+          .row
+            - @users.each do |user|
+              .col-sm-4
+                .search-contact onclick="location.href='#{user_path(user)}';"
+                  .row
+                    .col-sm-2
+                      = image_tag user.avatar.url(:thumb), :class => 'avatar search-user-image'
+                    .col-sm-10
+                      .font-weight-900
+                        = user.name
+                      .row.m-h-0
+                        = user.job  
+                      .row.m-h-0
+                        = user.location
+      - else
+        .p-l-40
+          = "No participants in this group."    

@@ -1,0 +1,39 @@
+.col-md-4
+  .well.well-modified
+    .group-project-block
+      a href=project_path(project)
+        .row
+          .col-sm-4.col-xs-6.col-lg-5
+            .decendent-well-active
+              = image_tag project.avatar.url(:thumb)
+          .col-md-6.col-lg-7
+            h5.text-primary.heading-styles 
+              = "@#{project.code}"
+            br/
+            h5.heading-styles 
+              = project.name
+        .row    
+          .col-xs-4
+            h5.heading-styles Type
+          .col-xs-8
+            h5.heading-styles 
+              = "project type"
+        .row
+          .col-xs-4
+            h5.heading-styles Location
+          .col-xs-8
+            h5.heading-styles 
+              = project.location
+        .row
+          .col-xs-4
+            h5.heading-styles Scale
+          .col-xs-8
+            h5.heading-styles 
+              = project.scale
+        .row
+          .col-md-12
+            h4
+              small
+                | Description text goes here Nullam Cursus jthk lectus tristique pretium laoreet. Nullam Cursus
+                | lectus tristique pretium laoreet jjrll oal ppol...
+                

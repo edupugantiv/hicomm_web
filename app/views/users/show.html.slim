@@ -43,7 +43,7 @@ table[width="100%"]
         |  is not a participant in any projects 
       - else
         - @projects.each do |project|
-          =link_to project.name, project_path(:project_id =>project, :conversation_id => project.conversations.first)
+          =link_to project.name, project_path(:project_id =>project)
           br
     td[width="33%"]
       |  Groups: 

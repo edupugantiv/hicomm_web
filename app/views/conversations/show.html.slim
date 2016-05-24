@@ -1,17 +1,56 @@
-| Key Screen 3 - Main Message Page aka Converation Page 
-=link_to @project.name, project_path(:project_id =>@project, :conversation_id => @project.conversations.first)
-br
-= "\##{@conversation.code}:#{@conversation.name}"
-br
-- @conversers.each do |c|
-  =c.name
-br
-- if can? :add_users, @conversation
-  =button_to "Add Users", pick_convo_users_path(@conversation), :method => 'get'
-  br
-|  Messages: 
-- @messages.each do |message|
-  =message.sender.name
-  | : 
-  = message.body
-= render partial: "messages/new"
+/!
+	| Key Screen 3 - Main Message Page aka Converation Page 
+	=link_to @project.name, project_path(:project_id =>@project, :conversation_id => @project.conversations.first)
+	br
+	= "\##{@conversation.code}:#{@conversation.name}"
+	br
+	- @conversers.each do |c|
+	  =c.name
+	br
+	- if can? :add_users, @conversation
+	  =button_to "Add Users", pick_convo_users_path(@conversation), :method => 'get'
+	  br
+	|  Messages: 
+	- @messages.each do |message|
+	  =message.sender.name
+	  | : 
+	  = message.body
+	= render partial: "messages/new"
+
+
+- @current_convo = @conversation
+
+div.group-details-block.conversation-show-block-xs
+  .row
+  	h2
+  		b.no-wrap
+  			= link_to @conversation.project_name.capitalize, project_path(@conversation.project)
+    .col-md-7.col-sm-12.col-xs-12.p-0
+      .conversation-detail
+        = render partial: 'conversations/conversation', object: @current_convo
+
+    .col-xs-offset-1.col-md-4.col-sm-12.col-xs-12.p-r-0
+      .row
+        .col-md-offset.col-md-4.col-sm-4.col-xs-4 
+          h3.text-muted.project-members-header  Members
+        .col-md-offset-2.col-md-4.col-sm-8.col-xs-8
+          .col-sm-6.col-md-12.col-xs-6
+            =button_to "Add +", pick_convo_users_path(@conversation), :method => 'get', :class => 'add-button'
+      .col-md-12.p-r-0
+        .row
+          .col-md-12
+            hr.project-member-border
+
+        .row.m-t-minus-30
+          - @conversers.each do |converser|
+            .participants-list.col-xs-12.col-sm-6.col-md-12.m-t-30.m-0.p-0
+              .col-xs-3.col-sm-3.col-md-4.p-0
+                .div-rounded
+              .col-xs-9.col-sm-9.col-md-8.p-l-10-percentage
+                h4.project-members-name
+                  b.no-wrap
+                    = link_to converser.name, user_path(converser)
+                h4.heading-styles.silver-color  
+                  = converser.location
+
+

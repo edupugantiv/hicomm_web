@@ -1,0 +1,14 @@
+- if notification.is_read
+	.notification-body-read
+		b
+			= "#{notification.subject}"
+		p
+			= auto_link(notification.body)
+- else
+	.notification-body-not-read
+		b
+			= "#{notification.subject}"
+		img alt="Mark as Read" src=asset_path('ok.png') class = "mark-as-read#{notification.id} mark-as-read pull-right" title="Mark as Read"  onclick="return markAsRead(event)"
+		p
+			= auto_link(notification.body)
+

@@ -2,6 +2,11 @@ class Conversation < ActiveRecord::Base
 	has_and_belongs_to_many :users, join_table: "conversers"
 	belongs_to :project
 	has_many :messages
+  delegate :code, :name, :to => :project, :prefix => true
+
+
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
 
   after_create :assign_tag
 
@@ -15,5 +20,16 @@ class Conversation < ActiveRecord::Base
       update(:code => tags.sample)
     end
   end
+
+  private
+    def slug_candidates
+      project = self.project.slug
+      [
+        :name,
+        [:name, :code],
+        [:name, :code, :project]
+      ]
+    end
+
 
 end

@@ -10,7 +10,7 @@ Rails.application.configure do
   config.eager_load = false
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local       = false
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
@@ -36,6 +36,20 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+
+
+  
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+
+    config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test  # :production when you will use a real Pro Account
+    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+        login: "hicomm.test.1-facilitator_api1.gmail.com",
+        password: "G54HTPSNRNWNTLQT",
+        signature: "AFcWxV21C7fd0v3bYYYRCpSSRl31A5df5kJutyOk1.Cc.MPPWScB-pYe"
+    )
+  end
+
 end

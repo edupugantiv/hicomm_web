@@ -1,0 +1,13 @@
+.row.p-l-90
+  h2
+    = "Your Projects"
+.row.m-60
+  - if @projects.empty?
+    .row.text-center
+      i
+        = "You are not associated with any projects."
+  - else
+    #projects-index
+      = render @projects
+#paginator.paginator.paginator-xs
+  = paginate @projects,:window => 1,:remote => true

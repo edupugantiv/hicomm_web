@@ -33,10 +33,10 @@
     var marker = new google.maps.Marker({
         position: position,
         map: map,
-        title:"This is the place."
+        title:"Hicomm"
     });  
  
-    var contentString = 'Hello <strong>World</strong>!';
+    var contentString = '<strong>Hicomm</strong>';
     var infowindow = new google.maps.InfoWindow({
         content: contentString
     });
@@ -44,6 +44,106 @@
     google.maps.event.addListener(marker, 'click', function() {
       infowindow.open(map,marker);
     });
- 
+
+
   }
  
+
+function isMobile(evt)
+{
+  var charCode = (evt.which) ? evt.which : evt.keyCode;
+  if (charCode != 46 && charCode !=43 && charCode > 31 
+    && (charCode < 48 || charCode > 57))
+     return false;
+
+  return true;
+} 
+
+
+function terms(event)
+{
+  if ($('#TermsOfService').prop('checked') == true)
+  {
+    if ($('#authentication-code-error').val() == 'true')
+    {
+        $('#submit-registration-form').removeAttr('disabled');
+    }
+  }
+  if ($('#TermsOfService').prop('checked') == false)
+  {
+    $('#submit-registration-form').attr('disabled','disabled');
+  }
+}
+
+
+function sendAuthenticationCode() {
+
+  var phoneNumber = $('#signup-user-mobile').val();
+  var countryCode = $('#user_country').val();
+  if (phoneNumber.length == 10)
+  {
+      $.ajax({
+        data: {phoneNumber: phoneNumber, countryCode: countryCode},
+        type: 'post',
+        url: '/welcome/send_authentication_code', 
+        success: function(response) {
+          $('#send-authentication-code-error').text('');          
+          $('#authentication-code-error').text('');          
+          if (response.status == 'success')
+          {
+            $('.send-authentication-code-block').fadeOut(500);
+            $('.authenticate-code-block').removeClass('hide');
+            $('.authenticate-code-block').fadeIn(500);
+            $('#authentication-code-error').css('color', 'green');
+            $('#authentication-code-error').text('Please enter the recieved code.');          
+          }
+          else
+          {
+            $('#send-authentication-code-error').css('color', 'red');
+            $('#send-authentication-code-error').text(response.message)          
+          }
+        }
+      });
+  }
+  else
+  {
+    $('#send-authentication-code-error').css('color', 'red');
+    $('#send-authentication-code-error').text('Please enter a valid mobile number.')
+    return false;
+  }
+}
+
+
+function authenticateCode() {
+
+    var code = $('#code').val();
+    var phoneNumber = $('#signup-user-mobile').val();
+    var countryCode = $('#user_country').val();
+
+    $.ajax({
+      data: {phoneNumber: phoneNumber,countryCode: countryCode,code: code},
+      type: 'post',
+      url: '/welcome/authenticate_code',
+      success: function(response) {
+        if (response.status == 'success')
+        {
+          $('#authentication-code-error').val('true')
+          $('.authenticate-code-block').addClass('hide');
+          $('#authentication-code-error').css('color', 'green');
+          $('#authentication-code-error').text('Success');
+
+          if ($('#TermsOfService').prop('checked') == true)
+            {
+              $('#submit-registration-form').removeAttr('disabled');
+            }
+        }
+
+
+      else
+      {
+          $('#authentication-code-error').css('color', 'red');
+          $('#authentication-code-error').text('Wrong code. Please try again.')
+      }
+    }
+
+})}

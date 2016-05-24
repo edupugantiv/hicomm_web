@@ -1,6 +1,18 @@
-| New Conversation 
-= form_for @conversation, :url => create_new_convo_path(@project) do |f|
-  = f.label "Conversation name:"
-  = f.text_field :name
-  br
-  =f.submit
+/!
+	| New Conversation 
+	= form_for @conversation, :url => create_new_convo_path(@project) do |f|
+	  = f.label "Conversation name:"
+	  = f.text_field :name
+	  br
+	  =f.submit
+
+
+div.new-group-page
+  .row
+    .col-md-3
+    .col-md-6
+      .form-elements.text-center
+        h2 New Conversation
+        = form_for @conversation, :url => create_new_convo_path(@project) do |f|
+          = f.text_field :name, placeholder: "Conversation Name", class: "form-control m-t-50", required: true   
+          button.button-format.m-t-30  Submit

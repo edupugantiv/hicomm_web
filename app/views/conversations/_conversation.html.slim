@@ -27,7 +27,7 @@
 
 
 
-
+          
 .row.m-5-percentage 
   .col-xs-9.col-sm-9.m-t-20
     .conversation-name.no-wrap
@@ -36,12 +36,13 @@
       span.glyphicon.glyphicon-user.grey-color
       = " #{conversation.users.map(&:first_name).join(',').truncate(40)}"
   .col-xs-3.col-sm-3.m-t-20
-    .pull-right
-      /! = "Edit" 
-      = link_to "Edit", view_convo_path(conversation)   
-      div.m-5  
-      .button.tag-btn 
-        = " ..."
+    - if @conversation != conversation
+      .pull-right
+        /! = "Edit" 
+        = link_to "Edit", view_convo_path(conversation)
+        div.m-5  
+        =button_to "...", view_convo_path(conversation), :class => 'button tag-btn', :method => 'get'
+
 .row.m-0
   .col-xs-11.col-sm-11.p-0
     input.form-control placeholder="Search" type="text" class="search-box project-search-box" 
@@ -50,12 +51,11 @@
       span.glyphicon.glyphicon-search.project-search-glyphicon
 
 
-
 .row
   .messages-list
     - colors = ['#cac8d6', '#d9eaf1']
     - index = 0
-    - conversation.messages.each do |message|
+    - @messages.each do |message|
       - index = index +1
       - random_color = colors[index%2]
 
@@ -65,7 +65,7 @@
         - if message.sender == current_user
           = "You"
         - else
-          = message.sender.first_name
+          = message.sender_first_name
       
   .send.message-send
     - if can? :leave, conversation.project

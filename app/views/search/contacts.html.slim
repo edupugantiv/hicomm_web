@@ -28,7 +28,10 @@
                     .col-sm-10
                       .font-weight-900
                         = user.name
-                      = user.job  
+                      .row.m-h-0
+                        = user.job  
+                      .row.m-h-0
+                        = user.location
       - else
         .p-l-40
           = "No results found"    

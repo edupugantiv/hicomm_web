@@ -1,0 +1,44 @@
+.col-sm-6.col-md-4
+  .group-index-item onclick="location.href='#{group_path(group)}';"
+    .row
+      .col-xs-4.col-sm-4.col-md-3
+        = image_tag group.avatar.url(:thumb), :class => 'avatar search-group-image'
+      .col-xs-8.col-sm-8.col-md-9
+        h3 
+          = group.name.capitalize
+      .col-xs-12.m-t-30
+        .row
+          .col-xs-4
+            .font-weight-500
+              | Group Leader:   
+          .col-xs-8
+              | #{group.group_leader.name}
+        .row
+          .col-xs-4
+            | Group Location: 
+          .col-xs-8
+            = group.location 
+        .row
+          .col-xs-4
+            | Affiliations:
+          .col-xs-8
+            - if !group.projects.blank?
+              - projects = ''
+              - group.projects.each do |project|
+                - projects += "#{project.name},"
+              = projects.chop.truncate(30)
+            - else 
+              = "Not affiliated to any projects yet."
+        .row
+          .col-xs-4
+            | No. of Members
+          .col-xs-8
+            = group.users.size
+            |  member(s) 
+        .group-index-join-btn.text-center
+          - if can? :transfer_leadership, group
+            = button_to "Manage", manage_group_path(group), :method => 'get', :class => 'group-index-mng-button'
+          - elsif can? :leave, group
+            = button_to "Leave Group", leave_group_path(group), data: {confirm: "Are you sure you want to leave #{group.name}?"}, :method => 'put', :class => 'group-index-mng-button'
+          - else
+            = button_to "Join Group", join_group_path(group.id), :method => 'put', :class => 'group-index-mng-button'

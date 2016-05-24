@@ -15,10 +15,12 @@
   .row
   	h3.m-t-20.text-center My Projects
   .row
-	.no-wrap.m-t-30
+	h5 
+		= link_to "See All", projects_path, :class => "home-page-projects-see-all"
+  .row
+	.no-wrap
 	  - if @projects.blank?
-			p 
-				You have no projects
+			p.text-center	You have no projects
 	  - else
 			- @projects.each do |project|
 				.project-block
@@ -36,7 +38,7 @@
 							p.m-b-none
 							 = project.location
 					.row
-						- project.conversations.each do |conversation|
+						- project.conversations.limit(3).each do |conversation|
 							- if conversation == @current_convo
 							  = "\##{conversation.code}:#{conversation.name}"
 							- else

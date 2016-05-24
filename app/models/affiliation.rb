@@ -1,4 +1,4 @@
-class Affiliation <ActiveRecord::Base 
-	belongs_to :group
+class Affiliation < ActiveRecord::Base
+  belongs_to :group
 	belongs_to :project
 end 

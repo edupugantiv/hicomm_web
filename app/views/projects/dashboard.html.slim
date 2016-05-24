@@ -38,17 +38,17 @@
             h4.text-muted Contact
           .col-md-8.col-sm-8
             h4.no-wrap.col-xs-6.p-l-0
-              = @project.project_manager.name
+              = @project.project_manager_name
         .row
           .col-md-4.col-sm-4.col-xs-6
           .col-md-8.col-sm-8.col-xs-6
             h4 
-              = @project.project_manager.email
+              = @project.project_manager_email
         .row
           .col-md-4.col-sm-4.col-xs-6
           .col-md-8.col-sm-8.col-xs-6
             h4 
-              = @project.project_manager.mobile
+              = @project.project_manager_mobile
 
   .col-md-3.col-sm-12.col-xs-12
     .col-md-12.col-sm-3.col-xs-6.pull-right
@@ -65,7 +65,10 @@
         - elsif can? :leave, @project
           = button_to "Leave Project", leave_path(@project), data: { confirm: "Are you sure you want to leave #{@project.name}?"}, :method => 'put', :class => 'go-to-dashboard-button'
         - else
-          = button_to "Join Project", join_path(@project), :method => 'put', :class => 'go-to-dashboard-button'
+          - if @join_request_sent
+            =button_to "Request Sent", '#', :class => 'go-to-dashboard-button btn', disabled: 'disabled'
+          - else
+            = button_to "Join Project", join_path(@project), :method => 'put', :class => 'go-to-dashboard-button'
 
 .row.m-v-30
   .col-sm-12

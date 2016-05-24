@@ -24,12 +24,14 @@
 
 .search-user-image{
 	max-width: 50px !important;
+	max-height: 50px !important;
 	border-radius: 50% !important;
 }
 
 .search-project-image, .search-group-image{
 	max-width: 100% !important;
 	border-radius: 10% !important;
+	
 }
 
 

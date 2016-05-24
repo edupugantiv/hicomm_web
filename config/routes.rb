@@ -1,11 +1,24 @@
 Rails.application.routes.draw do
+  get 'errors/not_found'
+
+  get 'errors/internal_server_error'
+
   devise_for :users, :controllers => { :sessions => "users/sessions", :registrations => "users/registrations"}
 
   
   resources :users, only: [:show, :edit, :update]
   resources :conversations
   resources :messages
+  resources :projects, only: [:index]
   resources :groups
+  resources :requests
+  resources :notifications, only: [:index]
+  
+  # resources :cards, only: [:create]
+
+  match "/404", :to => "errors#not_found", :via => :all
+  match "/500", :to => "errors#internal_server_error", :via => :all
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -19,6 +32,7 @@ Rails.application.routes.draw do
   post 'incoming' => 'api#receive'
 
   get 'projects/:id/edit' => 'projects#edit', as: 'edit_project'
+  get 'projects/:id/list_of_users' => 'projects#list_of_users', as: 'all_participants'
   #put 'projects/:id/conversations/:id' => 'projects#update', as: 'update_project'
   get 'projects/new' => 'projects#new', as: 'new_project'
   post 'projects' => 'projects#create'
@@ -26,6 +40,8 @@ Rails.application.routes.draw do
   get 'welcome/home' => 'welcome#home', as: 'welcome'
   get 'groups/home' => 'groups#index'
   get 'groups/new' => 'groups#new'
+  get 'groups/:id/list_of_users' => 'groups#list_of_users', as: 'all_members'
+  get 'groups/:id/associated_projects' => 'groups#associated_projects', as: 'associated_projects'
   put 'projects/:id/join' => 'projects#join', as: 'join'
   put 'projects/:id/leave' => 'projects#leave', as: 'leave'
   get 'projects/:id/conversations/new' => 'conversations#new', as: 'new_convo'
@@ -51,16 +67,16 @@ Rails.application.routes.draw do
 
   get 'users/:id/manage' => 'users#manage', as: 'manage_user'
 
+
   get 'projects/:id/manage' => 'projects#manage_participants', as: 'manage_project'
   get 'projects/:id/remove_participants' => 'projects#remove_participants', as: 'remove_project_participants'
   put 'projects/:id/remove' => 'projects#remove_participant', as: 'remove_project_participant'
   get 'projects/:id/transfer_leadership' => 'projects#transfer_leadership', as: 'transfer_project_leadership'
   post 'projects/:id/new_leader' => 'projects#new_leader', as: 'new_leader'
 
-  post 'requests' => 'requests#create', as: 'create_request'
-
   put 'requests/:id/approve' => 'requests#approve', as: 'approve_request'
   put 'requests/:id/decline' => 'requests#decline', as: 'decline_request'
+  put 'requests/:id/cancel_request' => 'requests#cancel_request', as: 'cancel_request'
   
   get 'projects/:id/add_affiliations' => 'projects#add_affiliations', as: 'add_affiliations'
   put 'projects/:id/affiliate' => 'projects#affiliate', as: 'affiliate'
@@ -83,7 +99,7 @@ Rails.application.routes.draw do
   get 'conversations/:id/posts/new' => 'posts#create', as: 'new_post'
   post 'conversations/:id/posts' => 'posts#create', as: 'create_post'
 
-  get 'notifications' => 'welcome#notifications', as: 'notifications'
+  # get 'notifications' => 'welcome#notifications', as: 'notifications'
   get 'projects/:id/change_plan' => 'projects#change_plan', as: 'change_project_plan'
   
 
@@ -97,6 +113,26 @@ Rails.application.routes.draw do
   put 'admin/:id/change_project_status' => 'admin#change_project_status', :as => 'update_project_status' 
   put 'admin/:id/change_group_status' => 'admin#change_group_status', :as => 'update_group_status' 
 
+  get 'welcome/contact_us' => 'welcome#contact_us', :as => 'contact_us'
+  get 'welcome/about_us' => 'welcome#about_us', :as => 'about_us'
+  get 'welcome/plan' => 'welcome#plan', :as => 'plan'
+  post 'welcome/send_authentication_code' => 'welcome#send_authentication_code', :as => 'send_authentication_code'
+  post 'welcome/authenticate_code' => 'welcome#authenticate_code', :as => 'authenticate_code'
+  
+  put 'notifications/mark_as_read' => 'notifications#mark_as_read', :as => 'mark_as_read'
+  put 'notifications/mark_all_as_read' => 'notifications#mark_all_as_read', :as => 'mark_all_as_read'
+  
+
+  # get 'payments/:id/pay' => 'payments#pay', :as => 'pay'
+  # post 'payments/:id/pay_amount' => 'payments#pay_amount', :as => 'pay_amount'
+  # post 'paypal_hook' => 'payments#paypal_hook', :as => 'paypal_hook'
+  # post 'paypal_notification' => 'payments#paypal_notification', :as => 'paypal_notifications'
+
+  resources :passwords do
+    collection do
+      put 'change_password', as: :change
+    end
+  end
 
 
   #put  'projects/:id/conversations/:id' => 'conversations#update', as: 'update_convo'

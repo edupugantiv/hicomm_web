@@ -1,0 +1,19 @@
+.row
+	.col-md-3
+	.col-md-6
+		.notifications-header
+			.row
+				.col-xs-8.col-sm-6	
+					h3
+						= "All Notifications"
+				.col-xs-4.col-sm-6	
+					.mark-all-as-read.pull-right title="Mark All as Read" onclick="return markAllAsRead(event)"
+						= "Mark All as Read"
+		.notifications-list
+		    #notifications-index
+	      	= render @notifications
+	.col-md-3
+.row
+	#paginator.paginator.paginator-xs
+	  = paginate @notifications,:window => 1,:remote => true
+

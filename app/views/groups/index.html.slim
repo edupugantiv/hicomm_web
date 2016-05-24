@@ -1,29 +1,44 @@
-p#notice
-  = notice
-h1
-  | Explore
-table
-  - @groups.each do |group|
-    tr
-      td
-        =link_to group.name, group_path(group)
-        br
-        |  Group Leader: 
-        =group.group_leader.name
-        br
-        |  Location: 
-        =group.location
-        br
-        |  Affiliations: 
-        - group.projects.each do |project|
-          =project.name
-        br
-        =group.users.size
-        |  member(s) 
-        - if can? :transfer_leadership, group
-          =button_to "Manage", manage_group_path(group), :method => 'get', :class => 'mng-button'
-        - elsif can? :leave, group
-          =button_to "Leave Group", leave_group_path(group), data: {confirm: "Are you sure you want to leave #{@group.name}?"}, :method => 'put', :class => 'mng-button'
-        - else
-          =button_to "Join Group", join_group_path(group.id), :method => 'put', :class => 'mng-button'
+/!
+  p#notice
+    = notice
+  h1
+    | Explore
+  table
+    - @groups.each do |group|
+      tr
+        td
+          =link_to group.name, group_path(group)
+          br
+          |  Group Leader: 
+          =group.group_leader.name
+          br
+          |  Location: 
+          =group.location
+          br
+          |  Affiliations: 
+          - group.projects.each do |project|
+            =project.name
+          br
+          =group.users.size
+          |  member(s) 
+          - if can? :transfer_leadership, group
+            =button_to "Manage", manage_group_path(group), :method => 'get', :class => 'mng-button'
+          - elsif can? :leave, group
+            =button_to "Leave Group", leave_group_path(group), data: {confirm: "Are you sure you want to leave this group?"}, :method => 'put', :class => 'mng-button'
+          - else
+            =button_to "Join Group", join_group_path(group.id), :method => 'put', :class => 'mng-button'
 
+
+.row.p-l-90
+  h2
+    = "Your Groups"
+.row.m-60
+  - if @groups.empty?
+    .row.text-center
+      i
+        = "You are not associated with any groups."
+  - else
+    #groups-index
+      = render @groups
+#paginator.paginator.paginator-xs
+  = paginate @groups,:window => 1,:remote => true          

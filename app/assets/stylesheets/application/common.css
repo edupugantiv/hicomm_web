@@ -187,26 +187,6 @@ a.list-group-item:hover {
     color:rgb(215,110,68);
     background-color: rgb(244,175,127);
 }
-.form-elements input[type=text] {
-    margin-top:8px;
-    height: 45px;
-}
-::-webkit-input-placeholder {
- font-size: 15px;
- color: #d0cdfa;
-}
-::-moz-input-placeholder {
- font-size: 18px;
- color: #d0cdfa;
-}
-::-input-placeholder {
- font-size: 18px;
- color: #d0cdfa;
-}
-::-ms-input-placeholder {
- font-size: 18px;
- color: #d0cdfa;
-}
 .fa-lg {
     color:rgb(163,32,32);
     font-size: 35px;
@@ -239,14 +219,8 @@ padding-bottom:5px;
     background-color:rgb(247,244,242);
     margin:45px;
     padding:65px;
-    margin-top: -26px;
+    
  }
-
-
-.form-elements input[type=password] {
-    margin-top:8px;
-    height: 45px;
-}
 
 
 

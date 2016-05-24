@@ -1,4 +1,4 @@
-class Conversers <ActiveRecord::Base 
-	belongs_to :user 
-	belongs_to :conversation 
-end 
+class Conversers <ActiveRecord::Base
+	belongs_to :user
+	belongs_to :conversation
+end

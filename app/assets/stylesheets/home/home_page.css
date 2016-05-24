@@ -81,6 +81,15 @@
     border-radius: 5px;
     font-size: 20px;
 }
+
+.send-authentication-btn {
+    background-color: rgb(217,79,50);
+    height: 40px;
+    color: white;
+    border: 2px solid #e62e00;
+    border-radius: 5px;
+    font-size: 20px;
+}
 .button-format-inverse {
     background-color: #969493;
     height: 40px;
@@ -102,16 +111,6 @@
     height:220px !important;
     margin-bottom: 20px !important;
 } 
-
-
-
-
-
-
-
-
-
-
 
 
 .sign-in-sign-up-block{
@@ -136,3 +135,6 @@
   width: 100%
 }
 
+.main-body-home{
+    min-height: 72vh !important;
+}

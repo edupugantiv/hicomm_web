@@ -6,7 +6,7 @@
         .container-fluid.header-background
           /! Brand and toggle get grouped for better mobile display
           .navbar-header
-            a.logo href=home_path 
+            a.logo href=home_path
               img alt="Hicomm Web" src=asset_path('logo.png') class="logo-style"
           /! Collect the nav links, forms, and other content for toggling
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
@@ -24,32 +24,32 @@
 
 
 
-nav.navbar.navbar-inverse.home-header role="navigation" 
+nav.navbar.navbar-inverse.home-header role="navigation"
   .container-fluid
     /! add header
     .navbar-header
-      button.navbar-toggle data-target="#navbar1" data-toggle="collapse" type="button" 
+      button.navbar-toggle data-target="#navbar1" data-toggle="collapse" type="button"
         span.sr-only Toggle navigation
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a href=home_path 
+      a href=root_path
         img alt="" src=asset_path('logo.png') class="logo-style logo"
-    
+
     /! add menu
     #navbar1.collapse.navbar-collapse.search-box
       /!
-        form.navbar-form.navbar-left role="search" 
+        form.navbar-form.navbar-left role="search"
           .input-group
             input.form-control placeholder=("Search this site") type="text" /
             span.input-group-btn
-              button.btn.btn-default type="submit" 
+              button.btn.btn-default type="submit"
                 span.glyphicon.glyphicon-search
       ul.nav.navbar-nav.extra-header-links.p-l-40
         li
-          a href="#hicomm-mission"  ABOUT
+          a href=about_us_path  ABOUT US
         li
-          a href="#plan"  PLAN
+          a href=plan_path  PLAN
         li
-          a href="#contact-us"  CONTACT US
+          = link_to('CONTACT US', contact_us_path, 'data-no-turbolink' => true)
         

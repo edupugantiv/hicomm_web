@@ -24,7 +24,7 @@
   .home-page-messages-list
     - colors = ['#cac8d6', '#d9eaf1']
     - index = 0
-    - conversation.messages.each do |message|
+    - @messages.each do |message|
       - index = index +1
       - random_color = colors[index%2]
 
@@ -34,7 +34,7 @@
         - if message.sender == current_user
           = "You"
         - else
-          = message.sender.first_name
+          = message.sender_first_name
       
   .send.message-send
     - if can? :leave, conversation.project

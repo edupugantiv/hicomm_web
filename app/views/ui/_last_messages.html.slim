@@ -1,13 +1,13 @@
 - @projects.each do |project|
-	- if !project.messages.blank?
+	- if !project.messages.includes(:sender).blank?
 		.last-message onclick="location.href='#{home_path(:project_id => project, :conversation_id => project.messages.last.conversation)}';"
 			.row.font-weight-900
 				.col-sm-1.col-xs-1.text-center.home-page-message-icon-block.p-r-0
-					span.glyphicon.glyphicon-envelope.grey-color 
+					span.glyphicon.glyphicon-envelope.grey-color.home-page-message-icon 
 				.col-sm-10.col-xs-10.m-t-10
 					.row.no-wrap
 						.col-sm-4.col-xs-4
-							= User.find(project.messages.last.sender_id).first_name	
+							= project.messages.last.sender.first_name	
 						.col-sm-4.col-xs-4	
 							= project.name 
 							a = " 	@#{project.code}"

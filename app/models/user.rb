@@ -11,16 +11,26 @@ class User < ActiveRecord::Base
 	has_many :colleagues, :through => :contacts
 	validates_acceptance_of :terms_of_use
   has_many :requests
+  has_many :join_projects
+  has_many :join_groups
+  has_many :lead_groups
+  has_many :lead_projects
+  has_many :new_users
+  has_many :new_groups
+  has_many :new_projects
+  has_many :notifications
+
+  has_many :subscriptions
 
 	has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
  	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
   
   after_create :send_request_to_admin
 
   scope :active, -> { where(:is_active => true) }
-
-
-
 
 	def self.search(search)
   		return where("first_name LIKE ? OR last_name LIKE ?", "%#{search}%", "%#{search}%") - where(:privacy => "private")
@@ -47,10 +57,58 @@ class User < ActiveRecord::Base
     self.type == 'Admin'
   end  
 
-    private
+  def total_requests_count
+    if !self.is_admin?
+      self.requests_by_me[:requests_by_me_count] + self.requests_to_me[:requests_to_me_count]
+    end
+  end 
+
+  def requests_by_me
+    join_group_requests = JoinGroup.pending.where(:request_by => self.id)
+    join_project_requests = JoinProject.pending.where(:request_by => self.id)
+    lead_group_requests = LeadGroup.pending.where(:request_by => self.id)
+    lead_project_requests = LeadProject.pending.where(:request_by => self.id)
+
+    requests_by_me_count = join_group_requests + join_project_requests + lead_group_requests + lead_project_requests
+    requests_by_me = {:join_group_requests => join_group_requests, :join_project_requests => join_project_requests, 
+    :lead_group_requests => lead_group_requests, :lead_project_requests => lead_project_requests, 
+    :requests_by_me_count => requests_by_me_count.size}
+  end
+
+  def requests_to_me
+    join_group_requests = JoinGroup.pending.where(:request_to => self.id)
+    join_project_requests = JoinProject.pending.where(:request_to => self.id)
+    lead_group_requests = LeadGroup.pending.where(:request_to => self.id)
+    lead_project_requests = LeadProject.pending.where(:request_to => self.id)
+
+    requests_to_me_count = join_group_requests + join_project_requests + lead_group_requests + lead_project_requests
+    requests_to_me = {:join_group_requests => join_group_requests, :join_project_requests => join_project_requests, 
+    :lead_group_requests => lead_group_requests, :lead_project_requests => lead_project_requests, 
+    :requests_to_me_count => requests_to_me_count.size}
+  end
+
+  def managed_projects
+    self.projects.where(project_manager_id: self.id)
+  end
+
+  def managed_groups
+    self.groups.where(group_leader_id: self.id)
+  end
+
+  private
 
     def send_request_to_admin
-      NewUser.create(:user_id => self.id, :pending => true)
+      NewUser.create(:user_id => self.id, :request_by => self.id, :request_to => Admin.first.id, :pending => true)
     end  
+
+    def slug_candidates
+      [
+        :name,
+        [:name, :location],
+        [:name, :location, :country],
+        [:name, :location, :country, :job]
+      ]
+    end
+
 
 end 

@@ -7,12 +7,12 @@ div.edit-profile-page
         h1
           small Edit Profile
         = form_for @user, url: user_path(@user) do |f|
-          = f.text_field :first_name, placeholder: "First Name", class: "form-control"   
-          = f.text_field :last_name, placeholder: "Last Name", class: "form-control"   
-          = f.text_field :job, placeholder: "Job", class: "form-control"   
-          = f.text_field :location, placeholder: "Location", class: "form-control"   
-          = f.text_field :email, placeholder: "Email", class: "form-control"   
-          = f.text_field :mobile, placeholder: "Mobile", class: "form-control"   
+          = f.text_field :first_name, placeholder: "First Name", class: "form-control"
+          = f.text_field :last_name, placeholder: "Last Name", class: "form-control" 
+          = f.text_field :job, placeholder: "Job", class: "form-control"
+          = f.text_field :location, placeholder: "Location", class: "form-control"
+          = f.text_field :email, placeholder: "Email", class: "form-control"
+          = f.text_field :mobile, placeholder: "Mobile", class: "form-control"
           label.m-t-10   Profile Picture
           div
             = f.file_field :avatar

@@ -1,70 +1,76 @@
-class UsersController < ApplicationController 
+class UsersController < ApplicationController
 	before_action :authenticate_user!
-	def show 
-		@user = User.find(params[:id])
-		if @user == current_user 
+	before_filter :verify_current_user, only: [:edit, :update, :manage]
+	
+	def show
+		@user = User.includes(:projects, :groups, :colleagues).friendly.find(params[:id])
+		if current_user.slug == params[:id]
 			@projects = @user.projects
 			@groups = @user.groups
 			@contacts = @user.colleagues
-		else 
+		else
 			@projects = @user.projects - Project.where(:privacy => "private")
 			@groups = @user.groups - Group.where(:privacy => "private")
 			@contacts = @user.colleagues - User.where(:privacy => "private")
-		end 
-		
-	end 
+		end
+	end
 
-	def new 
+	def new
 		@user = User.new(sign_up_params)
-	end 
+	end
 
 	def create
 		@user = User.create(user_params)
-	end 
+	end
 
-	def edit 
-		@user = User.find(params[:id])
+	def edit
+		@user = User.friendly.find(params[:id])
 		@user.save
-	end 
+	end
 
-	def update 
-		@user = User.find(params[:id])
+	def update
+		@user = User.friendly.find(params[:id])
 		@user.update_attributes(user_params)
 		redirect_to manage_user_path(@user), notice: "Your account was successfully updated"
-	end 
+	end
 
-	def manage 
-		@user = User.find(params[:id])
-	end 
+	def manage
+		@user = User.friendly.find(params[:id])
+	end
 
 	def add_colleague
-		@user = current_user 
-		@colleague = User.find(params[:id]) 
+		@user = current_user
+		@colleague = User.friendly.find(params[:id])
 		@user.colleagues << @colleague
 		@colleague.colleagues << @user
 		redirect_to :back, notice: "#{@colleague.name} has been added to your contacts"
-	end  
+	end
 
-	def remove_colleague 
-		@user = current_user 
-		@colleague = User.find(params[:id]) 
+	def remove_colleague
+		@user = current_user
+		@colleague = User.friendly.find(params[:id])
 		@user.colleagues.delete(@colleague)
 		@colleague.colleagues.delete(@user)
 		redirect_to :back, notice: "#{@colleague.name} has been removed from your contacts"
-	end 
+	end
 
-	private 
-
-	def user_params 
+	private
+	def user_params
 		if current_user.is_admin?
 			params.require(:admin).permit(:first_name, :last_name, :job, :location, :mobile, :email, :privacy, :avatar)
 		else
 			params.require(:user).permit(:first_name, :last_name, :job, :location, :mobile, :email, :privacy, :avatar)
-		end	
-	end 
+		end
+	end
 
-	def account_update_params 
+	def account_update_params
 		params.require(:user).permit(:first_name, :last_name, :location, :job, :mobile, :email, :password, :password_confirmation, :current_password, :privacy)
-	end 
+	end
 
-end 
+	def verify_current_user
+		@user = User.friendly.find(params[:id])
+		if current_user.slug != params[:id]
+			redirect_to errors_not_found_path
+		end
+	end
+end

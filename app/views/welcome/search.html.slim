@@ -1,4 +1,4 @@
-/!  
+/!
   h1
     | Search Page Key Screen 7
   |  Users (
@@ -11,7 +11,7 @@
       br
   - else
     p
-      | There are no Users matching the term(s) 
+      | There are no Users matching the term(s)
       = params[:search]
       | .
   |  Projects (
@@ -24,12 +24,12 @@
       br
   - else
     p
-      | There are no Projects matching the term(s) 
+      | There are no Projects matching the term(s)
       = params[:search]
       | .
   |  Groups (
   =@groups.size
-  | ) 
+  | )
   br
   - if @groups.present?
     - @groups.each do |group|
@@ -37,7 +37,7 @@
       br
   - else
     p
-      | There are no Groups matching the term(s) 
+      | There are no Groups matching the term(s)
       = params[:search]
       | .
 
@@ -45,7 +45,7 @@
 .search-page
   .row.p-l-40
     h3
-      = "Search results for " 
+      = "Search results for "
       b
         = " #{@search_key}"
 
@@ -58,7 +58,7 @@
       .col-sm-9.text-right
         h5
           a.search-see-all
-            = "See all"    
+            = "See all"
     .p-t-10
       - if @users.present?
         .p-l-13
@@ -72,12 +72,12 @@
                     .col-sm-10
                       .font-weight-900
                         = user.name
-                      = user.job  
+                      = user.job
       - else
         .p-l-40
-          = "No results found"    
+          = "No results found"
 
-        
+
   .search-projects
     .row.p-l-55
       .col-sm-3
@@ -86,7 +86,7 @@
       .col-sm-9.text-right
         h5
           a.search-see-all
-            = "See all"    
+            = "See all"
     .p-t-10
       - if @projects.present?
         .p-l-13
@@ -100,14 +100,13 @@
                     .col-sm-10
                       .font-weight-900
                         = project.name
-                      = project.scale  
+                      = project.scale
                       br
-                      = project.location  
+                      = project.location
       - else
         .p-l-40
-          = "No results found"    
+          = "No results found"
 
-  
   .search-groups
     .row.p-l-55
       .col-sm-3
@@ -116,7 +115,7 @@
       .col-sm-9.text-right
         h5
           a.search-see-all
-            = "See all"    
+            = "See all"
 
     .p-t-10
       - if @groups.present?
@@ -131,9 +130,9 @@
                     .col-sm-10
                       .font-weight-900
                         = group.name
-                      = group.scale  
+                      = group.scale
                       br
-                      = group.location  
+                      = group.location
       - else
         .p-l-40
-          = "No results found"    
+          = "No results found"

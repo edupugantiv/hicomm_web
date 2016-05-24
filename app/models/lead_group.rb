@@ -1,2 +1,3 @@
 class LeadGroup < Request
-end 
+	scope :pending, -> { where(:pending => true) }
+end

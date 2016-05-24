@@ -159,3 +159,10 @@
 	height: 55px !important;
 	margin-left: 14px !important;
 }
+
+.home-page-projects-see-all, .home-page-groups-see-all{
+	float: right !important;
+	padding-right: 20px !important;
+	margin-bottom: 10px !important;	
+	color: #73706d !important;
+}

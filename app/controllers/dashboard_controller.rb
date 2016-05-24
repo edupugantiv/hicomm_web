@@ -89,13 +89,13 @@ class DashboardController < ApplicationController
   private
 
   def set_project
-    @project = Project.find(params[:id])
+    @project = Project.friendly.find(params[:id])
     case params[:conversation]
     when 'all'
       @messages = @project.messages
       @users = @project.users
     else
-      conversation = @project.conversations.find(params[:conversation])
+      conversation = @project.conversations.friendly.find(params[:conversation])
       @messages = conversation.messages
       @users = conversation.users
     end
@@ -108,5 +108,4 @@ class DashboardController < ApplicationController
       @messages = @messages.where(:sent => 11.months.ago..Time.now)
     end
   end
-
 end

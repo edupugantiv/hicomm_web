@@ -64,7 +64,12 @@
         - elsif can? :leave, @project
           = button_to "Leave Project", leave_path(@project), data: { confirm: "Are you sure you want to leave #{@project.name}?"}, :method => 'put', :class => 'go-to-dashboard-button'
         - else
-          = button_to "Join Project", join_path(@project), :method => 'put', :class => 'go-to-dashboard-button'
+          - if @join_request_sent
+            =button_to "Request Sent", '#', :class => 'go-to-dashboard-button btn', disabled: 'disabled'
+          - else
+            = button_to "Join Project", join_path(@project), :method => 'put', :class => 'go-to-dashboard-button'
+
+
     .col-md-12.col-sm-3.col-xs-6
       = button_to "Go to dashboard", "dashboard", :method => 'get', :class => 'go-to-dashboard-button'
     
@@ -109,13 +114,14 @@ div.project-details-block.project-details-block-xs
             - if can? :add_users, @project
               = button_to "Add+", pick_project_users_path(@project), :method => 'get', :class => 'btn add-button'
           .col-xs-6.col-sm-6.col-md-12.m-t-25
-            p.project-members-see-all   See All
+            p
+              = link_to "See All", all_participants_path(@project), :class => "project-members-see-all"
       .col-md-12.p-r-0
         .row
           .col-md-12
             hr.project-member-border
 
-        .row.m-t-minus-30    
+        .row.m-t-minus-30.m-b-30    
           - @participants.each do |participant|
             .participants-list.col-xs-12.col-sm-6.col-md-12.m-t-30.m-0.p-0
               .col-xs-3.col-sm-3.col-md-4.p-0

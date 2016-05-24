@@ -42,32 +42,32 @@
           .form-group
             .row
               .col-xs-11
-                = f.text_field :first_name, placeholder: "First Name", class: "form-control" 
+                = f.text_field :first_name, placeholder: "First Name", class: "form-control", required: true
               .col-xs-1.sign-up-text-box
                 h1
                   small *
           .form-group
             .row
               .col-xs-11
-                = f.text_field :last_name, placeholder: "Last Name", class: "form-control"
+                = f.text_field :last_name, placeholder: "Last Name", class: "form-control", required: true
           .form-group
             .row
               .col-xs-11
-                = f.email_field :email, placeholder: "Email", class: "form-control"
+                = f.email_field :email, placeholder: "Email", class: "form-control", required: true
               .col-xs-1.sign-up-text-box
                 h1
                   small *
           .form-group
             .row
               .col-xs-11
-                = f.text_field :job, placeholder: "Job", class: "form-control"
+                = f.text_field :job, placeholder: "Job", class: "form-control", required: true
               .col-xs-1.sign-up-text-box
                 h1
                   small *
           .form-group
             .row
               .col-xs-11
-                = f.text_field :location, placeholder: "Location", class: "form-control"
+                = f.text_field :location, placeholder: "Location", class: "form-control", required: true
               .col-xs-1.sign-up-text-box
                 h1
                   small *
@@ -81,34 +81,62 @@
           .form-group
             .row
               .col-xs-11
-                = f.password_field :password, placeholder: "New Password", class: "form-control"
+                = f.password_field :password, placeholder: "New Password", class: "form-control", required: true
               .col-xs-1.sign-up-text-box
                 h1
                   small *
           .form-group
             .row
               .col-xs-11
-                = f.password_field :password_confirmation, placeholder: "Re-Enter New Password", class: "form-control"
+                = f.password_field :password_confirmation, placeholder: "Re-Enter New Password", class: "form-control", required: true
               .col-xs-1.sign-up-text-box
                 h1
                   small *
           .form-group
             .row
               .col-xs-11
-                = f.text_field :mobile, placeholder: "Mobile Phone Number", class: "form-control"
+                = f.text_field :mobile, placeholder: "Mobile Phone Number", class: "form-control", id: "signup-user-mobile", :onkeypress => "return isMobile(event)", required: true
               .col-xs-1.sign-up-text-box
                 h1
                   small *
-          .form-group        
+          .form-group.send-authentication-code-block
+            .row.m-t-20
+              .col-xs-12
+                button.btn.send-authentication-btn#send-authentication-code onclick='sendAuthenticationCode()'  Send Authentication Code to Mobile
             .row
+              .col-xs-12
+                label#send-authentication-code-error
+
+          .form-group
+            .row.authenticate-code-block.hide
               .col-xs-6
                 .form-group
-                  button.button-format-inverse Authenticate
+                  button.btn.button-format-inverse onclick='authenticateCode()' Authenticate
               .col-xs-5 
                   input#code.m-l-minus-32.form-control placeholder='Enter Code' 
               .col-xs-1.m-l-minus-50
                 h4
                   small Ex.9801Y
+                        .row
+            .col-xs-12
+              label#authentication-code-error value = false
+
+          .form-group        
+            .row
+              .col-xs-12
+                .form-group
+                  label#termsofservice-label
+                    input#TermsOfService[type="checkbox" name="TermsOfService" onchange="return terms(event)" required=true]
+                    span#terms-of-service-label
+                      strong
+                        = " "
+                        | I agree to the Hicomm's 
+                        a#TosLink[target="_blank" href='#']
+                          | Terms of Service
+                        |  and 
+                        a#PrivacyLink[target="_blank" href='#']
+                          | Privacy Policy
+                        | *
           .form-group
             .row
               .col-xs-12
@@ -118,4 +146,10 @@
           .form-group
             .row.m-t-20
               .col-xs-offset-3.col-xs-6
-                button.button-format Sign Up
+                button.btn.button-format#submit-registration-form disabled='disabled' Sign Up 
+
+
+
+
+
+

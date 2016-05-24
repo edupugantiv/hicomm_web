@@ -1,11 +1,11 @@
-class SearchController < ApplicationController 
-	
+class SearchController < ApplicationController
+
 	def index
 		if params[:search].blank?
 			@search_key = ""
 		else
-			@search_key = params[:search]			
-		end	
+			@search_key = params[:search]
+		end
 	    users = User.search(@search_key)
     	projects = Project.search(@search_key)
     	groups = Group.search(@search_key)
@@ -16,15 +16,14 @@ class SearchController < ApplicationController
     	@users = users[0..2]
     	@projects = projects[0..2]
     	@groups = groups[0..2]
-	end	
-
+	end
 
 	def contacts
 		@search_key = params[:search_key]
 	    @users = User.search(@search_key)
 	    @users_count = @users.length
 	end
-	
+
 	def projects
 		@search_key = params[:search_key]
 	    @projects = Project.search(@search_key)
@@ -36,4 +35,4 @@ class SearchController < ApplicationController
 	    @groups = Group.search(@search_key)
 	    @groups_count = @groups.length
 	end
-end	
+end

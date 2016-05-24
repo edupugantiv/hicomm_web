@@ -33,7 +33,10 @@
         - elsif can? :leave, @group
           =button_to "Leave Group", leave_group_path(@group), data: {confirm: "Are you sure you want to leave #{@group.name}?"}, :method => 'put'
         - else
-          =button_to "Join Group", join_group_path(@group), :method => 'put'
+          - if @join_request_Sent
+            =button_to "Request Sent", #, disabled: disabled
+          - else
+            =button_to "Join Group", join_group_path(@group), :method => 'put'
   hr
   table[width="100%"]
     tr
@@ -148,17 +151,17 @@
             h4.text-muted Contact
           .col-md-8.col-sm-8
             h4.no-wrap.col-xs-6.p-l-0
-              = @group.group_leader.name
+              = @group.group_leader_name
         .row
           .col-md-4.col-sm-4.col-xs-6
           .col-md-8.col-sm-8.col-xs-6
             h4 
-              = @group.group_leader.email
+              = @group.group_leader_email
         .row
           .col-md-4.col-sm-4.col-xs-6
           .col-md-8.col-sm-8.col-xs-6
             h4 
-              = @group.group_leader.mobile
+              = @group.group_leader_mobile
 
   .col-md-4.col-sm-12.col-xs-12
     .col-md-12.col-sm-6.col-xs-12
@@ -179,7 +182,10 @@
         - elsif can? :leave, @group
           =button_to "Leave Group", leave_group_path(@group), data: {confirm: "Are you sure you want to leave #{@group.name}?"}, :method => 'put', :class => 'manage-group-btn'
         - else
-          =button_to "Join Group", join_group_path(@group), :method => 'put', :class => 'manage-group-btn'
+          - if @join_request_sent
+            =button_to "Request Sent", '#', :class => 'manage-group-btn btn', disabled: 'disabled'
+          - else
+            =button_to "Join Group", join_group_path(@group), :method => 'put', :class => 'manage-group-btn'
   
 .row
   .col-md-12
@@ -193,7 +199,9 @@ div.group-details-block.group-details-block-xs
           h3.text-muted.group-projects-list Projects
 
         .col-xs-3.col-sm-2
-          p.group-projects-list-see-all  See All
+          - if !@group.projects.blank?
+            p
+              = link_to "See All", associated_projects_path(@group), :class => "project-members-see-all"
       .row
         - if @projects.empty?
           .row.text-center
@@ -218,19 +226,21 @@ div.group-details-block.group-details-block-xs
                         h5.heading-styles 
                           = project.name
                     .row    
-                      .col-xs-4.col-lg-4
+                      .col-xs-4
                         h5.heading-styles Type
-                      .col-xs-8.col-lg-8
+                      .col-xs-8
                         h5.heading-styles 
                           = "project type"
-                      .col-xs-4.col-lg-4
+                    .row
+                      .col-xs-4
                         h5.heading-styles Location
-                      .col-xs-8.col-lg-8
+                      .col-xs-8
                         h5.heading-styles 
                           = project.location
-                      .col-xs-4.col-lg-4
+                    .row
+                      .col-xs-4
                         h5.heading-styles Scale
-                      .col-xs-8.col-lg-8
+                      .col-xs-8
                         h5.heading-styles 
                           = project.scale
                     .row
@@ -249,7 +259,9 @@ div.group-details-block.group-details-block-xs
           - if can? :transfer_leadership, @group
             =button_to "Add +", pick_group_members_path(@group), :method => 'get', :class => 'add-button'
           .col-xs-6.col-sm-6.col-md-12.m-t-25
-            p.project-members-see-all   See All
+            p
+              = link_to "See All", all_members_path(@group), :class => "project-members-see-all"
+
       .col-md-12.p-r-0
         .row
           .col-md-12

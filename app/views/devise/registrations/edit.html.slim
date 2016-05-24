@@ -40,41 +40,8 @@ div.edit-profile-page
       .form-elements
         h1
           small Change Password
-        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-          = devise_error_messages!
-          - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-            div
-              | Currently waiting confirmation for: 
-              = resource.unconfirmed_email
-            
+        = form_for current_user, url: change_passwords_path, :html => {method: 'put' } do |f|
           = f.password_field :current_password, placeholder: "Current Password", class: "form-control", autocomplete: "off"      
           = f.password_field :password, placeholder: "New Password", class: "form-control", autocomplete: "off"      
           = f.password_field :password_confirmation, placeholder: "Confirm Password", class: "form-control", autocomplete: "off"      
           button.button-format.pull-right.m-t-30  Submit
-          /!
-            = f.text_field :first_name, placeholder: "First Name", class: "form-control"   
-            = f.text_field :last_name, placeholder: "Last Name", class: "form-control"   
-            = f.text_field :job, placeholder: "Job", class: "form-control"   
-            = f.text_field :location, placeholder: "Location", class: "form-control"   
-            = f.text_field :email, placeholder: "Email", class: "form-control"   
-            = f.text_field :mobile, placeholder: "Mobile", class: "form-control"   
-            label.m-t-10   Profile Picture
-            div
-              input.m-t-10 type="file" /
-            p.m-t-10  Choose your privacy settings:
-            br/
-            b Privacy
-            div.m-l-minus-21
-              .checkbox
-                label
-                  input type="radio" value="public" name="privacy"
-                  b Public
-              .checkbox
-                label
-                  input type="radio" value="semi-private" name="privacy"
-                  b Semi-private
-              .checkbox.disabled
-                label
-                  input type="radio" value="private" name="privacy"
-                  b Private
-            button.button-format.pull-right.m-t-30  Submit

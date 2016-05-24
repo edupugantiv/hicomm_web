@@ -1,2 +1,2 @@
-class ConversersController < ApplicationController 
-end 
+class ConversersController < ApplicationController
+end

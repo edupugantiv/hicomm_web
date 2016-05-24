@@ -6,23 +6,28 @@ div.edit-profile-page
       .form-elements
         h1
           Transfer Project Leadership
-        small Transfer leadership of 
-        = @project.name
-        | to:
-        br
-        .m-b-20
-        - if @participants.empty?
-          i
-          | You can only transfer leadership to current project participants 
+        - if @transfer_request_sent
+          = "A transfer request is already sent to "
+          = link_to @transfer_leadership_to.name, user_path(@transfer_leadership_to)
+
+        - else
+          small Transfer leadership of 
+          = @project.name
+          | to:
           br
           .m-b-20
-          = button_to "Add Participants", pick_project_users_path(@project), :method => 'get', :class => 'button transfer-leadership-button'
-        - else
-          - @participants.each do |participant|
-            .row.m-b-20
-              .col-sm-5
-                =link_to participant.name, user_path(participant)
-              .col-sm-6
-                =button_to "Transfer Leadership", new_leader_path(:project_id => @project, :user_id => participant), data: {confirm: "Are you sure you want to transfer leadership of #{@project.name} to #{participant.name}?"}, :method => 'post', :class => 'button transfer-leadership-button'
+          - if @participants.empty?
+            i
+            | You can only transfer leadership to current project participants 
+            br
+            .m-b-20
+            = button_to "Add Participants", pick_project_users_path(@project), :method => 'get', :class => 'button transfer-leadership-button'
+          - else
+            - @participants.each do |participant|
+              .row.m-b-20
+                .col-sm-5
+                  =link_to participant.name, user_path(participant)
+                .col-sm-6
+                  =button_to "Transfer Leadership", new_leader_path(:project_id => @project, :user_id => participant), data: {confirm: "Are you sure you want to transfer leadership of #{@project.name} to #{participant.name}?"}, :method => 'post', :class => 'button transfer-leadership-button'
             
 

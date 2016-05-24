@@ -65,6 +65,25 @@ gem 'curb'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+
+#For Pagination
+gem 'kaminari'
+
+# Schedulers & Background Jobs
+gem "rufus-scheduler"
+
+#payments
+gem 'activemerchant'
+
+#for showing links in notifications bodies
+gem 'rails_autolink'
+
+#For friendly_id's instead of database id's in url
+gem 'friendly_id', '~> 5.1.0'
+
+#For SSL certificate verification
+gem 'certified'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -73,7 +92,6 @@ gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   gem 'pry-byebug'
-
   gem 'better_errors'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

@@ -1,0 +1,35 @@
+.notifications-header{
+	margin-top: 20px !important;
+	margin-bottom: 30px !important;
+	border-bottom: 2px solid #ddd;
+}
+
+.notification-body-not-read, .notification-body-read{
+	margin: 10px 0 !important;
+	border-bottom: 1px solid #ddd;
+    padding-left: 16px !important; 
+}
+
+.notification-body-not-read:before {
+	content: "\25cf" !important;
+    font-size: 1.5em !important;
+    color: #2b6dad !important;
+}
+
+.notification-body-read:before {
+	content: "\25cf" !important;
+    font-size: 1.5em !important;
+    color: #666 !important;
+}
+
+
+.mark-as-read{
+	width: 15px !important;
+	cursor: pointer !important;
+}
+
+.mark-all-as-read{
+	font-size: 12px !important;
+	padding-top: 2em !important;
+	cursor: pointer !important;
+}

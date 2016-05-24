@@ -1,0 +1,36 @@
+.search-page
+  .row.p-l-40
+    h3
+      = "All the associated projects for " 
+      b
+        = " #{@group.name}"
+
+
+  .search-projects
+    .row.p-l-55
+      .col-sm-3
+        h4
+          = "Projects (#{@project_count})"
+      .col-sm-9.text-right
+        h5
+          a.search-see-all href="#{group_path(@group)}"
+            = "Back"
+    .p-t-10
+      - if @projects.present?
+        .p-l-13
+          .row
+            - @projects.each do |project|
+              .col-sm-4
+                .search-contact onclick="location.href='#{project_path(project)}';"
+                  .row
+                    .col-sm-2
+                      = image_tag project.avatar.url(:thumb), :class => 'avatar search-project-image'
+                    .col-sm-10
+                      .font-weight-900
+                        = project.name
+                      = project.scale  
+                      br
+                      = project.location  
+      - else
+        .p-l-40
+          = "No projects are associated with this group."    

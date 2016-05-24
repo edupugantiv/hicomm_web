@@ -1,2 +1,2 @@
-class ParticipantsController <ApplicationController 
-end 
+class ParticipantsController <ApplicationController
+end

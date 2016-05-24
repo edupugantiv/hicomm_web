@@ -137,8 +137,12 @@ nav.navbar.navbar-inverse.home-header.m-h-minus-15 role="navigation"
 
       
       ul.nav.navbar-nav.navbar-right.header-items
+        - if !current_user.is_admin?
+          li
+            a href=requests_path 
+              span.glyphicon.glyphicon-save title="#{total_requests_count} new requests" data-badge="#{total_requests_count}" class="badge1"
         li
-          a href="#" 
+          a href=notifications_path 
             span.glyphicon.glyphicon-bell title="#{notification_count} new notifications" data-badge="#{notification_count}" class="badge1"
         li
           a href=edit_user_path(current_user) 

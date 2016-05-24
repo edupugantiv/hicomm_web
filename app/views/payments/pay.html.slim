@@ -1,0 +1,50 @@
+.col-md-4
+.col-md-4.text-center
+	.payment-container
+		.payment-header
+			= "Payment Details"
+		.payment-amount
+			h3
+				= @project.name.capitalize
+			h4	
+				= "You pay $#{20}"
+		.payment-box
+			ul.nav.nav-tabs
+			  li.nav-tab.active
+			    a[data-toggle="tab" href="#paypal"]
+			      | PayPal
+			  li.nav-tab
+			    a[data-toggle="tab" href="#card"]
+			      | Card
+			.tab-content
+			  #paypal.tab-pane.fade.in.active
+			    = form_for @project, url: pay_amount_path, method: 'post' do |f|
+			    	.paypal-form
+							button.btn.btn-success.btn-lg.btn-block.card-field[type="submit" data-disable-with="Please wait..."]
+								= 'Go to PayPal'
+
+			  #card.tab-pane.fade
+  				.card-form
+	  				= form_for @card, url: cards_path(@project) do |f|
+							= f.text_field :name, placeholder: "Name on Card", class: "form-control card-field", required: true, minlength: 3   
+							
+							= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]]
+							= f.text_field :card_number, placeholder: "Card Number", class: "form-control card-field", required: true,
+							 :maxlength => 20, :onkeypress => "return isNumberKey(event)", minlength: 12          
+							.row.m-h-0
+								.col-md-3.p-r-0
+									= f.select :expiry_month, (1..12).map{ |i| "%02d" % i }
+								.col-md-3.p-h-0
+									= f.select(:expiry_year, (Date.current.year..(Date.current + 20.years).year), {:class => "form-control card-field"})
+								.col-md-6
+									= f.text_field :cvc, placeholder: "CVC", :maxlength => 4, class: "form-control card-field", required: true, :onkeypress => "return isNumberKey(event)" , minlength: 3, maxlength: 4                							
+
+							= f.text_field :ip_address,:type => 'hidden', value: request.remote_ip
+							= f.submit  "Pay 90$", class: "button btn btn-success btn-lg btn-block card-field", data: { disable_with: "please wait ..."}
+
+							
+/!
+	button.btn.btn-success.btn-lg.btn-block[type="submit" data-disable-with="Please wait..."]							 
+
+	=> Card(id: integer, subscription_id: integer, name: string, type: string, expiry_month: string, expiry_year: string, card_number: string, ip_address: string, created_at: datetime, updated_at: datetim
+	e)
