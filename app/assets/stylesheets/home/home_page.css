@@ -124,15 +124,15 @@
 
 
 #flash{
-  position: absolute
-  margin-top: 100px
-  width: 100%
+  position: absolute;
+  margin-top: 100px;
+  width: 100%;
 }
 
 #devise_errors{
-  position: absolute
-  margin-top: 100px
-  width: 100%
+  position: absolute;
+  margin-top: 100px;
+  width: 100%;
 }
 
 .main-body-home{
