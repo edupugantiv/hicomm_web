@@ -178,7 +178,8 @@ and open the template in the editor.
     background-color:rgb(228,109,36);
     color:white;
 }
-*/a.list-group-item {
+*/
+a.list-group-item {
     font-size:16pt;               
     color:rgb(215,110,68);
     background-color: rgb(244,175,127);

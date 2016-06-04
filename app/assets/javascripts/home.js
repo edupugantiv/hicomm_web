@@ -59,21 +59,34 @@ function isMobile(evt)
   return true;
 } 
 
+function terms(event){
+  if ($('#TermsOfService').prop('checked') == true){
+    $('#submit-registration-form').removeAttr('disabled');
+   }
 
-function terms(event)
-{
-  if ($('#TermsOfService').prop('checked') == true)
-  {
-    if ($('#authentication-code-error').val() == 'true')
-    {
-        $('#submit-registration-form').removeAttr('disabled');
-    }
-  }
-  if ($('#TermsOfService').prop('checked') == false)
-  {
+  if ($('#TermsOfService').prop('checked') == false){
     $('#submit-registration-form').attr('disabled','disabled');
-  }
+   }
+
 }
+
+
+
+// Commented temporaralily, uncomment it after clickatell starts working.
+// function terms(event)
+// {
+//   if ($('#TermsOfService').prop('checked') == true)
+//   {
+//     if ($('#authentication-code-error').val() == 'true')
+//     {
+//         $('#submit-registration-form').removeAttr('disabled');
+//     }
+//   }
+//   if ($('#TermsOfService').prop('checked') == false)
+//   {
+//     $('#submit-registration-form').attr('disabled','disabled');
+//   }
+// }
 
 
 function sendAuthenticationCode() {

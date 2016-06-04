@@ -49,46 +49,34 @@
           .form-group
             .row
               .col-xs-11
-                = f.text_field :last_name, placeholder: "Last Name", class: "form-control", required: true
+                = f.text_field :last_name, placeholder: "Last Name", class: "form-control"
           .form-group
             .row
               .col-xs-11
-                = f.email_field :email, placeholder: "Email", class: "form-control", required: true
-              .col-xs-1.sign-up-text-box
-                h1
-                  small *
+                = f.email_field :email, placeholder: "Email", class: "form-control"
           .form-group
             .row
               .col-xs-11
-                = f.text_field :job, placeholder: "Job", class: "form-control", required: true
-              .col-xs-1.sign-up-text-box
-                h1
-                  small *
+                = f.text_field :job, placeholder: "Job", class: "form-control"
           .form-group
             .row
               .col-xs-11
-                = f.text_field :location, placeholder: "Location", class: "form-control", required: true
-              .col-xs-1.sign-up-text-box
-                h1
-                  small *
+                = f.text_field :location, placeholder: "Location", class: "form-control"
           .form-group
             .row
               .col-xs-11
                 = f.select :country, ['USA', 'South-Africa'], {}, {:class => 'form-control'}
+          .form-group
+            .row
+              .col-xs-11
+                = f.password_field :password, placeholder: "New Password", minlength: 8, class: "form-control", required: true
               .col-xs-1.sign-up-text-box
                 h1
                   small *
           .form-group
             .row
               .col-xs-11
-                = f.password_field :password, placeholder: "New Password", class: "form-control", required: true
-              .col-xs-1.sign-up-text-box
-                h1
-                  small *
-          .form-group
-            .row
-              .col-xs-11
-                = f.password_field :password_confirmation, placeholder: "Re-Enter New Password", class: "form-control", required: true
+                = f.password_field :password_confirmation, placeholder: "Re-Enter New Password", minlength: 8, class: "form-control", required: true
               .col-xs-1.sign-up-text-box
                 h1
                   small *

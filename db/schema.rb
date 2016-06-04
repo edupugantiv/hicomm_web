@@ -205,7 +205,7 @@ ActiveRecord::Schema.define(version: 20160516042145) do
     t.string   "job",                    limit: 255
     t.string   "location",               limit: 255
     t.string   "mobile",                 limit: 255
-    t.string   "email",                  limit: 255, default: "",    null: false
+    t.string   "email",                  limit: 255
     t.string   "encrypted_password",     limit: 255, default: "",    null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
@@ -228,7 +228,6 @@ ActiveRecord::Schema.define(version: 20160516042145) do
     t.string   "slug",                   limit: 255
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
 
