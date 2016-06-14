@@ -136,7 +136,7 @@ class ProjectsController < ApplicationController
 	end
 
 	def new_leader
-		@project = Project.friendly.find(params[:project_id]).pluck
+		@project = Project.friendly.find(params[:project_id])
 		@user = User.friendly.find(params[:user_id])
 		@request = Request.create(:project_id => @project.id, :user_id => @user.id, :request_to => @user.id, :request_by => @project.project_manager_id, :pending => true, :type => 'LeadProject')
 		redirect_to project_path(:project_id =>@project, :conversation_id => @project.conversations.first), notice: "leadership of #{@project.name} will be transfered to #{@user.name} upon approval"
