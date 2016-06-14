@@ -1,10 +1,7 @@
-require 'net/http'
+class Message <ActiveRecord::Base 
+  belongs_to :conversation 
+  belongs_to :sender, :class_name => "User"
 
-class Message <ActiveRecord::Base
-	belongs_to :conversation
-	belongs_to :sender, :class_name => "User"
-
-  delegate :first_name, :to => :sender, :prefix => true
   after_create :send_to_clickatell
 
   def send_to_clickatell
@@ -24,7 +21,7 @@ class Message <ActiveRecord::Base
   end
 
   def full_body
-    "#{sender.name}: #{body} REPLY @#{conversation.project_code} \##{conversation.code}"
+    "#{sender.name}: #{body} REPLY @#{conversation.project.code} \##{conversation.code}"
   end
 
-end
+end 
