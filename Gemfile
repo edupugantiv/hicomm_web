@@ -59,7 +59,7 @@ gem 'devise'
 # Use Faker to generate fake data for database seed
 gem 'faker'
 
-# Use CURB to hit the ClickATell Endpoint
+# Use CURB to hit the Clickatell Endpoint
 gem 'curb'
 
 # Use ActiveModel has_secure_password

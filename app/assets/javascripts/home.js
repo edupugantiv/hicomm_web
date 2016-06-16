@@ -72,7 +72,7 @@ function terms(event){
 
 
 
-// Commented temporaralily, uncomment it after clickatell starts working.
+// Commented temporarily, uncomment it after clickatell starts working.
 // function terms(event)
 // {
 //   if ($('#TermsOfService').prop('checked') == true)
