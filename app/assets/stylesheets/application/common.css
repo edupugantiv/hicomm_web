@@ -339,3 +339,13 @@ padding-bottom:5px;
     width: 150px !important;
 
 }
+
+.delete-user-btn{
+    background-color: rgb(217,79,50) !important;
+    height: 40px !important;
+    color: white !important;
+    border: 2px solid #e62e00 !important;
+    border-radius: 5px !important;
+    font-size: 20px !important;
+    margin-top: 20px !important;
+}
