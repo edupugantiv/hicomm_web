@@ -5,7 +5,7 @@ div.edit-profile-page
     .col-md-offset-1.col-md-4
       .form-elements
         h1
-          Transfer Project Leadership
+          = "Transfer Project Leadership"
         - if @transfer_request_sent
           = "A transfer request is already sent to "
           = link_to @transfer_leadership_to.name, user_path(@transfer_leadership_to)

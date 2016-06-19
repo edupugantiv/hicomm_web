@@ -66,6 +66,8 @@ Rails.application.routes.draw do
   # get 'search' => 'welcome#search', as: 'search'
 
   get 'users/:id/manage' => 'users#manage', as: 'manage_user'
+  get 'users/:id/delete_account' => 'users#delete_account', as: 'delete_account'
+  patch 'users/:id/delete_user' => 'users#delete_user', as: 'delete_user'
 
 
   get 'projects/:id/manage' => 'projects#manage_participants', as: 'manage_project'
