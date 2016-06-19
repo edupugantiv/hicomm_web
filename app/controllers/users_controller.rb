@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!
-	before_filter :verify_current_user, only: [:edit, :update, :manage, :delete_account, :delete_user]
+	before_filter :verify_current_user, only: [:edit, :update, :manage]
 	
 	def show
 		@user = User.includes(:projects, :groups, :colleagues).friendly.find(params[:id])
@@ -54,16 +54,6 @@ class UsersController < ApplicationController
 		redirect_to :back, notice: "#{@colleague.name} has been removed from your contacts"
 	end
 
-	def delete_account
-		@user = current_user
-	end
-
-	def delete_user
-		@user = current_user
-		@user.update(is_active: false)
-    sign_out current_user
-    redirect_to new_user_session_path
-	end
 
 	private
 	def user_params

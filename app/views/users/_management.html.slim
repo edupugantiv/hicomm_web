@@ -24,19 +24,15 @@
   - else   
     a.list-group-item href=edit_user_path(@user)
       | Profile
-  - if current_page?(edit_user_registration_path)
+  - if current_page?(controller: "users/registrations", action: "edit")
     a.selected-tab href=edit_user_registration_path
       | Change Password
   - else   
     a.list-group-item href=edit_user_registration_path
       | Change Password
 
-  - if current_page?(delete_account_path(current_user))
-    a.selected-tab href=delete_account_path(current_user)
-      | Delete Account
-  - else   
-    a.list-group-item href=delete_account_path(current_user)
-      | Delete Account
+
 
   a.list-group-item href="#"  My Payment
+  a.list-group-item href="#"  Delete Account
   
