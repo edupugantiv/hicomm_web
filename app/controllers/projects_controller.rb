@@ -18,6 +18,13 @@ class ProjectsController < ApplicationController
 				@current_convo = Conversation.friendly.find(params[:conversation_id])
 			end
 			@messages = @current_convo.messages.includes(:sender)
+	    @messages.each do |message|
+	    	if message.sender != current_user
+	 	  		message.mark_as_read! :for => current_user
+ 	  		end
+    	end
+	  	@conversation_users =  @current_convo.users
+
 			@message = Message.new
   		@join_request_sent = !(JoinProject.pending.where(:request_by => current_user.id, :project_id => @project.id).blank?)
 

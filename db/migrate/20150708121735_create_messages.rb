@@ -5,6 +5,8 @@ class CreateMessages < ActiveRecord::Migration
       t.datetime :sent
       t.references :sender
       t.references :conversation
+
+      t.timestamps null: false
     end
   end
 end

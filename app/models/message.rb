@@ -1,9 +1,14 @@
+require 'net/http'
+
 class Message <ActiveRecord::Base
 	belongs_to :conversation
 	belongs_to :sender, :class_name => "User"
 
   delegate :first_name, :to => :sender, :prefix => true
   after_create :send_to_clickatell
+
+  acts_as_readable :on => :created_at
+
 
   def send_to_clickatell
     conversation.users.each do |user|
