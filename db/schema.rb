@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160516042145) do
+ActiveRecord::Schema.define(version: 20160719102816) do
 
   create_table "affiliations", id: false, force: :cascade do |t|
     t.integer "project_id", limit: 4, null: false
@@ -97,6 +97,8 @@ ActiveRecord::Schema.define(version: 20160516042145) do
     t.datetime "sent"
     t.integer  "sender_id",       limit: 4
     t.integer  "conversation_id", limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -153,6 +155,16 @@ ActiveRecord::Schema.define(version: 20160516042145) do
 
   add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true, using: :btree
 
+  create_table "read_marks", force: :cascade do |t|
+    t.integer  "readable_id",   limit: 4
+    t.string   "readable_type", limit: 255, null: false
+    t.integer  "reader_id",     limit: 4
+    t.string   "reader_type",   limit: 255, null: false
+    t.datetime "timestamp"
+  end
+
+  add_index "read_marks", ["reader_id", "reader_type", "readable_type", "readable_id"], name: "read_marks_reader_readable_index", using: :btree
+
   create_table "requests", force: :cascade do |t|
     t.integer "user_id",    limit: 4
     t.integer "project_id", limit: 4
@@ -205,7 +217,7 @@ ActiveRecord::Schema.define(version: 20160516042145) do
     t.string   "job",                    limit: 255
     t.string   "location",               limit: 255
     t.string   "mobile",                 limit: 255
-    t.string   "email",                  limit: 255
+    t.string   "email",                  limit: 255, default: "",    null: false
     t.string   "encrypted_password",     limit: 255, default: "",    null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
@@ -226,8 +238,10 @@ ActiveRecord::Schema.define(version: 20160516042145) do
     t.string   "type",                   limit: 255
     t.boolean  "is_active",              limit: 1,   default: false
     t.string   "slug",                   limit: 255
+    t.integer  "otp",                    limit: 4
   end
 
+  add_index "users", ["mobile"], name: "index_users_on_mobile", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
 

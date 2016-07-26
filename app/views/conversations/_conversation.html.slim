@@ -54,13 +54,24 @@
 .row
   .messages-list
     - colors = ['#cac8d6', '#d9eaf1']
-    - index = 0
-    - @messages.each do |message|
-      - index = index +1
+
+    - @messages.each_with_index do |message, index|
       - random_color = colors[index%2]
 
       .chat-box-right style="background-color: #{random_color}"
-        = message.body
+        .row
+          .col-sm-10
+            = message.body
+          .col-sm-2
+            .row
+              = "#{time_ago_in_words(message.created_at)} ago"
+            .row
+              - read_user_names = other_users(message, @conversation_users).have_read(message).map(&:first_name).join("\n")
+              /!
+                p title=read_user_names.html_safe
+                  | See who read
+              a href="#" data-toggle="tooltip" title=read_user_names data-content=read_user_names.html_safe id='message-read-by' data-placement="bottom"
+                | Message read by
       .sender
         - if message.sender == current_user
           = "You"

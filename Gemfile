@@ -59,7 +59,7 @@ gem 'devise'
 # Use Faker to generate fake data for database seed
 gem 'faker'
 
-# Use CURB to hit the Clickatell Endpoint
+# Use CURB to hit the ClickATell Endpoint
 gem 'curb'
 
 # Use ActiveModel has_secure_password
@@ -94,5 +94,9 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'better_errors'
   # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+  gem 'rubocop', '~> 0.40.0', require: false
+
 end
 
+gem 'unread'

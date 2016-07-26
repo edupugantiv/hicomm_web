@@ -17,6 +17,10 @@ class WelcomeController < ApplicationController
     @conversations.each do |conversation|
       @messages += conversation.messages
     end
+    @messages.each do |message|
+      message.mark_as_read! :for => current_user
+    end
+
     @lead_project_requests = LeadProject.where(:user_id => @user.id, :pending => true)
     @lead_group_requests = LeadGroup.where(:user_id => @user.id, :pending => true)
   end

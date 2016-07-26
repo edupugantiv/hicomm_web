@@ -6,7 +6,19 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :sessions => "users/sessions", :registrations => "users/registrations"}
 
   
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    collection do
+      get 'forgot_password'
+      put 'forgot_password_send_otp'
+      put 'forgot_password_process_otp'
+      get 'forgot_password_enter_otp/:mobile' => 'users#forgot_password_enter_otp', as: 'forgot_password_enter_otp'
+      get 'mass_signup' => 'users#mass_signup', as: 'mass_signup'
+      post 'mass_create' => 'users#mass_create', as: 'mass_create'
+
+    end
+  end
+
+
   resources :conversations
   resources :messages
   resources :projects, only: [:index]
@@ -66,6 +78,9 @@ Rails.application.routes.draw do
   # get 'search' => 'welcome#search', as: 'search'
 
   get 'users/:id/manage' => 'users#manage', as: 'manage_user'
+  get 'users/:id/delete_account' => 'users#delete_account', as: 'delete_account'
+  patch 'users/:id/delete_user' => 'users#delete_user', as: 'delete_user'
+  
 
 
   get 'projects/:id/manage' => 'projects#manage_participants', as: 'manage_project'
@@ -83,6 +98,10 @@ Rails.application.routes.draw do
 
   put 'users/:id/add_contact' => 'users#add_colleague', as: 'add_contact'
   put 'users/:id/remove_contact' => 'users#remove_colleague', as: 'remove_contact'
+  
+  # get 'users/forgot_password' => 'users#forgot_password', as: 'forgot_password'
+  # put 'users/forgot_password_send_otp' => 'users#forgot_password_send_otp', as: 'forgot_password_send_otp'
+  # put 'users/forgot_password_process_otp' => 'users#forgot_password_process_otp', as: 'forgot_password_process_otp'
 
   put 'groups/:id/join' => 'groups#join', as: 'join_group'
   put 'groups/:id/leave' => 'groups#leave', as: 'leave_group'
