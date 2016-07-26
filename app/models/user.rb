@@ -19,8 +19,10 @@ class User < ActiveRecord::Base
   has_many :new_groups
   has_many :new_projects
   has_many :notifications
-
   has_many :subscriptions
+
+  acts_as_reader
+
 
 	has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
  	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
@@ -31,6 +33,9 @@ class User < ActiveRecord::Base
   after_create :send_request_to_admin
 
   scope :active, -> { where(:is_active => true) }
+
+  scope :all_except, ->(user) { where.not(id: user) }
+
 
 	def self.search(search)
   		return where("first_name LIKE ? OR last_name LIKE ?", "%#{search}%", "%#{search}%") - where(:privacy => "private")
@@ -101,6 +106,19 @@ class User < ActiveRecord::Base
 
   def email_changed?
     false
+  end
+
+  def send_forgot_password_message
+    body = "Hi #{self.name}, #{self.otp} is your otp for resetting password."
+    Curl.get('http://api.clickatell.com/http/sendmsg', {
+      :user => 'youngsu',
+      :password => 'GodBless15',
+      :api_id => self.country == 'USA' ? 3559754 : 3549952,
+      :from => self.country == 'USA' ? 12134585108 : 44760,
+      :MO => 1,
+      :to => self.full_number,
+      :text => body
+    })
   end
 
   private

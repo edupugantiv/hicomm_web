@@ -72,7 +72,17 @@ function terms(event){
 
 
 
-// Commented temporarily, uncomment it after clickatell starts working.
+function addSignupFields() {
+  user_count = $('#mass_user_count').val()
+  new_user_number = parseInt(user_count) + 1
+  new_fields = "<div class='mass-signup-row row'><div class='col-md-1'></div><div class='col-md-1'><div class='mass-signup-index'>"+ new_user_number +"</div></div><div class='col-md-2'><input type='text' name='first_name_" + new_user_number +  "' id='name-" + new_user_number + "' class='form-control' placeholder='Name' required='required'></div>  <div class='col-md-2'><input type='text' name='mobile_" + new_user_number +"' id='mobile-" + new_user_number + "' class='form-control'   placeholder='Mobile' required='required' onkeypress= 'return isMobile(event)'></div>   <div class='col-md-2'><input type='password' name='password_" + new_user_number + "' id='password-" + new_user_number + "' class='form-control'    placeholder='Password' required='required'></div>    <div class='col-md-2'><input type='password' name='confirm_password_" + new_user_number + "' id='confirm-password-" + new_user_number + "' class='form-control'     placeholder='Confirm Password' required='required'></div></div>" 
+  $('#mass_user_count').val(new_user_number)
+  $('.mass-signup-group').append(new_fields)
+}
+
+
+
+// Commented temporaralily, uncomment it after clickatell starts working.
 // function terms(event)
 // {
 //   if ($('#TermsOfService').prop('checked') == true)

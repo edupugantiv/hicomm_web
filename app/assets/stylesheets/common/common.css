@@ -470,3 +470,42 @@ a:hover{
 .not-found{
   font-size: 200px !important;
 }
+
+.forgot-password-new-form{
+  width: 350px !important;
+  margin-right: auto;
+  margin-left: auto;
+  height: 320px !important;
+  background-color: #fff !important;
+  margin-top: 100px !important;
+  text-align: center !important;
+}
+
+.forgot-password-edit-form{
+  width: 350px !important;
+  margin-right: auto;
+  margin-left: auto;
+  height: 410px !important;
+  background-color: #fff !important;
+  margin-top: 100px !important;
+  text-align: center !important;
+}
+
+
+.messages-list .popover{
+	height: 100px !important;
+	width: 100px !important;
+	font-size: 8px !important;
+}
+
+.messages-list .popover-title{
+	font-size: 10px !important;
+}
+
+.tooltip-inner {
+    white-space:pre-wrap;
+}
+
+#message-read-by{
+	color: #333 !important;
+}

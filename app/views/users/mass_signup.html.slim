@@ -1,0 +1,27 @@
+.mass-signup
+
+	= form_tag(mass_create_users_path, method: 'post') do
+		.form-group
+			.mass-signup-group
+				- (1..1).each do |index|
+					.mass-signup-row.row
+						.col-md-1
+						.col-md-1
+							.mass-signup-index
+								= index
+						.col-md-2
+							= text_field_tag :name,nil, :class => "form-control", placeholder: "Name", id: "name-#{index}", name: "first_name_#{index}", required: true
+						.col-md-2
+							= text_field_tag :mobile,nil, :class => "form-control", placeholder: "Mobile", id: "mobile-#{index}", name: "mobile_#{index}", required: true, :onkeypress => "return isMobile(event)"
+						.col-md-2
+							= password_field_tag :password,nil, :class => "form-control", placeholder: "Password", id: "password-#{index}",name: "password_#{index}", required: true
+						.col-md-2
+							= password_field_tag :password_confirmation,nil, :class => "form-control", placeholder: "Confirm Password", id: "confirm-password-#{index}",name: "confirm_password_#{index}", required: true
+		.form-group.row
+			= hidden_field_tag :mass_user_count,nil, value: 1
+			.col-sm-offset-2.col-sm-8
+				button.btn.add-signup-fields-btn#add-signup-fields.pull-right onclick='addSignupFields()'  Add More
+		.form-group.row
+			.col-sm-offset-2.col-sm-8
+				button.btn.btn-success.pull-right type="submit"  Save
+
