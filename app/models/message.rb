@@ -27,7 +27,7 @@ class Message <ActiveRecord::Base
   end
 
   def full_body
-    "#{sender.name}: #{body} REPLY @#{conversation.project_code}\##{conversation.code}"
+    "#{sender.name}: #{body} REPLY @#{conversation.project_code} \##{conversation.code}"
   end
 
 end
